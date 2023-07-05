@@ -1,0 +1,230 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath }" />
+<%@ page session="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html lang="en">
+
+<%@ include file="include/header.jsp" %>
+
+    <!-- 여기부터 작성-->
+
+   <link rel="stylesheet" type="text/css" href="${contextPath}/board/cartView" crossorigin="anonymous" /><link rel="stylesheet" type="text/css" href="//optimizer.poxo.com/css/amrcn1/84b0e639cdf398a57cb4f9b45c31debf2647b032.dca4420561c149f7b97aff7a32b1121c/1688383154" crossorigin="anonymous" />
+
+<title>NUSINSA</title>
+<meta name="path_role" content="ORDER_ORDERFORM" />
+<meta name="author" content="밀감몰" />
+<meta name="description" content="가성비 좋은 기본템은 역시 밀감몰" />
+<meta name="keywords" content="밀감몰" /></head><body id="userStyle">    <!-- [상단영역] -->
+    <header id="header"><!-- app tag --><div id="ec-orderform-header-head"></div>
+
+    <div class="header">
+        <h1 class="xans-element- xans-layout xans-layout-logotop "><a href="/index.html">NUSINSA</a>
+</h1>
+        <div class="headerMenu gLeft">
+            <span class="xans-element- xans-layout xans-layout-mobileaction btnBack "><a href="#none" onclick="document.referrer ? history.go(-1) : location.href='/';return false;">뒤로가기</a>
+</span>
+        </div>
+        <div class="headerMenu gRight">
+            <span class="xans-element- xans-layout xans-layout-orderbasketcount btnBasket "><a href="/order/basket.html">장바구니<span class="count  EC-Layout_Basket-count-display"><span class="EC-Layout-Basket-count">1</span></span></a>
+</span>
+                        <a href="/myshop/index.html" class="xans-element- xans-layout xans-layout-statelogon btnMy ">마이쇼핑
+</a>
+        </div>
+    </div>
+    <div class="titleArea">
+        <h1>주문/결제</h1>
+    </div>
+
+    <!-- app tag -->
+    <div id="ec-orderform-header-tail"></div>
+</header><div id="titleArea" class="titleArea">
+    <h1>주문/결제</h1>
+</div>
+
+    <form id="frm_order_act" name="frm_order_act" action="" method="post" target="_self" enctype="multipart/form-data" >
+<input id="move_order_after" name="move_order_after" value="/order/order_result.html" type="hidden"  />
+<input id="is_crowd_funding" name="is_crowd_funding" value="F" type="hidden"  />
+<input id="member_group_price" name="member_group_price" value="0" type="hidden"  />
+<input id="mileage_generate3" name="mileage_generate3" value="0" type="hidden"  />
+<input id="total_group_dc" name="total_group_dc" value="0" type="hidden"  />
+<input id="total_plusapp_mileage_price" name="total_plusapp_mileage_price" value="" type="hidden"  />
+<input id="basket_type" name="basket_type" value="all_buy" type="hidden"  />
+<input id="productPeriod" name="productPeriod" value="" type="hidden"  />
+<input id="member_id" name="member_id" value="" type="hidden"  />
+<input id="delvType" name="delvType" value="A" type="hidden"  />
+<input id="isUpdateMemberEmailOrder" name="isUpdateMemberEmailOrder" value="F" type="hidden"  />
+<input id="isSimplyOrderForm" name="isSimplyOrderForm" value="F" type="hidden"  />
+<input id="__ocountry" name="__ocountry" value="KOR" type="hidden"  />
+<input id="__oaddr1" name="__oaddr1" value="" type="hidden"  />
+<input id="__ocity" name="__ocity" value="" type="hidden"  />
+<input id="__ostate" name="__ostate" value="" type="hidden"  />
+<input id="sSinameZhAreaWord" name="sSinameZhAreaWord" value="省/市" type="hidden"  />
+<input id="sSinameTwAreaWord" name="sSinameTwAreaWord" value="市/縣" type="hidden"  />
+<input id="sGunameZhAreaWord" name="sGunameZhAreaWord" value="区" type="hidden"  />
+<input id="sGunameTwAreaWord" name="sGunameTwAreaWord" value="區/市" type="hidden"  />
+<input id="__addr1" name="__addr1" value="" type="hidden"  />
+<input id="__city_name" name="__city_name" value="" type="hidden"  />
+<input id="__state_name" name="__state_name" value="" type="hidden"  />
+<input id="__isRuleBasedAddrForm" name="__isRuleBasedAddrForm" value="F" type="hidden"  />
+<input id="message_autosave" name="message_autosave" value="F" type="hidden"  />
+<input id="hope_date" name="hope_date" value="" type="hidden"  />
+<input id="hope_ship_begin_time" name="hope_ship_begin_time" value="" type="hidden"  />
+<input id="hope_ship_end_time" name="hope_ship_end_time" value="" type="hidden"  />
+<input id="is_fast_shipping_time" name="is_fast_shipping_time" value="" type="hidden"  />
+<input id="eguarantee_id" name="eguarantee_id" value="F" type="hidden"  />
+<input id="is_hope_shipping" name="is_hope_shipping" value="F" type="hidden"  />
+<input id="is_fast_shipping" name="is_fast_shipping" value="" type="hidden"  />
+<input id="fCountryCd" name="fCountryCd" value="" type="hidden"  />
+<input id="sCpnPrd" name="sCpnPrd" value="0" type="hidden"  />
+<input id="sCpnOrd" name="sCpnOrd" value="0" type="hidden"  />
+<input id="coupon_saving" name="coupon_saving" value="0" type="hidden"  />
+<input id="coupon_discount" name="coupon_discount" value="0" type="hidden"  />
+<input id="coupon_shipfee" name="coupon_shipfee" value="0" type="hidden"  />
+<input id="is_used_with_mileage" name="is_used_with_mileage" value="F" type="hidden"  />
+<input id="is_used_with_member_discount" name="is_used_with_member_discount" value="F" type="hidden"  />
+<input id="is_used_with_coupon" name="is_used_with_coupon" value="F" type="hidden"  />
+<input id="is_no_ozipcode" name="is_no_ozipcode" value="F" type="hidden"  />
+<input id="is_no_rzipcode" name="is_no_rzipcode" value="F" type="hidden"  />
+<input id="is_cashreceipt_displayed_on_screen" name="is_cashreceipt_displayed_on_screen" value="F" type="hidden"  />
+<input id="is_taxrequest_displayed_on_screen" name="is_taxrequest_displayed_on_screen" value="F" type="hidden"  />
+<input id="app_scheme" name="app_scheme" value="" type="hidden"  />
+<input id="is_store" name="is_store" value="" type="hidden"  />
+<input id="defer_commission" name="defer_commission" value="0" type="hidden"  />
+<input id="order_form_simple_type" name="order_form_simple_type" value="T" type="hidden"  />
+<input id="information_agreement_check_val" name="information_agreement_check_val" value="F" type="hidden"  />
+<input id="consignment_agreement_check_val" name="consignment_agreement_check_val" value="F" type="hidden"  />
+<input id="basket_sync_flag" name="basket_sync_flag" value="F" type="hidden"  />
+<input id="app_discount_data" name="app_discount_data" value="" type="hidden"  />
+<input id="is_shipping_address_readonly_by_app" name="is_shipping_address_readonly_by_app" value="" type="hidden"  />
+<input id="is_app_delivery" name="is_app_delivery" value="F" type="hidden"  />
+<input id="app_delivery_data" name="app_delivery_data" value="" type="hidden"  />
+<input id="is_available_shipping_company_by_app" name="is_available_shipping_company_by_app" value="" type="hidden"  />
+<input id="is_multi_delivery" name="is_multi_delivery" value="F" type="hidden"  />
+<input id="is_no_shipping_required" name="is_no_shipping_required" value="F" type="hidden"  />
+<input id="use_shipping_manager" name="use_shipping_manager" value="F" type="hidden"  />
+<input id="shipping_manager_data" name="shipping_manager_data" value="{&quot;reason_for_not_calculating_shipping_fee&quot;:null,&quot;shipping_manager_shipping_fees&quot;:null,&quot;selected_shipping_manager_shipping_fees&quot;:null,&quot;shipping_manager_shipping_fees_response&quot;:null,&quot;shipping_manager_shipping_fee_detail&quot;:null}" type="hidden"  />
+<input id="selected_shipping_manager_data" name="selected_shipping_manager_data" value="null" type="hidden"  />
+<input id="ex_mileage" name="ex_mileage" value="" type="hidden"  />
+<input id="pagetype" name="pagetype" value="" type="hidden"  />
+<input id="is_direct_buy" name="is_direct_buy" value="F" type="hidden"  />
+<input id="is_subscription_invoice" name="is_subscription_invoice" value="F" type="hidden"  />
+<input id="order_enable" name="order_enable" value="" type="hidden"  />
+<input id="use_tax_manager" name="use_tax_manager" value="F" type="hidden"  />
+<input id="use_external_tax_app" name="use_external_tax_app" value="NA" type="hidden"  />
+<input id="app_tax_data" name="app_tax_data" value="" type="hidden"  />
+<input id="include_tax_in_prices" name="include_tax_in_prices" value="T" type="hidden"  />
+<input id="total_tax_raw" name="total_tax_raw" value="0" type="hidden"  />
+<input id="jwt" name="jwt" value="" type="hidden"  />
+<input id="service_code" name="service_code" value="" type="hidden"  />
+<input id="used_card" name="used_card" value="" type="hidden"  />
+<input id="sEleID" name="sEleID" value="total_price||productPeriod||ophone1_1||ophone1_2||ophone1_3||ophone2_1||ophone2_2||ophone2_3||ophone1_ex1||ophone1_ex2||ophone2_ex1||ophone2_ex2||basket_type||oname||oname2||english_oname||english_name||english_name2||input_mile||input_deposit||hope_date||hope_ship_begin_time||hope_ship_end_time||is_fast_shipping_time||fname||fname2||paymethod||eguarantee_flag||eguarantee_ssn1||eguarantee_ssn2||eguarantee_year||eguarantee_month||eguarantee_day||eguarantee_user_gender||eguarantee_personal_agreement||question||question_passwd||delvType||f_country||fzipcode||faddress||fphone1_1||fphone1_2||fphone1_3||fphone1_4||fphone1_ex1||fphone1_ex2||fphone2_ex1||fphone2_ex2||fphone2||fmessage||fmessage_select||rname||rzipcode1||rzipcode2||raddr1||raddr2||rphone1_1||rphone1_2||rphone1_3||rphone2_1||rphone2_2||rphone2_3||omessage||omessage_select||ozipcode1||ozipcode2||oaddr1||oaddr2||oemail||oemail1||oemail2||ocity||ostate||ozipcode||eguarantee_id||coupon_discount||coupon_saving||order_password||is_fast_shipping||fCountryCd||message_autosave||oa_content||gift_use_flag||pname||bankaccount||regno1||regno2||escrow_agreement0||addr_paymethod||member_group_price||chk_purchase_agreement||total_plusapp_mileage_price||mileage_generate3||is_hope_shipping||sCpnPrd||sCpnOrd||coupon_shipfee||np_req_tx_id||np_save_rate||np_save_rate_add||np_use_amt||np_mileage_use_amount||np_cash_use_amount||np_total_use_amount||np_balance_amt||np_use||np_sig||flagEscrowUse||flagEscrowIcashUse||add_ship_fee||total_group_dc||pron_name||pron_name2||pron_oname||faddress2||si_gun_dosi||ju_do||is_set_product||basket_prd_no||move_order_after||is_no_ozipcode||is_no_rzipcode||__ocountry||__oaddr1||__ocity||__ostate||__addr1||__city_name||__state_name||__isRuleBasedAddrForm||sSinameZhAreaWord||sSinameTwAreaWord||sGunameZhAreaWord||sGunameTwAreaWord||delivcompany||is_store||cashreceipt_user_type||cashreceipt_user_type2||cashreceipt_regist||cashreceipt_user_mobile1||cashreceipt_user_mobile2||cashreceipt_user_mobile3||cashreceipt_reg_no||is_cashreceipt_displayed_on_screen||tax_request_regist||tax_request_name||tax_request_phone1||tax_request_phone2||tax_request_phone3||tax_request_email1||tax_request_email2||tax_request_company_type||tax_request_company_regno||tax_request_company_name||tax_request_president_name||tax_request_zipcode||tax_request_address1||tax_request_address2||tax_request_company_condition||tax_request_company_line||is_taxrequest_displayed_on_screen||isSimplyOrderForm||use_safe_phone||app_scheme||isUpdateMemberEmailOrder||defer_commission||defer_p_name||order_form_simple_type||gmo_order_id||gmo_transaction_id||receiver_id_card_key||receiver_id_card_type||simple_join_is_check||simple_join_agree_use_info||etc_subparam_member_id||etc_subparam_email1||etc_subparam_passwd||etc_subparam_user_passwd_confirm||etc_subparam_passwd_type||etc_subparam_is_sms||etc_subparam_is_news_mail||information_agreement_check_val||consignment_agreement_check_val||remind_id||remind_code||shipping_additional_fee_show||shipping_additional_fee_hide||shipping_additional_fee_name_show||save_paymethod||allat_account_nm||basket_sync_flag||member_id||input_pointfy||set_main_address0||app_discount_data||is_shipping_address_readonly_by_app||is_app_delivery||app_delivery_data||is_available_shipping_company_by_app||is_direct_buy||is_subscription_invoice||subscription_start_date||order_enable||is_crowd_funding||is_multi_delivery||is_no_shipping_required||use_tax_manager||use_external_tax_app||app_tax_data||include_tax_in_prices||total_tax_raw||pagetype||jwt||service_code||used_card||use_shipping_manager||shipping_manager_data||selected_shipping_manager_data||hope_shipping_date||ex_mileage||is_used_with_mileage||is_used_with_member_discount||is_used_with_coupon" type="hidden"  /><div id="mCafe24Order" class="xans-element- xans-order xans-order-form typeHeader xans-record-"><!-- 이값은 지우면 안되는 값입니다. ($move_order_after 주문완료페이지 주소 / $move_basket 장바구니페이지 주소)
+            $move_order_after=/order/order_result.html
+            $move_basket=/order/basket.html
+            $paymethod_selector = textButton
+            $email_type=emailcompact
+            $product_weight_display=F
+        -->
+<!-- [바로구매 주문상품] -->
+<!--
+        이 파일은 원터치 주문서의 읽기 전용 파일입니다.
+        이 파일은 기능 업그레이드 시, 자동으로 개선된 소스가 적용되어 별도로 디자인 수정을 하지 않아도 됩니다 .
+        원터치 주문서 조각 html 파일을 수정할 경우, 작성한 정보가 유실되거나 주문서 최신 기능이 자동 업그레이드되지 않을 수 있으니 유의해 주세요.
+-->
+<div id="ec-jigsaw-area-productdetail">
+    </div>
+<!-- [주문배송정보] 주문자정보, 배송지정보, 배송정보 -->
+<!--
+        이 파일은 원터치 주문서의 읽기 전용 파일입니다.
+        이 파일은 기능 업그레이드 시, 자동으로 개선된 소스가 적용되어 별도로 디자인 수정을 하지 않아도 됩니다 .
+        원터치 주문서 조각 html 파일을 수정할 경우, 작성한 정보가 유실되거나 주문서 최신 기능이 자동 업그레이드되지 않을 수 있으니 유의해 주세요.
+-->
+<!-- 이값은 지우면 안되는 값입니다.
+    $delivery_list_type=embeded
+    $isRuleBasedAddrForm = T
+    $isOneTouch = T
+-->
+<div class="billingNshipping">
+    <!-- 주문자정보 -->
+    <div id="ec-jigsaw-area-billingInfo" class="ec-base-fold eToggle selected displaynone">
+        <div id="ec-jigsaw-title-billingInfo" class="title">
+            <h2>주문 정보</h2>
+            <span id="ec-jigsaw-heading-billingInfo" class="txtEm gRight"></span>
+        </div>
+        <div class="contents ec-shop-ordererForm">
+            <div class="ec-base-table typeWrite">
+                <table border="1">
+<caption>주문자 정보 입력</caption>
+                    <colgroup>
+<col style="width:102px">
+<col style="width:auto">
+</colgroup>
+<!-- 국내/해외 주문자 정보 --><tbody class="address_form ">
+<tr>
+<th scope="row">주문자 <span class="icoRequired">필수</span>
+</th>
+                        <td></td>
+                    </tr>
+<tr class="ec-orderform-emailRow ">
+<th scope="row">이메일 <span class="icoRequired icon_order_email">필수</span>
+</th>
+                        <td>
+                            <div class="ec-base-mail">
+            <input id="oemail1" name="oemail1" fw-filter="isFill" fw-label="주문자 이메일" fw-alone="N" fw-msg="" class="mailId" value="" type="text"  />@
+            <span class="mailAddress">
+            <select id="oemail3" fw-filter="isFill" fw-label="주문자 이메일" fw-alone="N" fw-msg=""  >
+<option value="" selected="selected">-이메일 선택-</option>
+<option value="naver.com">naver.com</option>
+<option value="daum.net">daum.net</option>
+<option value="nate.com">nate.com</option>
+<option value="hotmail.com">hotmail.com</option>
+<option value="yahoo.com">yahoo.com</option>
+<option value="empas.com">empas.com</option>
+<option value="korea.com">korea.com</option>
+<option value="dreamwiz.com">dreamwiz.com</option>
+<option value="gmail.com">gmail.com</option>
+<option value="etc">직접입력</option>
+</select>
+            <span class="directInput ec-compact-etc"><input id="oemail2" name="oemail2" fw-filter="isFill" fw-label="주문자 이메일" fw-alone="N" fw-msg="" placeholder="직접입력" readonly="readonly" value="" type="text"  /></span>
+            </span>
+        </div>
+                        </td>
+                    </tr>
+<tr class="displaynone">
+<th scope="row">일반전화 <span class="displaynone"><span class="icoRequired">필수</span></span>
+</th>
+                        <td><div class="ec-base-mail"></div></td>
+                    </tr>
+<tr class="displaynone">
+<th scope="row">휴대전화 <span class="displaynone"><span class="icoRequired">필수</span></span>
+</th>
+                        <td><div class="ec-base-mail"></div></td>
+                    </tr>
+<tr id="ec-orderer-address">
+<th scope="row">주소 <span class="displaynone"><span class="icoRequired">필수</span></span>
+</th>
+                        <td>
+                                                    </td>
+                    </tr>
+</tbody>
+</table>
+</div>
+        </div>
+    </div>
+
+
+        
+    <!-- 끝 -->
+
+    <!--::footer_part start::-->
+	<%@ include file="include/footer.jsp" %>
+    <!--::footer_part end::-->
+
+    <!-- jquery plugins here-->
+	<%@ include file="include/javascript.jsp" %>
+    <%@ include file="include/style.jsp" %>
+</body>
+
+</html>

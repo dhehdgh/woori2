@@ -1,0 +1,32 @@
+package kr.co.dong.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+@Controller
+public class Boardcontroller {
+	
+	// 카테고리 - 테이블 샘플 이동
+	@RequestMapping(value="board/sampleBoard", method = RequestMethod.GET)
+	public String sampleBoard() {
+		
+		return "sampleBoard";
+	}
+	
+	
+	// 헤더 - 장바구니 이동
+	@RequestMapping(value="board/cartView", method = RequestMethod.GET)
+	public String cartView() {
+		
+		return "cartView";
+	}
+	
+	// 장바구니 - 결제창 이동
+		@RequestMapping(value="board/buyView", method = RequestMethod.GET)
+		public String buyView() {
+			
+			return "buyView";
+		}
+
+}

@@ -1,0 +1,19 @@
+INDEX VERSION 1.132
+D:\jsworkspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2159280363.index
+\ShoppingProject\src\main\java
+D:\jsworkspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2953390170.index
+\testspring\src\main\java
+D:\jsworkspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\768423155.index
+\ShoppingProject3\src\main\java
+D:\jsworkspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1526660362.index
+\testspring\src\main\java
+D:\jsworkspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3585196987.index
+\ShoppingProject3\src\main\java
+D:\jsworkspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1127768775.index
+\testspring\src\main\java
+D:\jsworkspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2337498489.index
+\ShoppingProject\src\main\java
+D:\jsworkspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\864419362.index
+\ShoppingProject3\src\main\java
+D:\jsworkspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1073277799.index
+\ShoppingProject\src\main\java

@@ -1,0 +1,96 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<style>
+
+
+
+    
+    
+    
+#contents { position:relative; }
+
+
+/* 주문하기 버튼 */
+.xans-order-basketpackage .xans-order-empty p { margin:50px 0; text-align:center; font-weight:bold; color:#707070; }
+.xans-order-basketpackage .orderListArea .title { height:38px; margin:20px 0 0; padding:0 0 0 9px; border:1px solid #d7d5d5; border-bottom:0; line-height:38px; background:#f6f6f6; }
+.xans-order-basketpackage .orderListArea .title h3 { color:#353535; font-size:12px; }
+.xans-order-basketpackage .orderListArea .title + table { margin:0; }
+.xans-order-basketpackage .ec-base-table tfoot td .gLeft { float:left; margin:6px 0 0; }
+.xans-order-basketpackage .ec-base-table td.thumb img { max-width:80px; }
+.xans-order-basketpackage .ec-base-table td.button a { width:90px; margin:1px 0; }
+.xans-order-basketpackage .ec-base-table .name .ec-set-product-name { display:block; }
+.xans-order-basketpackage .ec-base-table .engName { display:block; }
+.xans-order-basketpackage .ec-base-table td div.option,
+.xans-order-basketpackage .ec-base-table td ul.option > li { margin:9px 0 0; color:#707070; line-height:16px; }
+.xans-order-basketpackage .ec-base-table td ul.option > li > strong { display:block; color:#353535; }
+.xans-order-basketpackage .ec-base-table td div.option span.file a,
+.xans-order-basketpackage .ec-base-table td ul.option > li > span.file a { margin:0 0 0 4px; padding:0 0 0 11px; color:#707070; text-decoration:underline; background:url("//img.echosting.cafe24.com/skin/base/common/ico_file.gif") no-repeat 0 2px; }
+
+.xans-order-basketpackage .xans-order-allotmentinfo { padding:10px 0 8px 10px; border-bottom:1px solid #e8e5e4; }
+.xans-order-basketpackage .xans-order-allotmentinfo .info { padding:8px 0 0 23px; color:#707070; font-size:11px; line-height:1.5; background:url("//img.echosting.cafe24.com/skin/base/common/ico_info.gif") no-repeat 0 8px; }
+
+.xans-order-basketpackage .xans-order-basketpriceinfoguide p.info { padding:8px 0 8px 33px; border-bottom:1px solid #e8e5e4; color:#757575; line-height:1.5; font-size:11px; background:url("//img.echosting.cafe24.com/skin/base/common/ico_info.gif") no-repeat 9px 8px; }
+
+.xans-order-basketpackage .xans-order-selectorder { margin:0 0 40px; }
+.xans-order-basketpackage .xans-order-totalorder { margin:10px 0 40px; }
+
+
+
+
+
+/* 혜택 정보 */
+.xans-order-basketpackage td .box.shipping { line-height:1.3em; }
+.xans-order-basketpackage td .box.shipping .shippingArea { font-size:12px; line-height:1.3em; }
+.xans-order-basketpackage .shippingFee { position:relative; display:inline-block; vertical-align:middle; text-align:left; }
+.xans-order-basketpackage .shippingFee .ec-base-tooltip { display:block; margin:0 0 0 -180px; width:360px; }
+.xans-order-basketpackage .ec-base-table.total .ec-base-tooltip table { border-color:#d7d5d5; }
+.xans-order-basketpackage .ec-base-table.total .ec-base-tooltip table th { width:40px; }
+.xans-order-basketpackage .ec-base-table.total .ec-base-tooltip table th,
+.xans-order-basketpackage .ec-base-table.total .ec-base-tooltip table td { padding:7px 10px 8px 10px; height:auto; font-size:12px; line-height:1.5; text-align:left; }
+.xans-order-dcinfo { margin:20px 0; color:#353535; line-height:1.5; }
+.xans-order-dcinfo h3 { font-size:12px; }
+.xans-order-dcinfo .description .mileage { margin:6px 0 0; padding:10px 0 0; border-top:1px solid #e8e8e8; *zoom:1; }
+.xans-order-dcinfo .description .mileage:after { content:""; display:block; clear:both; }
+.xans-order-dcinfo .description .displaynone + .mileage { margin:0; padding:0; border:0; }
+.xans-order-dcinfo .description .mileage li { float:left; margin:0 40px 0 0; }
+.xans-order-dcinfo .description .mileage li a { text-decoration:none; }
+.xans-order-dcinfo .description .mileage li strong { color:#940101; }
+.xans-myshop-wishlist .title { margin:30px 0 10px 10px; }
+.xans-myshop-wishlist .title h3 { color:#353535; font-size:12px; }
+
+
+
+/* 총결제금액 및 폰트 */
+
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,img { margin:0; padding:0; }
+html { width:100%; height:100%; }
+body,code {font-family:"Lato",helvetica,"Apple SD Gothic Neo",Nanum Gothic,Malgun Gothic,ë§‘ì€ ê³ ë”•,sans-serif; line-height:1.5em; font-size:12px;
+    color:#444; background:#fff; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body {}
+body#popup { min-width:0; }
+li { list-style:none; }
+img,fieldset { border:none; vertical-align:top; }
+table { width:100%; border:0; border-spacing:0; border-collapse:collapse; } /* 총 상품금액 */
+th,td { border:0; vertical-align:top; }
+button { overflow:visible; padding:0; margin:0; border:0; cursor:pointer; }
+hr.layout { display:none; }
+a { text-decoration:none; color:#444; }
+a:hover { text-decoration:none; color:#ddd; }
+a:active { text-decoration:none; }
+.objHidden { visibility:hidden; position:absolute; left:-1000px; top:-1000px; height:0; width:0; }
+#content_CONTAINER table, #bi_inquire_content_CONTAINER table { border:0; margin:0 0 -1px; }
+#content_CONTAINER table:before, #bi_inquire_content_CONTAINER table:before { display:none; }
+#content_CONTAINER td, #bi_inquire_content_CONTAINER td { width:auto !important; padding:0; }
+table.nneditor-table { width:auto !important; }
+
+
+
+
+
+
+
+
+
+
+
+</style>
