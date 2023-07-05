@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.dong.DTO.CartDTO;
+import kr.co.dong.DTO.MemberDTO;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO{
@@ -20,6 +21,12 @@ public class BoardDAOImpl implements BoardDAO{
 	public List<CartDTO> list() {
 		// TODO Auto-generated method stub
 		return sqlsession.selectList(namespace+".list");
+	}
+
+	@Override
+	public List<MemberDTO> member() {
+		// TODO Auto-generated method stub
+		return sqlsession.selectList(namespace+".member");
 	}
 
 }

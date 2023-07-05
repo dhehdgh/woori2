@@ -1,8 +1,7 @@
 package kr.co.dong.DTO;
 
-import lombok.Data;
 
-@Data
+
 public class CartDTO {
 	
 	private int cartno;

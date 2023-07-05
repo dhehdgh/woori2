@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.dong.DAO.BoardDAO;
 import kr.co.dong.DTO.CartDTO;
+import kr.co.dong.DTO.MemberDTO;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -18,6 +19,12 @@ public class BoardServiceImpl implements BoardService{
 	public List<CartDTO> list() {
 		// TODO Auto-generated method stub
 		return dao.list();
+	}
+
+	@Override
+	public List<MemberDTO> member() {
+		// TODO Auto-generated method stub
+		return dao.member();
 	}
 
 

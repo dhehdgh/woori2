@@ -5,18 +5,9 @@
 
 <mapper namespace="kr.co.dong.BoardMapper">
 
-<select id="getCartItems" resultMap="cartItemMap">
-SELECT c.cartno, c.membernum, c.itemnum, c.itemcnt,
-       i.itemname, i.itempay,
-       iv.itemsize, iv.itemcolor,
-       co.codestring
-FROM cart c
-JOIN item i ON c.itemnum = i.itemnum
-JOIN iv_item iv ON c.itemnum = iv.itemnum
-JOIN codetable co ON iv.itemcolor = co.codenum
-WHERE c.cartno = 1
-  AND iv.itemcolor = #{itemcolor}
-  AND co.codename = '색깔';
-</select>
 
+
+	<select id="member" resultType="MemberDTO">
+		select * from member
+	</select>
 </mapper>
