@@ -56,7 +56,7 @@
                                 <div class="col-lg-5 col-md-8">
                                     <div class="banner_text">
                                         <div class="banner_text_iner">
-                                            <h1>Wood & Cloth
+                                            <h1>나무 & Cloth
                                                 Sofa</h1>
                                             <p>Incididunt ut labore et dolore magna aliqua quis ipsum
                                                 suspendisse ultrices gravida. Risus commodo viverra</p>
