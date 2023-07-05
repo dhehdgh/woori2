@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace = "kr.co.dong.BoardMapper">
+	
+	<select id ="memDetail" resultType="memberDTO" parameterType="java.lang.Integer" >
+	select * from member
+	where membernum =1;
+	</select>
+
+	<update id ="memUpdate" parameterType="memberDTO">
+	update member 
+	set	pw =#{pw}, email =#{email}, tel =#{tel}, roadaddress =#{roadaddress}, jibunaddress =#{jibunaddress},
+	detailaddress = #{detailaddress}, extraaddress = #{extraaddress}, gender = #{gender}
+	where membernum =1;
+	</update>
+	
+	<delete id="memDelete" parameterType="java.lang.Integer">
+	delete member
+	where membernum =1
+	and pw = #{pw};
+	</delete>
+	
+	<select id="addrlist" resultType="addressDTO">
+	select * from address
+	where membernum = 1;
+	</select>
+	
+	<update id="addrupdate" parameterType="addressDTO">
+	update address 
+	set	delroadaddress =#{delroadaddress}, deljibunaddress =#{deljibunaddress}, deldetailaddress =#{deldetailaddress}, 
+	delextraaddress =#{delextraaddress}, delpostcode =#{delpostcode}
+	where addressnum =#{addressnum};
+	</update>
+	
+	<delete id="addrdelete" parameterType="java.lang.Integer">
+	delete address
+	where addressnum =#{addressnum};
+	</delete>
+	
+	<insert id="addrinsert" parameterType="addressDTO">
+	insert into address(addressnum, delroadaddress, deljibunaddress, deldetailaddress, delextraaddress, delpostcode)
+	values(#{addressnum},#{delroadaddress},#{deljibunaddress},#{deldetailaddress},#{delextraaddress},#{delpostcode});
+	</insert>
+	
+	<select id="likelist" resultType="mylistDTO">
+	select * from mylist
+	where membernum = 1;
+	</select>
+	
+	<delete id="likedelete" parameterType="java.lang.Integer">
+	delete mylist
+	where zno = #{zno};
+	</delete>
+	
+	<select id="returnlist" resultType="itemreturnDTO">
+	select * from itemreturn
+	where buynum =#{buynum}
+	</select>
+	
+	<select id="returndetail" resultType="itemreturnDTO" parameterType="java.lang.Integer">
+	select * from itemreturn
+	where addressnum =#{addressnum};
+	</select>
+	
+	<delete id="returndelete" parameterType="java.lang.Integer">
+	delete itemreturn
+	where addressnum =#{addressnum};
+	</delete>
+	
+</mapper>
