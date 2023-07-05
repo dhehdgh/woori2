@@ -2,10 +2,10 @@ package kr.co.dong.Service;
 
 import java.util.List;
 
-import kr.co.dong.DTO.cartDTO;
+import kr.co.dong.DTO.CartDTO;
 
 public interface BoardService {
 	
-	public List<cartDTO> list();
+	public List<CartDTO> list();
 
 }

@@ -3,7 +3,7 @@ package kr.co.dong.DTO;
 import lombok.Data;
 
 @Data
-public class cartDTO {
+public class CartDTO {
 	
 	private int cartno;
 	private int membernum;

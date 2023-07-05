@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class Boardcontroller {
+public class BoardController {
 	
 	// 카테고리 - 테이블 샘플 이동
 	@RequestMapping(value="board/sampleBoard", method = RequestMethod.GET)
