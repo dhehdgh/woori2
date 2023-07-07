@@ -14,30 +14,25 @@
 		<table class="table table-bordered table-striped" style="max-width: 1800px;">
 			<thead class="thead-dark">
 			    <tr>
-			        <th>상품번호</th>
-			        <th>상품이름</th>
-			        <th>가격</th>
-			        <th>판매량</th>
-			        <th>등록날짜</th>
-			        <th>대분류</th>
-			        <th>소분류</th>
-			        <th>평점</th>
+			        <th>교환번호</th>
+			        <th>주문번호</th>
+			        <th>교환신청일</th>
+			        <th>교환완료일</th>
+			        <th>상태</th>
 			    </tr>
 		    </thead>
-		    <c:forEach items="${adminItem}" var="adminItem">
+		    <c:forEach items="${adminExchange}" var="adminExchange">
 		        <tr>
-		            <td>${adminItem.itemnum}</td>
-		            <td>${adminItem.itemname}</td>
-		            <td>${adminItem.itempay}</td>
-		            <td>${adminItem.itembuycnt}</td>
-		            <td>${adminItem.itemdate}</td>
-		            <td>${adminItem.itemb}</td>
-		            <td>${adminItem.items}</td>
-		            <td>${adminItem.rstar}</td>
+		            <td>${adminExchange.returnnum}</td>
+		            <td>${adminExchange.buynum}</td>
+		            <td>${adminExchange.returndate}</td>
+		            <td>${adminExchange.recomdate}</td>
+		            <td>${adminExchange.state}</td>
 		        </tr>
 		    </c:forEach>
 		</table>
    	</div>
+   
     <!-- 끝 -->
 
     <!--::footer_part start::-->

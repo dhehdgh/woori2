@@ -14,30 +14,27 @@
 		<table class="table table-bordered table-striped" style="max-width: 1800px;">
 			<thead class="thead-dark">
 			    <tr>
-			        <th>상품번호</th>
-			        <th>상품이름</th>
-			        <th>가격</th>
-			        <th>판매량</th>
-			        <th>등록날짜</th>
-			        <th>대분류</th>
-			        <th>소분류</th>
-			        <th>평점</th>
+			        <th>문의번호</th>
+			        <th>회원번호</th>
+			        <th>제목</th>
+			        <th>문의날짜</th>
+			        <th>답변날짜</th>
+			        <th>문의확인</th>
 			    </tr>
 		    </thead>
-		    <c:forEach items="${adminItem}" var="adminItem">
+		    <c:forEach items="${adminHelp}" var="adminHelp">
 		        <tr>
-		            <td>${adminItem.itemnum}</td>
-		            <td>${adminItem.itemname}</td>
-		            <td>${adminItem.itempay}</td>
-		            <td>${adminItem.itembuycnt}</td>
-		            <td>${adminItem.itemdate}</td>
-		            <td>${adminItem.itemb}</td>
-		            <td>${adminItem.items}</td>
-		            <td>${adminItem.rstar}</td>
+		            <td>${adminHelp.hno}</td>
+		            <td>${adminHelp.membernum}</td>
+		            <td>${adminHelp.title}</td>
+		            <td>${adminHelp.hdate}</td>
+		            <td>${adminHelp.rehdate}</td>
+		            <td>${adminHelp.state}</td>
 		        </tr>
 		    </c:forEach>
 		</table>
    	</div>
+   
     <!-- 끝 -->
 
     <!--::footer_part start::-->

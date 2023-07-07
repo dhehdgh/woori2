@@ -14,30 +14,23 @@
 		<table class="table table-bordered table-striped" style="max-width: 1800px;">
 			<thead class="thead-dark">
 			    <tr>
+			        <th>신고번호</th>
 			        <th>상품번호</th>
-			        <th>상품이름</th>
-			        <th>가격</th>
-			        <th>판매량</th>
-			        <th>등록날짜</th>
-			        <th>대분류</th>
-			        <th>소분류</th>
-			        <th>평점</th>
+			        <th>리뷰번호</th>
+			        <th>신고날짜</th>
 			    </tr>
 		    </thead>
-		    <c:forEach items="${adminItem}" var="adminItem">
+		    <c:forEach items="${adminReview}" var="adminReview">
 		        <tr>
-		            <td>${adminItem.itemnum}</td>
-		            <td>${adminItem.itemname}</td>
-		            <td>${adminItem.itempay}</td>
-		            <td>${adminItem.itembuycnt}</td>
-		            <td>${adminItem.itemdate}</td>
-		            <td>${adminItem.itemb}</td>
-		            <td>${adminItem.items}</td>
-		            <td>${adminItem.rstar}</td>
+		            <td>${adminReview.drnum}</td>
+		            <td>${adminReview.reviewDTO.itemnum}</td>
+		            <td>${adminReview.reviewDTO.reviewno}</td>
+		            <td>${adminReview.drdate}</td>
 		        </tr>
 		    </c:forEach>
 		</table>
    	</div>
+   
     <!-- 끝 -->
 
     <!--::footer_part start::-->

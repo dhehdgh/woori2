@@ -34,26 +34,26 @@
 			        <th>개인정보수집동의</th>
 			    </tr>
 		    </thead>
-		    <c:forEach items="${member}" var="member">
+		    <c:forEach items="${adminMember}" var="adminMember">
 		        <tr>
-		            <td>${member.membernum}</td>
-		            <td>${member.id}</td>
-		            <td>${member.name}</td>
-		            <td>${member.email}</td>
-		            <td>${member.tel}</td>
-		            <td>${member.birth}</td>
-		            <td>${member.point}</td>
-		            <td>${member.pointac}</td>
-		            <td>${member.roadaddr}</td>
-		            <td>${member.jibunaddr}</td>
-		            <td>${member.detailaddr}</td>
-		            <td>${member.extraaddr}</td>
-		            <td>${member.postcode}</td>
-		            <td>${member.joindate}</td>
-		            <td>${member.state}</td>
-		            <td>${member.authority}</td>
-		            <td>${member.gender}</td>
-		            <td>${member.agree}</td>
+		            <td>${adminMember.membernum}</td>
+		            <td>${adminMember.id}</td>
+		            <td>${adminMember.name}</td>
+		            <td>${adminMember.email}</td>
+		            <td>${adminMember.tel}</td>
+		            <td>${adminMember.birth}</td>
+		            <td>${adminMember.point}</td>
+		            <td>${adminMember.pointac}</td>
+		            <td>${adminMember.roadaddr}</td>
+		            <td>${adminMember.jibunaddr}</td>
+		            <td>${adminMember.detailaddr}</td>
+		            <td>${adminMember.extraaddr}</td>
+		            <td>${adminMember.postcode}</td>
+		            <td>${adminMember.joindate}</td>
+		            <td>${adminMember.state}</td>
+		            <td>${adminMember.authority}</td>
+		            <td>${adminMember.gender}</td>
+		            <td>${adminMember.agree}</td>
 		        </tr>
 		    </c:forEach>
 		</table>

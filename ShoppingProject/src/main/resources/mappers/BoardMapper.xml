@@ -4,10 +4,90 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="kr.co.dong.BoardMapper">
+	
+	<resultMap id="dr_reviewMapper" type="kr.co.dong.DTO.Dr_reviewDTO">
+      <result column="drnum" property="drnum"/>
+      <result column="reviewno" property="reviewno"/>
+      <result column="drcontent" property="drcontent"/>
+      <result column="drdate" property="drdate"/>
+      <collection property="reviewDTO" resultMap="reviewMapper"/>
+   </resultMap>
+   <resultMap id="reviewMapper" type="kr.co.dong.DTO.ReviewDTO">   
+      <result column="reviewno" property="reviewno"/>
+      <result column="itemnum" property="itemnum"/>
+      <result column="membernum" property="membernum"/>
+      <result column="rcontent" property="rcontent"/>
+      <result column="rdate" property="rdate"/>
+      <result column="rstar" property="rstar"/>
+      <result column="reviewlike" property="reviewlike"/>
+      <result column="reviewreport" property="reviewreport"/>
+      <result column="del" property="del"/>
+   </resultMap>
 
+	<resultMap id="orderMapper" type="kr.co.dong.DTO.OrderDTO">
+		<result column="buynum" property="buynum"/>
+		<result column="cartno" property="cartno"/>
+		<result column="addrnum" property="addrnum"/>
+		<result column="paymethod" property="paymethod"/>
+		<result column="buydate" property="buydate"/>
+		<result column="deliverycom" property="deliverycom"/>
+		<result column="state" property="state"/>
+		<result column="deliveryday" property="deliveryday"/>
+		<collection property="cartDTO" resultMap="cartMapper"/>
+		<collection property="addressDTO" resultMap="addressMapper"/>
+	</resultMap>
+	<resultMap id="cartMapper" type="kr.co.dong.DTO.CartDTO">
+		<result column="cartno" property="cartno"/>
+		<result column="membernum" property="membernum"/>
+		<result column="itemnum" property="itemnum"/>
+		<result column="iv_itemnum" property="iv_itemnum"/>
+		<result column="itemcnt" property="itemcnt"/>
+		<result column="cartstate" property="cartstate"/>
+	</resultMap>
+	<resultMap id="addressMapper" type="kr.co.dong.DTO.AddressDTO">
+		<result column="addrnum" property="addrnum"/>
+		<result column="membernum" property="membernum"/>
+		<result column="delroadaddr" property="delroadaddr"/>
+		<result column="deljibunaddr" property="deljibunaddr"/>
+		<result column="deldetailaddr" property="deldetailaddr"/>
+		<result column="delextraaddr" property="delextraaddr"/>
+		<result column="delpostcode" property="delpostcode"/>
+	</resultMap>
 
-
-	<select id="member" resultType="MemberDTO">
+	<select id="adminItem" resultType="ItemDTO">
+		select * from item
+	</select>
+	
+	<select id="adminMember" resultType="MemberDTO">
 		select * from member
+	</select>
+	
+	<select id="adminHelp" resultType="HelpDTO">
+		select * from help_board
+		where del = 1
+	</select>
+	
+	<select id="adminOrder" resultMap="orderMapper">
+		select O.buynum, O.cartno, O.addrnum, O.paymethod, O.buydate, O.deliverycom, O.state, O.deliveryday, 
+			C.membernum, C.itemnum,C.iv_itemnum, C.itemcnt, A.delroadaddr, A.deldetailaddr
+        from dv_order O 
+        join cart C on O.cartno=C.cartno
+		join address A on O.addrnum=A.addrnum;
+	</select>
+	
+	<select id="adminReturn" resultType="ReturnDTO">
+		select * from itemreturn
+		where type = 1
+	</select>
+	
+	<select id="adminExchange" resultType="ReturnDTO">
+		select * from itemreturn
+		where type = 2
+	</select>
+	
+	<select id="adminReview" resultMap="dr_reviewMapper">
+		select D.drnum, R.reviewno, R.itemnum, D.drdate
+		from dr_review D, review R
+		where D.reviewno = R.reviewno
 	</select>
 </mapper>
