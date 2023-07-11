@@ -25,7 +25,7 @@
 			    </tr>
 		    </thead>
 		    <c:forEach items="${adminItem}" var="adminItem">
-		        <tr>
+		        <tr onclick="window.location.href = '${contextPath}/board/adminItemDetail?itemnum=${adminItem.itemnum}';">
 		            <td>${adminItem.itemnum}</td>
 		            <td>${adminItem.itemname}</td>
 		            <td>${adminItem.itempay}</td>

@@ -10,8 +10,15 @@ public class ItemDTO {
 	private int items;
 	private String itemcontent;
 	private double rstar;
+	private Iv_itemDTO iv_itemDTO;
+	private ImgDTO imgDTO;
 	
-	
+	public Iv_itemDTO getIv_itemDTO() {
+		return iv_itemDTO;
+	}
+	public void setIv_itemDTO(Iv_itemDTO iv_itemDTO) {
+		this.iv_itemDTO = iv_itemDTO;
+	}
 	public int getItemnum() {
 		return itemnum;
 	}
@@ -66,10 +73,17 @@ public class ItemDTO {
 	public void setRstar(double rstar) {
 		this.rstar = rstar;
 	}
+	public ImgDTO getImgDTO() {
+		return imgDTO;
+	}
+	public void setImgDTO(ImgDTO imgDTO) {
+		this.imgDTO = imgDTO;
+	}
+	
 	@Override
 	public String toString() {
 		return "ItemDTO [itemnum=" + itemnum + ", itemname=" + itemname + ", itempay=" + itempay + ", itembuycnt="
 				+ itembuycnt + ", itemdate=" + itemdate + ", itemb=" + itemb + ", items=" + items + ", itemcontent="
-				+ itemcontent + ", rstar=" + rstar + "]";
+				+ itemcontent + ", rstar=" + rstar + ", iv_itemDTO=" + iv_itemDTO + ", imgDTO=" + imgDTO + "]";
 	}
 }

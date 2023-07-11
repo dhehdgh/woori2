@@ -14,8 +14,8 @@
 		<a href="${contextPath}/board/adminItem" class="genric-btn info-border">상품관리</a>
 		<a href="${contextPath}/board/adminMember" class="genric-btn info-border">회원관리</a>
 		<a href="${contextPath}/board/adminHelp" class="genric-btn info-border">문의사항</a>
-		<a href="${contextPath}/board/adminReturn" class="genric-btn info-border">반품처리</a>
-		<a href="${contextPath}/board/adminExchange" class="genric-btn info-border">교환처리</a>
+		<a href="${contextPath}/board/adminReturn" class="genric-btn info-border">반품내역</a>
+		<a href="${contextPath}/board/adminExchange" class="genric-btn info-border">교환내역</a>
 		<a href="${contextPath}/board/adminOrder" class="genric-btn info-border">주문내역</a>
 		<a href="${contextPath}/board/adminReview" class="genric-btn info-border">신고리뷰</a>
    	</div>

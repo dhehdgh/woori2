@@ -6,13 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.dong.DTO.CartDTO;
 import kr.co.dong.DTO.Dr_reviewDTO;
 import kr.co.dong.DTO.HelpDTO;
 import kr.co.dong.DTO.ItemDTO;
+import kr.co.dong.DTO.Iv_itemDTO;
 import kr.co.dong.DTO.MemberDTO;
 import kr.co.dong.DTO.OrderDTO;
 import kr.co.dong.DTO.ReturnDTO;
@@ -56,6 +59,48 @@ public class BoardController {
 		return "adminItem";
 	}
 	
+	// 관리자 상품 상세정보 이동
+	@GetMapping("board/adminItemDetail")
+	public String adminItemDetail(int itemnum, Model model) throws Exception{
+		ItemDTO item = service.adminItemDetail(itemnum);
+		model.addAttribute("item", item);
+		List<Iv_itemDTO> iv_item = service.adminItemDetail2(itemnum);
+		model.addAttribute("iv_item", iv_item);
+		return "adminItemDetail";
+	}
+	
+	// 관리자 상품 수정 이동
+	@GetMapping("board/adminItemUpdate")
+	public String adminItemUpdate(int itemnum, Model model) throws Exception{
+		ItemDTO item = service.adminItemDetail(itemnum);
+		model.addAttribute("item", item);
+		return "adminItemUpdate";
+	}
+	
+	// 관리자 상품 수정 실행
+	@PostMapping("board/adminItemUpdate")
+	public String adminItemUpdate(ItemDTO itemDTO) throws Exception {
+		service.adminItemUpdate(itemDTO);
+		
+		return "redirect:adminItemDetail?itemnum="+itemDTO.getItemnum();
+	}
+	
+	// 관리자 재고추가 이동
+	@GetMapping("board/adminItemAdd")
+	public String adminItemAdd(int itemnum, Model model) throws Exception{
+		List<Iv_itemDTO> iv_item = service.adminItemDetail2(itemnum);
+		model.addAttribute("iv_item", iv_item);
+		return "adminItemAdd";
+	}
+	
+	// 관리자 재고추가 실행
+	@PostMapping("board/adminItemAdd")
+	public String adminItemAdd(Iv_itemDTO iv_itemDTO) throws Exception{
+		service.adminItemAdd(iv_itemDTO);
+		System.out.println(iv_itemDTO.getItemnum());
+		return "redirect:adminItemAdd?itemnum="+iv_itemDTO.getIv_itemnum();
+	}
+	
 	// 관리자 회원관리 이동
 	@GetMapping("board/adminMember")
 	public String adminMember(MemberDTO memberDTO,Model model) throws Exception{
@@ -65,6 +110,36 @@ public class BoardController {
 		return "adminMember";
 	}
 	
+	// 관리자 회원 상세정보 이동
+	@GetMapping("board/adminMemberDetail")
+	public String adminMemberDetail(int membernum, Model model) throws Exception{
+		MemberDTO member = service.adminMemberDetail(membernum);
+		model.addAttribute("member", member);
+		return "adminMemberDetail";
+	}
+	
+	// 관리자 회원정보 수정 이동
+	@GetMapping("board/adminMemberUpdate")
+	public String adminMemberUpdate(int membernum, Model model) throws Exception{
+		MemberDTO member = service.adminMemberDetail(membernum);
+		model.addAttribute("member", member);
+		return "adminMemberUpdate";
+	}
+	
+	// 관리자 회원정보 수정 실행
+	@PostMapping("board/adminMemberUpdate")
+	public String adminMemberUpdate(MemberDTO memberDTO) throws Exception{
+		service.adminMemberUpdate(memberDTO);
+		
+		return "redirect:adminMemberDetail?membernum=" + memberDTO.getMembernum();
+	}
+	
+	// 관리자 회원 탈퇴 이동
+	@GetMapping("board/adminMemberDelete")
+	public String adminMemberDelete() throws Exception{
+		return "adminMemberDelete";
+	}
+	
 	// 관리자 문의사항 이동
 	@GetMapping("board/adminHelp")
 	public String adminHelp(Model model) throws Exception {
@@ -72,6 +147,16 @@ public class BoardController {
 		List<HelpDTO> adminHelp = service.adminHelp();
 		model.addAttribute("adminHelp", adminHelp);
 		return "adminHelp";
+	}
+	
+	// 관리자 문의사항 상세 이동
+	@GetMapping("board/adminHelpDetail")
+	public String adminHelpDetail(int hno, Model model) throws Exception {
+		
+		HelpDTO adminHelpDetail = service.adminHelpDetail(hno);
+		model.addAttribute("adminHelp", adminHelpDetail);
+		System.out.println(adminHelpDetail);
+		return "adminHelpDetail";
 	}
 	
 	// 관리자 주문내역 이동

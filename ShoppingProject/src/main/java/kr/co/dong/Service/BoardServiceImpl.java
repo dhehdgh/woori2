@@ -10,6 +10,7 @@ import kr.co.dong.DTO.CartDTO;
 import kr.co.dong.DTO.Dr_reviewDTO;
 import kr.co.dong.DTO.HelpDTO;
 import kr.co.dong.DTO.ItemDTO;
+import kr.co.dong.DTO.Iv_itemDTO;
 import kr.co.dong.DTO.MemberDTO;
 import kr.co.dong.DTO.OrderDTO;
 import kr.co.dong.DTO.ReturnDTO;
@@ -25,6 +26,30 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		return dao.adminItem();
 	}
+	
+	@Override
+	public ItemDTO adminItemDetail(int itemnum) {
+		// TODO Auto-generated method stub
+		return dao.adminItemDetail(itemnum);
+	}
+	
+	@Override
+	public List<Iv_itemDTO> adminItemDetail2(int itemnum) {
+		// TODO Auto-generated method stub
+		return dao.adminItemDetail2(itemnum);
+	}
+	
+	@Override
+	public int adminItemAdd(Iv_itemDTO iv_itemDTO) {
+		// TODO Auto-generated method stub
+		return dao.adminItemAdd(iv_itemDTO);
+	}
+	
+	@Override
+	public int adminItemUpdate(ItemDTO itemDTO) {
+		// TODO Auto-generated method stub
+		return dao.adminItemUpdate(itemDTO);
+	}
 
 	@Override
 	public List<MemberDTO> adminMember() {
@@ -33,9 +58,26 @@ public class BoardServiceImpl implements BoardService{
 	}
 	
 	@Override
+	public MemberDTO adminMemberDetail(int membernum) {
+		// TODO Auto-generated method stub
+		return dao.adminMemberDetail(membernum);
+	}
+	@Override
+	public int adminMemberUpdate(MemberDTO memberDTO) {
+		// TODO Auto-generated method stub
+		return dao.adminMemberUpdate(memberDTO);
+	}
+	
+	@Override
 	public List<HelpDTO> adminHelp() {
 		// TODO Auto-generated method stub
 		return dao.adminHelp();
+	}
+	
+	@Override
+	public HelpDTO adminHelpDetail(int hno) {
+		// TODO Auto-generated method stub
+		return dao.adminHelpDetail(hno);
 	}
 
 	@Override
@@ -61,5 +103,4 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		return dao.adminReview();
 	}
-
 }

@@ -23,7 +23,7 @@
 			    </tr>
 		    </thead>
 		    <c:forEach items="${adminHelp}" var="adminHelp">
-		        <tr>
+		        <tr onclick="window.location.href = '${contextPath}/board/adminHelpDetail?hno=${adminHelp.hno}';">
 		            <td>${adminHelp.hno}</td>
 		            <td>${adminHelp.membernum}</td>
 		            <td>${adminHelp.title}</td>

@@ -9,6 +9,7 @@ public class ReviewDTO {
 	private int rstar;
 	private int reviewlike;
 	private int reviewreprot;
+	private int rstate;
 	private int del;
 	
 	
@@ -66,11 +67,17 @@ public class ReviewDTO {
 	public void setDel(int del) {
 		this.del = del;
 	}
-	
+	public int getRstate() {
+		return rstate;
+	}
+	public void setRstate(int rstate) {
+		this.rstate = rstate;
+	}
 	@Override
 	public String toString() {
 		return "ReviewDTO [reviewno=" + reviewno + ", itemnum=" + itemnum + ", membernum=" + membernum + ", rcontent="
 				+ rcontent + ", rdate=" + rdate + ", rstar=" + rstar + ", reviewlike=" + reviewlike + ", reviewreprot="
-				+ reviewreprot + ", del=" + del + "]";
+				+ reviewreprot + ", rstate=" + rstate + ", del=" + del + "]";
 	}
+	
 }

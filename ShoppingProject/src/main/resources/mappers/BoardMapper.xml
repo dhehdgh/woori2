@@ -21,6 +21,7 @@
       <result column="rstar" property="rstar"/>
       <result column="reviewlike" property="reviewlike"/>
       <result column="reviewreport" property="reviewreport"/>
+      <result column="rstate" property="rstate"/>
       <result column="del" property="del"/>
    </resultMap>
 
@@ -51,25 +52,109 @@
 		<result column="deljibunaddr" property="deljibunaddr"/>
 		<result column="deldetailaddr" property="deldetailaddr"/>
 		<result column="delextraaddr" property="delextraaddr"/>
+		<result column="addrstate" property="addrstate"/>
 		<result column="delpostcode" property="delpostcode"/>
+	</resultMap>
+	
+	<resultMap id="itemMapper" type="kr.co.dong.DTO.ItemDTO">
+		<result column="itemnum" property="itemnum"/>
+		<result column="itemname" property="itemname"/>
+		<result column="itempay" property="itempay"/>
+		<result column="itembuycnt" property="itembuycnt"/>
+		<result column="itemdate" property="itemdate"/>
+		<result column="itemb" property="itemb"/>
+		<result column="items" property="items"/>
+		<result column="itemcontent" property="itemcontent"/>
+		<result column="rstar" property="rstar"/>
+		<collection property="iv_itemDTO" resultMap="ivMapper"/>
+		<collection property="imgDTO" resultMap="imgMapper"/>
+	</resultMap>
+	<resultMap id="ivMapper" type="kr.co.dong.DTO.Iv_itemDTO">
+		<result column="iv_itemnum" property="iv_itemnum"/>
+		<result column="itemnum" property="itemnum"/>
+		<result column="itemsize" property="itemsize"/>
+		<result column="itemcolor" property="itemcolor"/>
+		<result column="iv_date" property="iv_date"/>
+		<result column="itemstate" property="itemstate"/>
+	</resultMap>
+	<resultMap id="imgMapper" type="kr.co.dong.DTO.ImgDTO">
+		<result column="imgnum" property="imgnum"/>
+		<result column="itemnum" property="itemnum"/>
+		<result column="url" property="url"/>
+		<result column="imgname" property="imgname"/>
 	</resultMap>
 
 	<select id="adminItem" resultType="ItemDTO">
 		select * from item
 	</select>
 	
+	<select id="adminItemDetail" resultType="ItemDTO" parameterType="java.lang.Integer">
+		select T.itemnum, T.itemname, T.itempay, T.itembuycnt, T.itemdate, T.itemb, T.items, T.itemcontent, T.rstar,
+			   G.imgnum, G.url, G.imgname
+		from item T, img G
+		where T.itemnum = G.itemnum and T.itemnum = #{itemnum}
+	</select>
+	
+	<select id="adminItemDetail2" resultType="Iv_itemDTO" parameterType="java.lang.Integer">
+		select * from iv_item
+		where itemnum = #{itemnum}
+	</select>
+	
+	<update id="adminItemAdd" parameterType="Iv_itemDTO">
+		update iv_item
+		set itemcnt = #{itemcnt}, itemsize = #{itemsize}, itemcolor = #{itemcolor}, iv_date = #{iv_date}, itemstate = #{itemstate}
+		where 
+	</update>
+	
+	<update id="adminItemUpdate" parameterType="ItemDTO">
+		update item
+		set itemname = #{itemname},
+			itempay = #{itempay},
+			itemdate = #{itemdate},
+			itemb = #{itemb},
+			items = #{items},
+			itemcontent = #{itemcontent}
+		where itemnum = #{itemnum}
+	</update>
+	
 	<select id="adminMember" resultType="MemberDTO">
 		select * from member
 	</select>
 	
+	<select id="adminMemberDetail" resultType="MemberDTO" parameterType="java.lang.Integer">
+		select * from member
+		where membernum = #{membernum}
+	</select>
+	
+	<update id="adminMemberUpdate" parameterType="MemberDTO">
+		update member
+		set name = #{name},
+			email = #{email},
+			tel = #{tel},
+			birth = #{birth},
+			roadaddr = #{roadaddr},
+			jibunaddr = #{jibunaddr},
+			detailaddr = #{detailaddr},
+			extraaddr = #{extraaddr},
+			postcode = #{postcode},
+			state = #{state},
+			authority = #{authority},
+			gender = #{gender}
+		where membernum = #{membernum}
+	</update>
+	
 	<select id="adminHelp" resultType="HelpDTO">
 		select * from help_board
-		where del = 1
+	</select>
+	
+	<select id="adminHelpDetail" resultType="HelpDTO" parameterType="java.lang.Integer">
+		select * from help_board
+		where hno = #{hno}
 	</select>
 	
 	<select id="adminOrder" resultMap="orderMapper">
 		select O.buynum, O.cartno, O.addrnum, O.paymethod, O.buydate, O.deliverycom, O.state, O.deliveryday, 
-			C.membernum, C.itemnum,C.iv_itemnum, C.itemcnt, A.delroadaddr, A.deldetailaddr
+			C.membernum, C.itemnum,C.iv_itemnum, C.itemcnt, A.delroadaddr,A.addrstate, A.deldetailaddr
         from dv_order O 
         join cart C on O.cartno=C.cartno
 		join address A on O.addrnum=A.addrnum;

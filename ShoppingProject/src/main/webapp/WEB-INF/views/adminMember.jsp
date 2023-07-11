@@ -11,7 +11,7 @@
 
     <!-- 여기부터 작성-->
     <div class="d-flex justify-content-center">
-		<table class="table table-bordered table-striped" style="max-width: 1800px;">
+		<table class="table table-bordered table-striped table-condensed" style="width:1400px;font-size:12px">
 			<thead class="thead-dark">
 			    <tr>
 			        <th>번호</th>
@@ -35,7 +35,7 @@
 			    </tr>
 		    </thead>
 		    <c:forEach items="${adminMember}" var="adminMember">
-		        <tr>
+		        <tr onclick="window.location.href = '${contextPath}/board/adminMemberDetail?membernum=${adminMember.membernum}';">
 		            <td>${adminMember.membernum}</td>
 		            <td>${adminMember.id}</td>
 		            <td>${adminMember.name}</td>
