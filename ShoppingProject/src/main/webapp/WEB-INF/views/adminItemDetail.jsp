@@ -63,7 +63,7 @@
 			            	<label for="itemcontent" class="col-form-label">상품설명</label>
 			            </div>
 		              	<div class="col-md-10 form-group p_star">
-		                	<input type="text" class="form-control" id="pointac" name="itemcontent" value="${item.itemcontent}" readonly>
+		                	<textarea class="form-control" id="itemcontent" name="itemcontent" readonly>${item.itemcontent}</textarea>
 		              	</div>
 	              		<div class="col-md-2 form-group p_star">
 			            	<label for="rstar" class="col-form-label">평점</label>

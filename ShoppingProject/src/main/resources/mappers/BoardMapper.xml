@@ -88,11 +88,14 @@
 		select * from item
 	</select>
 	
+	<insert id="adminItemInsert" parameterType="ItemDTO">
+		insert into item (itemname,itempay,itembuycnt,itemdate,itemb,items,itemcontent)
+		values (#{itemname},#{itempay},0,current_timestamp(),#{itemb},#{items},#{itemcontent})
+	</insert>
+	
 	<select id="adminItemDetail" resultType="ItemDTO" parameterType="java.lang.Integer">
-		select T.itemnum, T.itemname, T.itempay, T.itembuycnt, T.itemdate, T.itemb, T.items, T.itemcontent, T.rstar,
-			   G.imgnum, G.url, G.imgname
-		from item T, img G
-		where T.itemnum = G.itemnum and T.itemnum = #{itemnum}
+		select * from item
+		where itemnum = #{itemnum}
 	</select>
 	
 	<select id="adminItemDetail2" resultType="Iv_itemDTO" parameterType="java.lang.Integer">
@@ -119,6 +122,7 @@
 	
 	<select id="adminMember" resultType="MemberDTO">
 		select * from member
+		where authority != 0
 	</select>
 	
 	<select id="adminMemberDetail" resultType="MemberDTO" parameterType="java.lang.Integer">
@@ -143,6 +147,14 @@
 		where membernum = #{membernum}
 	</update>
 	
+	<update id="adminMemberDelete">
+		update member
+		set id = null,pw = null,name = null,email = null,tel = null,birth = null,point = null,pointac = null,roadaddr = null,jibunaddr = null,
+			detailaddr = null,extraaddr = null,postcode = null,joindate = null,state = null,authority = null,gender = null,agree = null
+		where membernum = #{membernum}
+			
+	</update>
+	
 	<select id="adminHelp" resultType="HelpDTO">
 		select * from help_board
 	</select>
@@ -151,6 +163,12 @@
 		select * from help_board
 		where hno = #{hno}
 	</select>
+	
+	<update id="adminHelpUpdate" parameterType="HelpDTO">
+		update help_board
+		set recomment = #{recomment}, rehdate = current_timestamp(), state = 2
+		where hno = #{hno}
+	</update>
 	
 	<select id="adminOrder" resultMap="orderMapper">
 		select O.buynum, O.cartno, O.addrnum, O.paymethod, O.buydate, O.deliverycom, O.state, O.deliveryday, 

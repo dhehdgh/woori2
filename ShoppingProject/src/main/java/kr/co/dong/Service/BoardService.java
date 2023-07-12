@@ -15,6 +15,8 @@ public interface BoardService {
 	
 	public List<ItemDTO> adminItem();
 	
+	public int adminItemInsert(ItemDTO itemDTO);
+	
 	public ItemDTO adminItemDetail(int itemnum);
 	
 	public List<Iv_itemDTO> adminItemDetail2(int itemnum);
@@ -29,9 +31,13 @@ public interface BoardService {
 	
 	public int adminMemberUpdate(MemberDTO memberDTO);
 	
+	public int adminMemberDelete(MemberDTO memberDTO);
+	
 	public List<HelpDTO> adminHelp();
 	
 	public HelpDTO adminHelpDetail(int hno);
+	
+	public int adminHelpUpdate(HelpDTO helpDTO);
 	
 	public List<OrderDTO> adminOrder();
 	

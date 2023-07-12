@@ -30,6 +30,12 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 	
 	@Override
+	public int adminItemInsert(ItemDTO itemDTO) {
+		// TODO Auto-generated method stub
+		return sqlsession.insert(namespace+".adminItemInsert",itemDTO);
+	}
+	
+	@Override
 	public ItemDTO adminItemDetail(int itemnum) {
 		// TODO Auto-generated method stub
 		return sqlsession.selectOne(namespace+".adminItemDetail",itemnum);
@@ -70,6 +76,12 @@ public class BoardDAOImpl implements BoardDAO{
 		// TODO Auto-generated method stub
 		return sqlsession.update(namespace+".adminMemberUpdate",memberDTO);
 	}
+	
+	@Override
+	public int adminMemberDelete(MemberDTO memberDTO) {
+		// TODO Auto-generated method stub
+		return sqlsession.update(namespace+".adminMemberDelete",memberDTO);
+	}
 
 	@Override
 	public List<HelpDTO> adminHelp() {
@@ -81,6 +93,12 @@ public class BoardDAOImpl implements BoardDAO{
 	public HelpDTO adminHelpDetail(int hno) {
 		// TODO Auto-generated method stub
 		return sqlsession.selectOne(namespace+".adminHelpDetail",hno);
+	}
+
+	@Override
+	public int adminHelpUpdate(HelpDTO helpDTO) {
+		// TODO Auto-generated method stub
+		return sqlsession.update(namespace+".adminHelpUpdate",helpDTO);
 	}
 	
 	@Override

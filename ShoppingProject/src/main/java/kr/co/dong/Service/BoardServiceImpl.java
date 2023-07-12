@@ -26,6 +26,12 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		return dao.adminItem();
 	}
+
+	@Override
+	public int adminItemInsert(ItemDTO itemDTO) {
+		// TODO Auto-generated method stub
+		return dao.adminItemInsert(itemDTO);
+	}
 	
 	@Override
 	public ItemDTO adminItemDetail(int itemnum) {
@@ -69,6 +75,12 @@ public class BoardServiceImpl implements BoardService{
 	}
 	
 	@Override
+	public int adminMemberDelete(MemberDTO memberDTO) {
+		// TODO Auto-generated method stub
+		return dao.adminMemberDelete(memberDTO);
+	}
+	
+	@Override
 	public List<HelpDTO> adminHelp() {
 		// TODO Auto-generated method stub
 		return dao.adminHelp();
@@ -78,6 +90,12 @@ public class BoardServiceImpl implements BoardService{
 	public HelpDTO adminHelpDetail(int hno) {
 		// TODO Auto-generated method stub
 		return dao.adminHelpDetail(hno);
+	}
+
+	@Override
+	public int adminHelpUpdate(HelpDTO helpDTO) {
+		// TODO Auto-generated method stub
+		return dao.adminHelpUpdate(helpDTO);
 	}
 
 	@Override
@@ -103,4 +121,5 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		return dao.adminReview();
 	}
+
 }

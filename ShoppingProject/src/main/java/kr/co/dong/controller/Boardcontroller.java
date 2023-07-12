@@ -59,6 +59,19 @@ public class BoardController {
 		return "adminItem";
 	}
 	
+	// 관리자 상품 추가 이동
+	@GetMapping("board/adminItemInsert")
+	public String adminItemInsert() throws Exception{
+		return "adminItemInsert";
+	}
+	
+	// 관리자 상품 추가 실행
+	@PostMapping("board/adminItemInsert")
+	public String adminItemInsert(ItemDTO itemDTO) throws Exception{
+		service.adminItemInsert(itemDTO);
+		return "redirect:adminItem";
+	}
+	
 	// 관리자 상품 상세정보 이동
 	@GetMapping("board/adminItemDetail")
 	public String adminItemDetail(int itemnum, Model model) throws Exception{
@@ -109,7 +122,7 @@ public class BoardController {
 		
 		return "adminMember";
 	}
-	
+
 	// 관리자 회원 상세정보 이동
 	@GetMapping("board/adminMemberDetail")
 	public String adminMemberDetail(int membernum, Model model) throws Exception{
@@ -135,9 +148,10 @@ public class BoardController {
 	}
 	
 	// 관리자 회원 탈퇴 이동
-	@GetMapping("board/adminMemberDelete")
-	public String adminMemberDelete() throws Exception{
-		return "adminMemberDelete";
+	@PostMapping("board/adminMemberDelete")
+	public String adminMemberDelete(MemberDTO memberDTO) throws Exception{
+		service.adminMemberDelete(memberDTO);
+		return "adminMember";
 	}
 	
 	// 관리자 문의사항 이동
@@ -155,8 +169,15 @@ public class BoardController {
 		
 		HelpDTO adminHelpDetail = service.adminHelpDetail(hno);
 		model.addAttribute("adminHelp", adminHelpDetail);
-		System.out.println(adminHelpDetail);
 		return "adminHelpDetail";
+	}
+	
+	// 관리자 문의사항 답변 작성
+	@PostMapping("board/adminHelpUpdate")
+	public String adminHelpUpdate(HelpDTO helpDTO) throws Exception{
+		service.adminHelpUpdate(helpDTO);
+		System.out.println(helpDTO);
+		return "redirect:adminHelpDetail?hno=" + helpDTO.getHno();
 	}
 	
 	// 관리자 주문내역 이동
