@@ -16,7 +16,7 @@
 	        <h3>회원 상세정보</h3>
 	        <div class="row justify-content-center">
 	          <div class="col-lg-8">
-	            	<form class="row contact_form" action="adminMemberDetail" method="get">
+	            	<form class="row contact_form" id="deleteform" action="${contextPath}/board/adminMemberDelete" method="post">
 		            	<div class="col-md-2 form-group p_star">
 			              <label for="membernum" class="col-form-label">회원 번호</label>
 			            </div>  
@@ -151,18 +151,9 @@
     		$(".btn-danger").click(function(){
     			var memberNum = $("#membernum").val();
     			
-    			if (confirm("정말로 회원 탈퇴하시겠습니까?")) {
-	    			$.ajax({
-	    				url: "adminMemberDelete", 
-	    			    type: "POST",
-	    			    data: { membernum: memberNum },
-	    			    success: function(response) {
-	    			    	alert("탈퇴 처리되었습니다.");
-	    			    },
-	    			    error: function(xhr) {
-	    			      	alert("오류 발생");
-	    			    }
-	    			});
+    			if (confirm("정말로 회원 탈퇴 처리 하시겠습니까?")) {
+    				$("#deleteform").submit();
+    				alert("탈퇴 처리되었습니다");
     			}
     		});
     	});
