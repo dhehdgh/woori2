@@ -90,11 +90,11 @@
 	                            <label for="itemcnt">수량</label>
 	                            <input type="text" class="form-control" id="itemcnt" value="${iv_item.itemcnt}" readonly>
 	                        </div>
-	                        <div class="col-md-2">
+	                        <div class="col-md-3">
 	                            <label for="iv_date">입고일</label>
 	                            <input type="text" class="form-control" id="iv_date" value="${iv_item.iv_date}" readonly>
 	                        </div>
-	                        <div class="col-md-2">
+	                        <div class="col-md-3">
 	                            <label for="itemstate">상태</label>
 	                            <input type="text" class="form-control" id="itemstate" value="${iv_item.itemstate}" readonly>
 	                        </div>

@@ -111,6 +111,12 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
+	public ReturnDTO adminReturnDetail(int returnnum) {
+		// TODO Auto-generated method stub
+		return dao.adminReturnDetail(returnnum);
+	}
+	
+	@Override
 	public List<ReturnDTO> adminExchange() {
 		// TODO Auto-generated method stub
 		return dao.adminExchange();
@@ -121,5 +127,6 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		return dao.adminReview();
 	}
+
 
 }

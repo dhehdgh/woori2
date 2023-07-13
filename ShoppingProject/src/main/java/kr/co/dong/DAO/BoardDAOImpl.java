@@ -114,6 +114,12 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 
 	@Override
+	public ReturnDTO adminReturnDetail(int returnnum) {
+		// TODO Auto-generated method stub
+		return sqlsession.selectOne(namespace+".adminReturnDetail");
+	}
+	
+	@Override
 	public List<ReturnDTO> adminExchange() {
 		// TODO Auto-generated method stub
 		return sqlsession.selectList(namespace+".adminExchange");
@@ -125,4 +131,5 @@ public class BoardDAOImpl implements BoardDAO{
 		return sqlsession.selectList(namespace+".adminReview");
 		
 	}
+
 }

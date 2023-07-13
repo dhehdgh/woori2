@@ -105,8 +105,15 @@
 	
 	<update id="adminItemAdd" parameterType="Iv_itemDTO">
 		update iv_item
-		set itemcnt = #{itemcnt}, itemsize = #{itemsize}, itemcolor = #{itemcolor}, iv_date = #{iv_date}, itemstate = #{itemstate}
-		where 
+		set 
+		itemcnt = #{itemcnt}, 
+		itemstate = 
+            <choose>
+                <when test="itemcnt != null and itemcnt != 0">1</when>
+                <when test="itemcnt == 0">2</when>
+                <otherwise>3</otherwise>
+            </choose>
+		where iv_itemnum = #{iv_itemnum}
 	</update>
 	
 	<update id="adminItemUpdate" parameterType="ItemDTO">
@@ -181,6 +188,11 @@
 	<select id="adminReturn" resultType="ReturnDTO">
 		select * from itemreturn
 		where type = 1
+	</select>
+	
+	<select id="adminReturnDetail" parameterType="java.lang.Integer" resultType="ReturnDTO">
+		select * from itemreturn
+		where type = 1 and returnnum = #{returnnum}
 	</select>
 	
 	<select id="adminExchange" resultType="ReturnDTO">

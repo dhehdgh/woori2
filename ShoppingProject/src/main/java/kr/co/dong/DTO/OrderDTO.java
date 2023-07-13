@@ -9,6 +9,7 @@ public class OrderDTO {
 	private String deliverycom;
 	private int state;
 	private String deliveryday;
+	private int payment;
 	private CartDTO cartDTO;
 	private AddressDTO addressDTO;
 	
@@ -61,6 +62,12 @@ public class OrderDTO {
 	public void setDeliveryday(String deliveryday) {
 		this.deliveryday = deliveryday;
 	}
+	public int getPayment() {
+		return payment;
+	}
+	public void setPayment(int payment) {
+		this.payment = payment;
+	}
 	public CartDTO getCartDTO() {
 		return cartDTO;
 	}
@@ -78,6 +85,6 @@ public class OrderDTO {
 	public String toString() {
 		return "OrderDTO [buynum=" + buynum + ", cartno=" + cartno + ", addrnum=" + addrnum + ", paymethod=" + paymethod
 				+ ", buydate=" + buydate + ", deliverycom=" + deliverycom + ", state=" + state + ", deliveryday="
-				+ deliveryday + ", cartDTO=" + cartDTO + ", addressDTO=" + addressDTO + "]";
+				+ deliveryday + ", payment=" + payment + ", cartDTO=" + cartDTO + ", addressDTO=" + addressDTO + "]";
 	}
 }

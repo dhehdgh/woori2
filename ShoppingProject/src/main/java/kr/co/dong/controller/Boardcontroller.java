@@ -1,6 +1,9 @@
 package kr.co.dong.controller;
 
+import java.util.Arrays;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,9 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.dong.DTO.CartDTO;
 import kr.co.dong.DTO.Dr_reviewDTO;
 import kr.co.dong.DTO.HelpDTO;
 import kr.co.dong.DTO.ItemDTO;
@@ -107,12 +110,26 @@ public class BoardController {
 	}
 	
 	// 관리자 재고추가 실행
+	@ResponseBody
 	@PostMapping("board/adminItemAdd")
-	public String adminItemAdd(Iv_itemDTO iv_itemDTO) throws Exception{
-		service.adminItemAdd(iv_itemDTO);
-		System.out.println(iv_itemDTO.getItemnum());
+	public String adminItemAdd(Iv_itemDTO iv_itemDTO,HttpServletRequest req) throws Exception{
+		String[] arr1 = req.getParameterValues("arr1");     // 재고번호
+	    String[] arr2 = req.getParameterValues("arr2");     // 수량
+
+	    String[] itemcntadd = req.getParameterValues("itemcntadd");     // 추가할 수량
+
+	    for (int i = 0; i < arr1.length; i++) {
+	        if (!("0".equals(itemcntadd[i]) || "".equals(itemcntadd[i]))) {
+	            System.out.println(arr1[i]);
+	            System.out.println(arr2[i]);
+	            System.out.println(itemcntadd[i]);
+	            iv_itemDTO.setIv_itemnum(Integer.parseInt(arr1[i])); // iv_itemnum 설정
+	            iv_itemDTO.setItemcnt(Integer.parseInt(arr2[i])); // itemcnt 설정
+	            service.adminItemAdd(iv_itemDTO);
+	        }
+	    }
 		return "redirect:adminItemAdd?itemnum="+iv_itemDTO.getIv_itemnum();
-	}
+   }
 	
 	// 관리자 회원관리 이동
 	@GetMapping("board/adminMember")
@@ -189,7 +206,7 @@ public class BoardController {
 		return "adminOrder";
 	}
 	
-	// 관리자 반품처리 이동
+	// 관리자 반품내역 이동
 	@GetMapping("board/adminReturn")
 	public String adminReturn(Model model) throws Exception{
 		
@@ -199,7 +216,16 @@ public class BoardController {
 		return "adminReturn";
 	}
 	
-	// 관리자 교환처리 이동
+	// 관리자 반품상세 이동
+	@GetMapping("board/adminReturnDetail")
+	public String adminReturnDetail(Model model,int returnnum) throws Exception{
+		ReturnDTO re = service.adminReturnDetail(returnnum);
+		System.out.println(re);
+		model.addAttribute("re",re);
+		return "adminReturnDetail";
+	}
+	
+	// 관리자 교환내역 이동
 	@GetMapping("board/adminExchange")
 	public String adminExchange(Model model) throws Exception{
 		

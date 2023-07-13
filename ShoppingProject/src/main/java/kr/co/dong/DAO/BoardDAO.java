@@ -44,6 +44,8 @@ public interface BoardDAO {
 	
 	public List<ReturnDTO> adminReturn();
 	
+	public ReturnDTO adminReturnDetail(int returnnum);
+	
 	public List<ReturnDTO> adminExchange();
 	
 	public List<Dr_reviewDTO> adminReview();

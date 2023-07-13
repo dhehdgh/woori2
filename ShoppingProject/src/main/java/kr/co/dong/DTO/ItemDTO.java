@@ -10,6 +10,7 @@ public class ItemDTO {
 	private int items;
 	private String itemcontent;
 	private double rstar;
+	private double sale;
 	private Iv_itemDTO iv_itemDTO;
 	private ImgDTO imgDTO;
 	
@@ -79,11 +80,18 @@ public class ItemDTO {
 	public void setImgDTO(ImgDTO imgDTO) {
 		this.imgDTO = imgDTO;
 	}
+	public double getSale() {
+		return sale;
+	}
+	public void setSale(double sale) {
+		this.sale = sale;
+	}
 	
 	@Override
 	public String toString() {
 		return "ItemDTO [itemnum=" + itemnum + ", itemname=" + itemname + ", itempay=" + itempay + ", itembuycnt="
 				+ itembuycnt + ", itemdate=" + itemdate + ", itemb=" + itemb + ", items=" + items + ", itemcontent="
-				+ itemcontent + ", rstar=" + rstar + ", iv_itemDTO=" + iv_itemDTO + ", imgDTO=" + imgDTO + "]";
+				+ itemcontent + ", rstar=" + rstar + ", sale=" + sale + ", iv_itemDTO=" + iv_itemDTO + ", imgDTO="
+				+ imgDTO + "]";
 	}
 }
