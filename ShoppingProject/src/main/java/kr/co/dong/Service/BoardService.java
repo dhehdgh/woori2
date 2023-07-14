@@ -17,6 +17,10 @@ public interface BoardService {
 	
 	public int adminItemInsert(ItemDTO itemDTO);
 	
+	public ItemDTO adminItemInsertItemnum();
+	
+	public int adminItemInsert2(int itemnum);
+	
 	public ItemDTO adminItemDetail(int itemnum);
 	
 	public List<Iv_itemDTO> adminItemDetail2(int itemnum);
@@ -45,7 +49,13 @@ public interface BoardService {
 	
 	public ReturnDTO adminReturnDetail(int returnnum);
 	
+	public int adminReturnDetail2(int returnnum);
+	
 	public List<ReturnDTO> adminExchange();
+	
+	public ReturnDTO adminExchangeDetail(int returnnum);
+	
+	public int adminExchangeDetail2(int returnnum);
 	
 	public List<Dr_reviewDTO> adminReview();
 }

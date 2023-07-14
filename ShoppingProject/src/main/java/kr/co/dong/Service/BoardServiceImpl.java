@@ -33,6 +33,19 @@ public class BoardServiceImpl implements BoardService{
 		return dao.adminItemInsert(itemDTO);
 	}
 	
+
+	@Override
+	public ItemDTO adminItemInsertItemnum() {
+		// TODO Auto-generated method stub
+		return dao.adminItemInsertItemnum();
+	}
+
+	@Override
+	public int adminItemInsert2(int itemnum) {
+		// TODO Auto-generated method stub
+		return dao.adminItemInsert2(itemnum);
+	}
+
 	@Override
 	public ItemDTO adminItemDetail(int itemnum) {
 		// TODO Auto-generated method stub
@@ -117,9 +130,27 @@ public class BoardServiceImpl implements BoardService{
 	}
 	
 	@Override
+	public int adminReturnDetail2(int returnnum) {
+		// TODO Auto-generated method stub
+		return dao.adminReturnDetail2(returnnum);
+	}
+	
+	@Override
 	public List<ReturnDTO> adminExchange() {
 		// TODO Auto-generated method stub
 		return dao.adminExchange();
+	}
+	
+	@Override
+	public ReturnDTO adminExchangeDetail(int returnnum) {
+		// TODO Auto-generated method stub
+		return dao.adminExchangeDetail(returnnum);
+	}
+	
+	@Override
+	public int adminExchangeDetail2(int returnnum) {
+		// TODO Auto-generated method stub
+		return dao.adminExchangeDetail2(returnnum);
 	}
 
 	@Override
@@ -127,6 +158,5 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		return dao.adminReview();
 	}
-
 
 }

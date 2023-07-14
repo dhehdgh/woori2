@@ -8,6 +8,7 @@ public class ReturnDTO {
 	private String recomdate;
 	private int state;
 	private int type;
+	private OrderDTO orderDTO;
 	
 	
 	public int getReturnnum() {
@@ -52,11 +53,17 @@ public class ReturnDTO {
 	public void setType(int type) {
 		this.type = type;
 	}
+	public OrderDTO getOrderDTO() {
+		return orderDTO;
+	}
+	public void setOrderDTO(OrderDTO orderDTO) {
+		this.orderDTO = orderDTO;
+	}
 	
 	@Override
 	public String toString() {
 		return "ReturnDTO [returnnum=" + returnnum + ", buynum=" + buynum + ", returncontent=" + returncontent
 				+ ", returndate=" + returndate + ", recomdate=" + recomdate + ", state=" + state + ", type=" + type
-				+ "]";
+				+ ", orderDTO=" + orderDTO + "]";
 	}
 }

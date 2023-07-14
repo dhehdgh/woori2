@@ -83,6 +83,38 @@
 		<result column="url" property="url"/>
 		<result column="imgname" property="imgname"/>
 	</resultMap>
+	
+	<resultMap id="returnMapper" type="kr.co.dong.DTO.ReturnDTO">
+		<result column="returnnum" property="returnnum"/>
+		<result column="buynum" property="buynum"/>
+		<result column="returncontent" property="returncontent"/>
+		<result column="returndate" property="returndate"/>
+		<result column="recomdate" property="recomdate"/>
+		<result column="state" property="state"/>
+		<result column="type" property="type"/>
+		<association property="orderDTO" resultMap="orderMapper2"/>
+	</resultMap>
+	<resultMap id="orderMapper2" type="kr.co.dong.DTO.OrderDTO">
+		<result column="cartno" property="cartno"/>
+		<result column="addrnum" property="addrnum"/>
+		<result column="paymethod" property="paymethod"/>
+		<result column="buydate" property="buydate"/>
+		<result column="deliverycom" property="deliverycom"/>
+		<result column="state" property="state"/>
+		<result column="payment" property="payment"/>
+		<result column="deliveryday" property="deliveryday"/>
+		<collection property="cartDTO" resultMap="cartMapper2"/>
+	</resultMap>
+	<resultMap id="cartMapper2" type="kr.co.dong.DTO.CartDTO">
+		<result column="cartno" property="cartno"/>
+		<result column="membernum" property="membernum"/>
+		<result column="itemnum" property="itemnum"/>
+		<result column="iv_itemnum" property="iv_itemnum"/>
+		<result column="itemcnt" property="itemcnt"/>
+		<result column="cartstate" property="cartstate"/>
+	</resultMap>
+	
+	
 
 	<select id="adminItem" resultType="ItemDTO">
 		select * from item
@@ -90,7 +122,17 @@
 	
 	<insert id="adminItemInsert" parameterType="ItemDTO">
 		insert into item (itemname,itempay,itembuycnt,itemdate,itemb,items,itemcontent)
-		values (#{itemname},#{itempay},0,current_timestamp(),#{itemb},#{items},#{itemcontent})
+		values (#{itemname},#{itempay},0,now(),#{itemb},#{items},#{itemcontent})
+	</insert>
+	
+	<select id="adminItemInsertItemnum" resultType="ItemDTO">
+		select itemnum from item
+		order by itemnum desc
+		limit 1;
+	</select>
+	
+	<insert id="adminItemInsert2" statementType="CALLABLE" parameterType="java.lang.Integer">
+		{ CALL insert_iv_items(#{itemnum, mode=IN, jdbcType=INTEGER}) }
 	</insert>
 	
 	<select id="adminItemDetail" resultType="ItemDTO" parameterType="java.lang.Integer">
@@ -106,13 +148,14 @@
 	<update id="adminItemAdd" parameterType="Iv_itemDTO">
 		update iv_item
 		set 
-		itemcnt = #{itemcnt}, 
-		itemstate = 
-            <choose>
-                <when test="itemcnt != null and itemcnt != 0">1</when>
-                <when test="itemcnt == 0">2</when>
-                <otherwise>3</otherwise>
-            </choose>
+			itemcnt = #{itemcnt}, 
+			itemstate = 
+	            <choose>
+	                <when test="itemcnt != null and itemcnt != 0">1</when>
+	                <when test="itemcnt == 0">2</when>
+	                <otherwise>3</otherwise>
+	            </choose>,
+	        iv_date = curdate()
 		where iv_itemnum = #{iv_itemnum}
 	</update>
 	
@@ -173,7 +216,7 @@
 	
 	<update id="adminHelpUpdate" parameterType="HelpDTO">
 		update help_board
-		set recomment = #{recomment}, rehdate = current_timestamp(), state = 2
+		set recomment = #{recomment}, rehdate = now(), state = 2
 		where hno = #{hno}
 	</update>
 	
@@ -182,23 +225,47 @@
 			C.membernum, C.itemnum,C.iv_itemnum, C.itemcnt, A.delroadaddr,A.addrstate, A.deldetailaddr
         from dv_order O 
         join cart C on O.cartno=C.cartno
-		join address A on O.addrnum=A.addrnum;
+		join address A on O.addrnum=A.addrnum
+		where O.state not in(5,6,7) 
 	</select>
 	
-	<select id="adminReturn" resultType="ReturnDTO">
-		select * from itemreturn
-		where type = 1
+	<select id="adminReturn" resultMap="returnMapper">
+		select I.returnnum,I.buynum,I.returndate,I.recomdate,I.state,I.type,O.cartno,O.addrnum,O.paymethod,O.buydate,O.payment
+		from itemreturn I, dv_order O
+		where I.type = 1
 	</select>
 	
-	<select id="adminReturnDetail" parameterType="java.lang.Integer" resultType="ReturnDTO">
-		select * from itemreturn
+	<select id="adminReturnDetail" parameterType="java.lang.Integer" resultMap="returnMapper">
+		select I.returnnum,I.buynum,I.returncontent,I.returndate,I.recomdate,I.state,I.type,O.cartno,O.addrnum,O.paymethod,O.buydate,O.payment
+		from itemreturn I, dv_order O
 		where type = 1 and returnnum = #{returnnum}
 	</select>
 	
-	<select id="adminExchange" resultType="ReturnDTO">
-		select * from itemreturn
-		where type = 2
+	<update id="adminReturnDetail2" parameterType="java.lang.Integer">
+		update itemreturn I 
+		join dv_order O on I.buynum = O.buynum
+		set I.state = 2, O.state = 7, I.recomdate = now()
+		where I.type = 1 and returnnum = #{returnnum}
+	</update>
+	
+	<select id="adminExchange" resultMap="returnMapper">
+		select I.returnnum,I.buynum,I.returndate,I.recomdate,I.state,I.type,O.cartno,O.addrnum,O.paymethod,O.buydate,O.payment
+		from itemreturn I, dv_order O
+		where I.type = 2
 	</select>
+	
+	<select id="adminExchangeDetail" parameterType="java.lang.Integer" resultMap="returnMapper">
+		select I.returnnum,I.buynum,I.returncontent,I.returndate,I.recomdate,I.state,I.type,O.cartno,O.addrnum,O.paymethod,O.buydate,O.payment
+		from itemreturn I, dv_order O
+		where type = 2 and returnnum = #{returnnum}
+	</select>
+	
+	<update id="adminExchangeDetail2" parameterType="java.lang.Integer">
+		update itemreturn I 
+		join dv_order O on I.buynum = O.buynum
+		set I.state = 2, O.state = 2, I.recomdate = now(), O.deliveryday = now() + interval 3 day
+		where I.type = 2 and returnnum = #{returnnum}
+	</update>
 	
 	<select id="adminReview" resultMap="dr_reviewMapper">
 		select D.drnum, R.reviewno, R.itemnum, D.drdate

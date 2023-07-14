@@ -23,6 +23,8 @@
 					    <tr>
 					        <th>반품번호</th>
 					        <th>주문번호</th>
+					        <th>결제방식</th>
+					        <th>결제금액</th>
 					        <th>반품신청일</th>
 					        <th>반품완료일</th>
 					        <th>상태</th>
@@ -32,6 +34,8 @@
 				        <tr onclick="window.location.href = '${contextPath}/board/adminReturnDetail?returnnum=${adminReturn.returnnum}';" onmouseover="this.style.cursor='pointer';">
 				            <td>${adminReturn.returnnum}</td>
 				            <td>${adminReturn.buynum}</td>
+				            <td>${adminReturn.orderDTO.paymethod}</td>
+				            <td>${adminReturn.orderDTO.payment}</td>
 				            <td>${adminReturn.returndate}</td>
 				            <td>${adminReturn.recomdate}</td>
 				            <td>${adminReturn.state}</td>

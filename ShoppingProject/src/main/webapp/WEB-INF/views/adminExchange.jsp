@@ -23,6 +23,8 @@
 					    <tr>
 					        <th>교환번호</th>
 					        <th>주문번호</th>
+					        <th>결제방식</th>
+					        <th>결제금액</th>
 					        <th>교환신청일</th>
 					        <th>교환완료일</th>
 					        <th>상태</th>
@@ -32,6 +34,8 @@
 				        <tr onclick="window.location.href = '${contextPath}/board/adminExchangeDetail?returnnum=${adminExchange.returnnum}';" onmouseover="this.style.cursor='pointer';">
 				            <td>${adminExchange.returnnum}</td>
 				            <td>${adminExchange.buynum}</td>
+				            <td>${adminExchange.orderDTO.paymethod}</td>
+				            <td>${adminExchange.orderDTO.payment}</td>
 				            <td>${adminExchange.returndate}</td>
 				            <td>${adminExchange.recomdate}</td>
 				            <td>${adminExchange.state}</td>

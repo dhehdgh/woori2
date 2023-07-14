@@ -71,7 +71,9 @@ public class BoardController {
 	// 관리자 상품 추가 실행
 	@PostMapping("board/adminItemInsert")
 	public String adminItemInsert(ItemDTO itemDTO) throws Exception{
-		service.adminItemInsert(itemDTO);
+		service.adminItemInsert(itemDTO);				// 상품 추가
+		ItemDTO itemnum = service.adminItemInsertItemnum();	//방금 추가된 상품 번호 호출
+	    service.adminItemInsert2(itemnum.getItemnum()); // 프로시저 호출 메서드 실행
 		return "redirect:adminItem";
 	}
 	
@@ -120,9 +122,6 @@ public class BoardController {
 
 	    for (int i = 0; i < arr1.length; i++) {
 	        if (!("0".equals(itemcntadd[i]) || "".equals(itemcntadd[i]))) {
-	            System.out.println(arr1[i]);
-	            System.out.println(arr2[i]);
-	            System.out.println(itemcntadd[i]);
 	            iv_itemDTO.setIv_itemnum(Integer.parseInt(arr1[i])); // iv_itemnum 설정
 	            iv_itemDTO.setItemcnt(Integer.parseInt(arr2[i])); // itemcnt 설정
 	            service.adminItemAdd(iv_itemDTO);
@@ -164,7 +163,7 @@ public class BoardController {
 		return "redirect:adminMemberDetail?membernum=" + memberDTO.getMembernum();
 	}
 	
-	// 관리자 회원 탈퇴 이동
+	// 관리자 회원 탈퇴 실행
 	@PostMapping("board/adminMemberDelete")
 	public String adminMemberDelete(MemberDTO memberDTO) throws Exception{
 		service.adminMemberDelete(memberDTO);
@@ -212,7 +211,6 @@ public class BoardController {
 		
 		List<ReturnDTO> adminReturn = service.adminReturn();
 		model.addAttribute("adminReturn", adminReturn);
-		
 		return "adminReturn";
 	}
 	
@@ -220,9 +218,14 @@ public class BoardController {
 	@GetMapping("board/adminReturnDetail")
 	public String adminReturnDetail(Model model,int returnnum) throws Exception{
 		ReturnDTO re = service.adminReturnDetail(returnnum);
-		System.out.println(re);
 		model.addAttribute("re",re);
 		return "adminReturnDetail";
+	}
+	// 관리자 반품상세 처리
+	@PostMapping("board/adminReturnDetail")
+	public String adminReturnDetail(int returnnum) throws Exception{
+		service.adminReturnDetail2(returnnum);
+		return "redirect:/board/adminReturn";
 	}
 	
 	// 관리자 교환내역 이동
@@ -232,6 +235,21 @@ public class BoardController {
 		List<ReturnDTO> adminExchange = service.adminExchange();
 		model.addAttribute("adminExchange", adminExchange);
 		return "adminExchange";
+	}
+	
+	//관리자 교환상세 이동
+	@GetMapping("board/adminExchangeDetail")
+	public String adminExchangeDetail(Model model, int returnnum) throws Exception{
+		ReturnDTO ex = service.adminExchangeDetail(returnnum);
+		model.addAttribute("ex", ex);
+		return "adminExchangeDetail";
+	}
+	
+	//관리자 교환상세 처리
+	@PostMapping("board/adminExchangeDetail")
+	public String adminExchangeDetail2(int returnnum) throws Exception{
+		service.adminExchangeDetail2(returnnum);
+		return "redirect:/board/adminExchange";
 	}
 	
 	

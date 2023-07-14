@@ -41,6 +41,7 @@
                                        <td><input type="text" class="form-control" name="iv_date" id="iv_date" value="${iv_item.iv_date}" readonly/></td>
                                        <td><input type="text" class="form-control" name="itemstate" id="itemstate" value="${iv_item.itemstate}" readonly /></td>
                                        <td><input type="hidden" class="form-control" name="iv_itemnum" id="iv_itemnum" value="${iv_item.iv_itemnum}" readonly/></td>
+                                       <td><input type="hidden" class="form-control" name="itemnum" id="itemnum" value="${iv_item.itemnum}" readonly/></td>
                                    </tr>
                                </c:forEach>
                            </tbody>
@@ -69,15 +70,21 @@
 			$(document).on("click", "button[name='testButton']", function () {
 			   
 		      	var arr1 = $("[name=iv_itemnum]").map(function(){return this.value}).get();
-		      	var arr2 = $("[name=itemcnt]").map(function(){return this.value}).get();
-		      	var itemcntadd = $("[name=itemcntadd]").map(function() { return this.value }).get();
+		      	var arr2 = [];
+		      	var itemcnt = $("[name=itemcnt]").map(function() { return parseInt(this.value)}).get();
+		        var itemcntadd = $("[name=itemcntadd]").map(function() { return parseInt(this.value) || 0}).get();
+		        
+		        for (var i = 0; i < itemcnt.length; i++) {
+		            var a = itemcnt[i] + itemcntadd[i];
+		            arr2.push(a);
+		        }
 		      	
 		      	var url = "${pageContext.request.contextPath }/board/adminItemAdd";
 		      	
 			    var paramData   = {
+			    		"itemcntadd" : itemcntadd,
 			    		"arr1" : arr1,
 			            "arr2" : arr2,
-			            "itemcntadd" : itemcntadd
 			    };
 			    
 			    $.ajax({
@@ -89,7 +96,7 @@
 			        success: function(result){
 			           console.log(result);
 			           console.log("성공");
-			           window.location.href = "${contextPath}/board/adminItemAdd?itemnum="+$("#iv_itemnum").val();
+			           window.location.href = "${contextPath}/board/adminItemAdd?itemnum="+$("#itemnum").val();
 			        },
 			        error: function(result){
 			           console.log(result);

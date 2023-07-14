@@ -13,7 +13,6 @@ public class OrderDTO {
 	private CartDTO cartDTO;
 	private AddressDTO addressDTO;
 	
-	
 	public int getBuynum() {
 		return buynum;
 	}
