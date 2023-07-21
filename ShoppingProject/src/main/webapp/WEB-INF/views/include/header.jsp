@@ -30,20 +30,11 @@
     <link rel="stylesheet" href="${contextPath}/resources/bootstrap/css/slick.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="${contextPath}/resources/bootstrap/css/style.css">
+    
         <!-- Header part end-->
-<link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-        <link rel="stylesheet" href="${contextPath}/resources/bootstrap/css/tailwind.output.css" />
-        
-        
-        
-        
-        	<link href="${contextPath}/resources/bootstrap/style.min.css" rel="stylesheet">
-            <link rel="stylesheet" type="text/css" href="${contextPath}/resources/bootstrap/multicheck/multicheck.css">
-            
-            
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="${contextPath}/resources/bootstrap/css/tailwind.output.css" />
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/bootstrap/multicheck/multicheck.css">
 </head>
 
 <body>
@@ -111,7 +102,7 @@
                             <a href=""><i class="ti-user"></i></a>
                             <a href="${contextPath}/board/cartView"><i class="fas fa-cart-plus"></i></a>
                                 
-                            </div>
+                            
                         </div>
                     </nav>
                 </div>
@@ -126,35 +117,9 @@
                 </form>
             </div>
         </div>
+        
     </header>
-        
-	</div>
-        
-        
-        </div>            
-
- <div class="inner1">
-  <div id="comment2">
-    <div class="commenty">
-      <div id="category" class="xans-element- xans-layout xans-layout-category">
-        <div class="position">
-                   <ul>
-            <li class="xans-record-"><a href="/product/list.html?cate_no=88">전체상품</a></li>
-			<li class="xans-record-"><a href="/product/list.html?cate_no=88">세일</a></li>
-            <li class="xans-record-"><a href="/product/list.html?cate_no=91">남여공용</a></li>
-            <li class="xans-record-"><a href="/product/list.html?cate_no=62">상의</a></li>
-            <li class="xans-record-"><a href="/product/list.html?cate_no=26">바지</a></li>
-            <li class="xans-record-"><a href="/product/list.html?cate_no=119">스커트</a></li>
-            <li class="xans-record-"><a href="/product/list.html?cate_no=65">원피스</a></li>
-            <li class="xans-record-"><a href="/product/list.html?cate_no=24">아우터</a></li>
-            <li class="xans-record-"><a href="/product/list.html?cate_no=66">악세서리</a></li>
-            <li class="xans-record-"><a href="/product/list.html?cate_no=66">모자/신발</a></li>
-            <li class="xans-record-"><a href="${contextPath}/board/view">신상</a></li>
-            <li class="xans-record-"><a href="${contextPath}/board/sampleBoard">테이블샘플</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
-
+        
+        
+</div>            

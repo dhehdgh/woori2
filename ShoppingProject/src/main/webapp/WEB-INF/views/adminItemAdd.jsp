@@ -8,16 +8,12 @@
 <html lang="en">
 
 <%@ include file="include/header.jsp" %>
-   <style>
-    .custom-billing-details {
-        width: 100%; /* 원하는 너비로 조정 */
-    }
-   </style>
+
     <!-- 여기부터 작성-->
-   <section class="checkout_area padding_top">
+	<section class="checkout_area padding_top">
        <div class="container">
            <div class="row">
-               <div class="billing_details w-100">
+               <div class="billing_details">
                    <h3>상품 재고정보</h3>
                    <form class="row contact_form" action="${contextPath}/board/adminItemAdd" method="post" id="myform">
                        <table class="table">
@@ -32,7 +28,7 @@
                                </tr>
                            </thead>
                            <tbody>
-                               <c:forEach items="${iv_item}" var="iv_item" varStatus="status">
+                               <c:forEach items="${iv_item}" var="iv_item">
                                    <tr>
                                        <td><input type="text" class="form-control" name="itemsize" id="itemsize" value="${iv_item.itemsize}" readonly/></td>
                                        <td><input type="text" class="form-control" name="itemcolor" id="itemcolor" value="${iv_item.itemcolor}" readonly/></td>
@@ -45,17 +41,16 @@
                                    </tr>
                                </c:forEach>
                            </tbody>
-                       </table>
-                     <div class="col-md-12 text-center">
-                       <button type="button" class="btn btn-primary btn-lg" name="testButton" id="testButton">저장</button>
-                       <a href="javascript:history.back()" class="btn btn-secondary btn-lg">목록</a>
-                     </div>
+                       	</table>
+                     	<div class="col-md-12 text-center">
+                       		<button type="button" class="btn btn-primary btn-lg" name="testButton" id="testButton">저장</button>
+                       		<a href="javascript:history.back()" class="btn btn-secondary btn-lg">목록</a>
+                     	</div>
                    </form>
                </div>
            </div>
        </div>
-   </section>
-
+   	</section>
     <!-- 끝 -->
 
     <!--::footer_part start::-->

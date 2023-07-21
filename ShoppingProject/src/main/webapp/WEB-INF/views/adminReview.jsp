@@ -25,6 +25,7 @@
 					        <th>상품번호</th>
 					        <th>리뷰번호</th>
 					        <th>신고날짜</th>
+					        <th>리뷰상태</th>
 					    </tr>
 				    </thead>
 				    <c:forEach items="${adminReview}" var="adminReview">
@@ -33,6 +34,7 @@
 				            <td>${adminReview.reviewDTO.itemnum}</td>
 				            <td>${adminReview.reviewDTO.reviewno}</td>
 				            <td>${adminReview.drdate}</td>
+				            <td>${adminReview.reviewDTO.del}</td>
 				        </tr>
 				    </c:forEach>
 				</table>

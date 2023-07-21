@@ -8,7 +8,7 @@ public class ReviewDTO {
 	private String rdate;
 	private int rstar;
 	private int reviewlike;
-	private int reviewreprot;
+	private int reviewreport;
 	private int rstate;
 	private int del;
 	
@@ -55,11 +55,11 @@ public class ReviewDTO {
 	public void setReviewlike(int reviewlike) {
 		this.reviewlike = reviewlike;
 	}
-	public int getReviewreprot() {
-		return reviewreprot;
+	public int getReviewreport() {
+		return reviewreport;
 	}
-	public void setReviewreprot(int reviewreprot) {
-		this.reviewreprot = reviewreprot;
+	public void setReviewreorot(int reviewreport) {
+		this.reviewreport = reviewreport;
 	}
 	public int getDel() {
 		return del;
@@ -76,8 +76,8 @@ public class ReviewDTO {
 	@Override
 	public String toString() {
 		return "ReviewDTO [reviewno=" + reviewno + ", itemnum=" + itemnum + ", membernum=" + membernum + ", rcontent="
-				+ rcontent + ", rdate=" + rdate + ", rstar=" + rstar + ", reviewlike=" + reviewlike + ", reviewreprot="
-				+ reviewreprot + ", rstate=" + rstate + ", del=" + del + "]";
+				+ rcontent + ", rdate=" + rdate + ", rstar=" + rstar + ", reviewlike=" + reviewlike + ", reviewreport="
+				+ reviewreport + ", rstate=" + rstate + ", del=" + del + "]";
 	}
 	
 }

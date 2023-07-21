@@ -2,7 +2,6 @@ package kr.co.dong.Service;
 
 import java.util.List;
 
-import kr.co.dong.DTO.CartDTO;
 import kr.co.dong.DTO.Dr_reviewDTO;
 import kr.co.dong.DTO.HelpDTO;
 import kr.co.dong.DTO.ItemDTO;
@@ -14,6 +13,10 @@ import kr.co.dong.DTO.ReturnDTO;
 public interface BoardService {
 	
 	public List<ItemDTO> adminItem();
+	
+	public List<ItemDTO> adminItemSearch(String searchType,String search, String dateType, String startDate, String endDate, String categoryType, String categoryType2);
+	
+	public int adminItem2();
 	
 	public int adminItemInsert(ItemDTO itemDTO);
 	
@@ -31,13 +34,21 @@ public interface BoardService {
 	
 	public List<MemberDTO> adminMember();
 	
+	public List<MemberDTO> adminMemberSearch(String searchType,String search, String dateType, String startDate, String endDate);
+	
 	public MemberDTO adminMemberDetail(int membernum);
 	
 	public int adminMemberUpdate(MemberDTO memberDTO);
 	
 	public int adminMemberDelete(MemberDTO memberDTO);
 	
+	public int adminMemberRegister(MemberDTO memberDTO);
+	
+	public int adminCheckID(MemberDTO memberDTO);
+	
 	public List<HelpDTO> adminHelp();
+	
+	public List<HelpDTO> adminHelpSearch(String searchType,String search, String dateType, String startDate, String endDate);
 	
 	public HelpDTO adminHelpDetail(int hno);
 	
@@ -58,4 +69,10 @@ public interface BoardService {
 	public int adminExchangeDetail2(int returnnum);
 	
 	public List<Dr_reviewDTO> adminReview();
+	
+	public Dr_reviewDTO adminReviewDetail(int drnum);
+	
+	public int adminReviewDetail2(int drnum);
+	
+	public int adminReviewDetail3(Dr_reviewDTO dr_reviewDTO);
 }

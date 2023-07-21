@@ -81,7 +81,7 @@
 		                	<input type="hidden" class="form-control" id="state" name="state" value="${re.state}" readonly>
 		              	</div>
 			            <div class="col-md-12 form-group text-center">
-				            <div class="d-inline-block mx-1">
+				            <div class="d-inline-block">
 						        <button type="submit" class="btn btn-primary">반품처리</button>
 						    </div>
 						    <div class="d-inline-block">

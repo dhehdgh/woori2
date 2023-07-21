@@ -120,6 +120,27 @@
 		select * from item
 	</select>
 	
+	<select id="adminItemSearch" resultType="ItemDTO" parameterType="java.util.Map">
+		select * from item
+		where 1=1
+	    <if test="search != null and search != ''">
+	        and ${searchType} like concat('%', #{search}, '%')
+	    </if>
+	    <if test="startDate != null and startDate != ''">
+	        and ${dateType} BETWEEN #{startDate} and #{endDate}
+	    </if>
+	    <if test="categoryType != null and categoryType != '' and categoryType != '0'">
+	      AND itemb = #{categoryType}
+	    </if>
+	    <if test="categoryType2 != null and categoryType2 != '' and categoryType2 != '0'">
+	      AND items = #{categoryType2}
+	    </if>
+	</select>
+	
+	<select id="adminItem2" resultType="java.lang.Integer">
+		select count(*) from item
+	</select>
+	
 	<insert id="adminItemInsert" parameterType="ItemDTO">
 		insert into item (itemname,itempay,itembuycnt,itemdate,itemb,items,itemcontent)
 		values (#{itemname},#{itempay},0,now(),#{itemb},#{items},#{itemcontent})
@@ -175,6 +196,18 @@
 		where authority != 0
 	</select>
 	
+	<select id="adminMemberSearch" resultType="MemberDTO" parameterType="java.util.Map">
+		select * from member
+		where 1=1
+	    <if test="search != null and search != ''">
+	        and ${searchType} like concat('%', #{search}, '%')
+	    </if>
+	    <if test="startDate != null and startDate != ''">
+	        and ${dateType} BETWEEN #{startDate} and #{endDate}
+	    </if>
+	    and authority != 0
+	</select>
+	
 	<select id="adminMemberDetail" resultType="MemberDTO" parameterType="java.lang.Integer">
 		select * from member
 		where membernum = #{membernum}
@@ -202,12 +235,35 @@
 		set id = null,pw = null,name = null,email = null,tel = null,birth = null,point = null,pointac = null,roadaddr = null,jibunaddr = null,
 			detailaddr = null,extraaddr = null,postcode = null,joindate = null,state = null,authority = null,gender = null,agree = null
 		where membernum = #{membernum}
-			
 	</update>
+	
+	<insert id="adminMemberRegister" parameterType="MemberDTO">
+	  insert into member
+	  values (null, #{id}, #{pw}, #{name}, #{email}, #{tel}, #{birth}, 0, 0, 
+	          #{roadaddr}, #{jibunaddr}, #{detailaddr}, #{extraaddr}, #{postcode}, 
+	          curdate(), 1, #{authority}, #{gender}, #{agree})
+	</insert>
+	
+	<select id="adminCheckID" parameterType="MemberDTO" resultType="java.lang.Integer">
+		select count(*)
+		from member
+		where id = #{id}
+	</select>
 	
 	<select id="adminHelp" resultType="HelpDTO">
 		select * from help_board
 	</select>
+	
+	<select id="adminHelpSearch" resultType="HelpDTO" parameterType="java.util.Map">
+		select * from help_board
+		where 1=1
+	    <if test="search != null and search != ''">
+	        and ${searchType} like concat('%', #{search}, '%')
+	    </if>
+	    <if test="startDate != null and startDate != ''">
+	        and ${dateType} BETWEEN #{startDate} and #{endDate}
+	    </if>
+	</select>	
 	
 	<select id="adminHelpDetail" resultType="HelpDTO" parameterType="java.lang.Integer">
 		select * from help_board
@@ -227,6 +283,12 @@
         join cart C on O.cartno=C.cartno
 		join address A on O.addrnum=A.addrnum
 		where O.state not in(5,6,7) 
+	</select>
+	<select id="adminOrderDetail" resultMap="orderMapper" parameterType="java.lang.Integer">
+		select O.buynum,O.cartno,O.addrnum,O.buydate,O.paymethod,O.deliverycom,O.state,O.payment,O.deliveryday,
+			C.membernum,C.itemnum,C.iv_itemnum,C.itemcnt
+		from dv_order O join cart C on (O.cartno = C.cartno)
+		where O.buynum = #{buynum}
 	</select>
 	
 	<select id="adminReturn" resultMap="returnMapper">
@@ -268,8 +330,26 @@
 	</update>
 	
 	<select id="adminReview" resultMap="dr_reviewMapper">
-		select D.drnum, R.reviewno, R.itemnum, D.drdate
-		from dr_review D, review R
+		select D.drnum, R.reviewno, R.itemnum, D.drdate, R.del
+		from dr_review D join review R on D.reviewno = R.reviewno
 		where D.reviewno = R.reviewno
 	</select>
+	
+	<select id="adminReviewDetail" resultMap="dr_reviewMapper" parameterType="java.lang.Integer">
+		select D.drnum, D.reviewno, D.drcontent, D.drdate, R.itemnum, R.membernum, R.rcontent, R.rdate, R.rstar, R.reviewreport, R.del
+		from dr_review D join review R on D.reviewno = R.reviewno 
+		where D.drnum = #{drnum}
+	</select>
+	
+	<update id="adminReviewDetail2" parameterType="java.lang.Integer">
+		update dr_review D join review R on (D.reviewno = R.reviewno)
+		set R.del = 1
+		where D.drnum = #{drnum}
+	</update>
+	
+	<update id="adminReviewDetail3" parameterType="Dr_reviewDTO">
+		update dr_review D join review R on (D.reviewno = R.reviewno)
+		set R.del = 3
+		where D.drnum = #{drnum}
+	</update>
 </mapper>

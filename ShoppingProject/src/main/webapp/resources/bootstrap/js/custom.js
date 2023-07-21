@@ -165,9 +165,8 @@
 
 
   // niceSelect js code
-  $(document).ready(function () {
-    $('select').niceSelect();
-  });
+ 
+
 
   // menu fixed js code
   // $(window).scroll(function () {
