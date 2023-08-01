@@ -34,10 +34,28 @@
             <dd class="m10">
                 <a class="nav-link" href="${contextPath}/board/adminItemInsert">상품 추가하기</a>
             </dd>
+            <dt class="m10 menu_toggle">고객지원</dt>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminHelp">1:1 상담문의</a>
+            </dd>
+            <dt class="m10 menu_toggle">주문관리</dt>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminOrder">주문리스트</a>
+            </dd>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminReturn">반품리스트</a>
+            </dd>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminExchange">교환리스트</a>
+            </dd>
+            <dt class="m10 menu_toggle">리뷰관리</dt>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminReview">신고리뷰리스트</a>
+            </dd>            
         </dl>
     </div>
 	
-	<div id="content">
+	<div id="content"  class="col-md-9">
 		<div class="breadcrumb">
 			<span>HOME</span> <i class="ionicons ion-ios-arrow-right"></i> 회원관리 <i class="ionicons ion-ios-arrow-right"></i> 회원 등록하기		
 		</div>
@@ -100,9 +118,12 @@
 						<th scope="row">전화번호</th>
 						<td>
 					    	<select id="tel1" name="tel1">
-							  <option value="010">010</option>
-							  <option value="011">011</option>
-							  <option value="019">019</option>
+							  	<option value= "010" selected >010</option>
+			                   	<option value= "011">011</option>
+			                    <option value= "016">016</option>
+			                    <option value= "017">017</option>
+			                    <option value= "018">018</option>
+			                    <option value= "019">019</option>
 							</select> - 
 					    	<input type="text" id="tel2" name="tel2" class="frm_input" size="5" maxlength="4"> - 
 					    	<input type="text" id="tel3" name="tel3" class="frm_input" size="5" maxlength="4">
@@ -114,13 +135,16 @@
 						<th scope="row">E-Mail</th>
 					  	<td>
 					  		<input type="text" id="email1" name="email1" class="frm_input" size="12"> @ 
-					    	<select id="email2" name="email2">
-						      	<option value="gmail.com">gmail.com</option>
-						      	<option value="naver.com">naver.com</option>
-						      	<option value="daum.net">daum.net</option>
-					    	</select>
-					    	<span id="emailMsg" class="text-xs"></span>
-					    	<input type="hidden" id="email" name="email">
+                       		<input type="text" id="email2" name="email2" class="frm_input" size="12">
+                      		<select id="selectmail" name="selectmail">
+                            	<option value= "1" selected >직접입력</option>
+                     			<option value= "naver.com">naver.com</option>
+                         		<option value= "gmail.com">gmail.com</option>
+                         		<option value= "nate.com">nate.com</option>
+                       			<option value= "hanmail.com">hanmail.com</option>
+                      		</select>
+                      		<span id="emailMsg" class="text-xs"></span>
+                      		<input type="hidden" id="email" name="email">
 					  	</td>
 					</tr>
 				   <tr>
@@ -142,12 +166,17 @@
 						<th scope="row">주소</th>
 						<td colspan="3">
 							<p class="mart5"><input type="text" id="postcode" name="postcode" class="frm_input" size="8" maxlength="5" readonly> 우편번호</p>
+							
 							<input type="button" onclick="sample4_execDaumPostcode()" class="genric-btn primary-border small" value="우편번호 찾기"><br>
 							<p class="mart5"><input type="text" id="roadaddr" name="roadaddr" class="frm_input" size="60" readonly> 도로명주소</p>
+							   
 							<span id="guide" style="color:#999;display:none"></span>
 							<p class="mart5"><input type="text" id="extraaddr" name="extraaddr"class="frm_input" size="60" readonly> 참고항목
+							
 							<p class="mart5"><input type="text" id="detailaddr" name="detailaddr" class="frm_input" size="60"> 상세주소</p>
+							
 							<input type="hidden" id="jibunaddr" name="jibunaddr">
+							 
 						</td>
 					</tr>
 					<tr>
@@ -170,7 +199,7 @@
 					</table>
 				</div>
 				<div class="btn_confirm">
-					<input type="submit" value="저장" id="signupButton" class="genric-btn success e-large" accesskey="s">
+					<input type="submit" value="저장" id="signupButton" class="genric-btn success large thick">
 				</div>
 			</form>
 		</div>
@@ -193,6 +222,22 @@
     
     <script>
        	$(function(){
+       		
+       		
+       	 //직접입력
+            $('#selectmail').change(function(){
+               $("#selectmail option:selected").each(function () {              
+                  if($(this).val()== '1'){ //직접입력일 경우
+                      $("#email2").val('');    //값 초기화
+                      $("#email2").attr("disabled",false); //활성화
+                  }else{ //직접입력이 아닐경우
+                      $("#email2").val($(this).text());    //선택값 입력
+                      $("#email2").attr("disabled",true); //비활성화
+                  }
+                  });
+               });   
+
+       		
        		$("#id").keyup(function(){
        			var userID = document.getElementById("id").value;
      			  	var idReg = /^[a-z]+[a-z0-9]{5,19}$/g;
@@ -270,20 +315,22 @@
          			  changeMonth: true
          		  	  });
        		 
-       		 $("#email1").keyup(function(){
-       			 var email1 = document.getElementById("email1").value;
-       			 var email2 = document.getElementById("email2").value;
-       			 var email = email1 +"@"+ email2;
-       			 var emailReg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-       			 
-       			 if(email1.length==0){
-       				 $("#emailMsg").text("");
-       			 }else if(!emailReg.test(email)){
-       				 $("#emailMsg").text("이메일 형식으로 써주세요.").css("color","red");
-       			 }else{
-       				 $("#emailMsg").text("올바른 형식입니다.").css("color","blue");
-       			 }
-       		  });
+       		$("#email1,#email2,#selectmail").on("keyup change",function(){
+                var email1 = document.getElementById("email1").value;
+                var email2 = document.getElementById("email2").value;
+                var selectmail = document.getElementById("selectmail").value;
+                var email = email1 +"@"+ email2;
+                var emailReg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+                
+                if(email1.length==0){
+                   $("#emailMsg").text("");
+                }else if(!emailReg.test(email)){
+                   $("#emailMsg").text("이메일 형식으로 써주세요.").css("color","red");
+                }else{
+                   $("#emailMsg").text("올바른 형식입니다.").css("color","blue");
+                }
+              });
+
        		 
        		 $("#signupButton").click(function(){
        			var userID = document.getElementById("id").value;

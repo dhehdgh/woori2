@@ -33,6 +33,24 @@
 	            <dd class="m10">
 	                <a class="nav-link" href="${contextPath}/board/adminItemInsert">상품 추가하기</a>
 	            </dd>
+	            <dt class="m10 menu_toggle">고객지원</dt>
+	            <dd class="m10">
+	                <a class="nav-link" href="${contextPath}/board/adminHelp">1:1 상담문의</a>
+	            </dd>
+	            <dt class="m10 menu_toggle">주문관리</dt>
+	            <dd class="m10">
+	                <a class="nav-link" href="${contextPath}/board/adminOrder">주문리스트</a>
+	            </dd>
+	            <dd class="m10">
+	                <a class="nav-link" href="${contextPath}/board/adminReturn">반품리스트</a>
+	            </dd>
+	            <dd class="m10">
+	                <a class="nav-link" href="${contextPath}/board/adminExchange">교환리스트</a>
+	            </dd>
+	            <dt class="m10 menu_toggle">리뷰관리</dt>
+	            <dd class="m10">
+	                <a class="nav-link" href="${contextPath}/board/adminReview">신고리뷰리스트</a>
+	            </dd>	            
 	        </dl>
 	    </div>
     
@@ -152,16 +170,16 @@
 							<tr>
 								<th scope="row">회원상태</th>
 								<td>
-							        <input type="radio" name="state" id="active" value="1" ${member.authority == "1" ? "checked" : ""} class="frm_input">
+							        <input type="radio" name="state" id="active" value="1" ${member.state == "1" ? "checked" : ""} class="frm_input">
 							        <label for="male">활동회원</label>
-							        <input type="radio" name="state" id="inactive" value="2" ${member.authority == "2" ? "checked" : ""} class="frm_input">
+							        <input type="radio" name="state" id="inactive" value="2" ${member.state == "2" ? "checked" : ""} class="frm_input">
 							        <label for="female">휴면회원</label>
 							    </td>
 							    <th scope="row">개인정보수집동의</th>
 								<td>
-							        <input type="radio" name="agree" id="yes" value="1" ${member.authority == "1" ? "checked" : ""} class="frm_input">
+							        <input type="radio" name="agree" id="agree_yes" value="1" ${member.agree == "1" ? "checked" : ""} class="frm_input">
 							        <label for="male">예</label>
-							        <input type="radio" name="agree" id="no" value="2" ${member.authority == "2" ? "checked" : ""} class="frm_input">
+							        <input type="radio" name="agree" id="agree_no" value="2" ${member.agree == "2" ? "checked" : ""} class="frm_input">
 							        <label for="female">아니오</label>
 							    </td>
 							</tr>
@@ -169,8 +187,8 @@
 							</table>
 						</div>
 						<div class="btn_confirm">
-							<button type="submit" id="updateButton" class="genric-btn success large">회원정보 수정</button>
-							<button type="button" class="genric-btn danger large" onclick="member_leave();">회원탈퇴</button>
+							<button type="submit" id="updateButton" class="genric-btn success large thick">회원정보 수정</button>
+							<button type="button" class="genric-btn danger large thick" onclick="member_leave();">회원탈퇴</button>
 						</div>
 					</div>
 				</form>

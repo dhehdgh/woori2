@@ -30,7 +30,6 @@ public class ImgDTO {
 	public void setImgname(String imgname) {
 		this.imgname = imgname;
 	}
-	
 	@Override
 	public String toString() {
 		return "ImgDTO [imgnum=" + imgnum + ", itemnum=" + itemnum + ", url=" + url + ", imgname=" + imgname + "]";

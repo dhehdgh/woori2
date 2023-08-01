@@ -22,6 +22,18 @@
 	</beans:bean>
 	
 	
+	
+	<!-- 업로드 패스 설정 --> 
+	<beans:bean class="java.lang.String" id="uploadPath">
+	 	<beans:constructor-arg value="C:\wr501\workspace\ShoppingProject\src\main\webapp\resources\bootstrap\img"/>
+	</beans:bean>
+	
+	<!-- 멀티파트 요청 처리를 위한 CommonsMultipartResolver 빈 추가 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 최대 업로드 파일 크기 설정 (10MB로 설정) -->
+		<beans:property name="maxUploadSize" value="10485760"/>
+	</beans:bean>
+	
 	<context:component-scan base-package="kr.co.dong" />
 	
 	

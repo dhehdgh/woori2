@@ -4,11 +4,10 @@ public class Iv_itemDTO {
 	private int iv_itemnum;
 	private int itemnum;
 	private int itemcnt;
-	private int itemsize;
-	private int itemcolor;
+	private String itemsize;
+	private String itemcolor;
 	private String iv_date;
-	private int itemstate;
-	
+	private String itemstate;
 	
 	public int getIv_itemnum() {
 		return iv_itemnum;
@@ -28,16 +27,16 @@ public class Iv_itemDTO {
 	public void setItemcnt(int itemcnt) {
 		this.itemcnt = itemcnt;
 	}
-	public int getItemsize() {
+	public String getItemsize() {
 		return itemsize;
 	}
-	public void setItemsize(int itemsize) {
+	public void setItemsize(String itemsize) {
 		this.itemsize = itemsize;
 	}
-	public int getItemcolor() {
+	public String getItemcolor() {
 		return itemcolor;
 	}
-	public void setItemcolor(int itemcolor) {
+	public void setItemcolor(String itemcolor) {
 		this.itemcolor = itemcolor;
 	}
 	public String getIv_date() {
@@ -46,17 +45,18 @@ public class Iv_itemDTO {
 	public void setIv_date(String iv_date) {
 		this.iv_date = iv_date;
 	}
-	public int getItemstate() {
+	public String getItemstate() {
 		return itemstate;
 	}
-	public void setItemstate(int itemstate) {
+	public void setItemstate(String itemstate) {
 		this.itemstate = itemstate;
 	}
-	
-	
 	@Override
 	public String toString() {
 		return "Iv_itemDTO [iv_itemnum=" + iv_itemnum + ", itemnum=" + itemnum + ", itemcnt=" + itemcnt + ", itemsize="
 				+ itemsize + ", itemcolor=" + itemcolor + ", iv_date=" + iv_date + ", itemstate=" + itemstate + "]";
 	}
+	
+	
+	
 }

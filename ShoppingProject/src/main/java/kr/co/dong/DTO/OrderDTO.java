@@ -2,28 +2,22 @@ package kr.co.dong.DTO;
 
 public class OrderDTO {
 	private int buynum;
-	private int cartno;
 	private String addrnum;
-	private int paymethod;
 	private String buydate;
+	private String paymethod;
 	private String deliverycom;
-	private int state;
-	private String deliveryday;
+	private String state_nm;
 	private int payment;
-	private CartDTO cartDTO;
+	private String deliveryday;
+	private int rstate;
+	private int salevalue;
+	private int pointvalue;
 	private AddressDTO addressDTO;
-	
 	public int getBuynum() {
 		return buynum;
 	}
 	public void setBuynum(int buynum) {
 		this.buynum = buynum;
-	}
-	public int getCartno() {
-		return cartno;
-	}
-	public void setCartno(int cartno) {
-		this.cartno = cartno;
 	}
 	public String getAddrnum() {
 		return addrnum;
@@ -31,17 +25,17 @@ public class OrderDTO {
 	public void setAddrnum(String addrnum) {
 		this.addrnum = addrnum;
 	}
-	public int getPaymethod() {
-		return paymethod;
-	}
-	public void setPaymethod(int paymethod) {
-		this.paymethod = paymethod;
-	}
 	public String getBuydate() {
 		return buydate;
 	}
 	public void setBuydate(String buydate) {
 		this.buydate = buydate;
+	}
+	public String getPaymethod() {
+		return paymethod;
+	}
+	public void setPaymethod(String paymethod) {
+		this.paymethod = paymethod;
 	}
 	public String getDeliverycom() {
 		return deliverycom;
@@ -49,17 +43,11 @@ public class OrderDTO {
 	public void setDeliverycom(String deliverycom) {
 		this.deliverycom = deliverycom;
 	}
-	public int getState() {
-		return state;
+	public String getState_nm() {
+		return state_nm;
 	}
-	public void setState(int state) {
-		this.state = state;
-	}
-	public String getDeliveryday() {
-		return deliveryday;
-	}
-	public void setDeliveryday(String deliveryday) {
-		this.deliveryday = deliveryday;
+	public void setState_nm(String state_nm) {
+		this.state_nm = state_nm;
 	}
 	public int getPayment() {
 		return payment;
@@ -67,11 +55,29 @@ public class OrderDTO {
 	public void setPayment(int payment) {
 		this.payment = payment;
 	}
-	public CartDTO getCartDTO() {
-		return cartDTO;
+	public String getDeliveryday() {
+		return deliveryday;
 	}
-	public void setCartDTO(CartDTO cartDTO) {
-		this.cartDTO = cartDTO;
+	public void setDeliveryday(String deliveryday) {
+		this.deliveryday = deliveryday;
+	}
+	public int getRstate() {
+		return rstate;
+	}
+	public void setRstate(int rstate) {
+		this.rstate = rstate;
+	}
+	public int getSalevalue() {
+		return salevalue;
+	}
+	public void setSalevalue(int salevalue) {
+		this.salevalue = salevalue;
+	}
+	public int getPointvalue() {
+		return pointvalue;
+	}
+	public void setPointvalue(int pointvalue) {
+		this.pointvalue = pointvalue;
 	}
 	public AddressDTO getAddressDTO() {
 		return addressDTO;
@@ -79,11 +85,12 @@ public class OrderDTO {
 	public void setAddressDTO(AddressDTO addressDTO) {
 		this.addressDTO = addressDTO;
 	}
-	
 	@Override
 	public String toString() {
-		return "OrderDTO [buynum=" + buynum + ", cartno=" + cartno + ", addrnum=" + addrnum + ", paymethod=" + paymethod
-				+ ", buydate=" + buydate + ", deliverycom=" + deliverycom + ", state=" + state + ", deliveryday="
-				+ deliveryday + ", payment=" + payment + ", cartDTO=" + cartDTO + ", addressDTO=" + addressDTO + "]";
+		return "OrderDTO [buynum=" + buynum + ", addrnum=" + addrnum + ", buydate=" + buydate + ", paymethod="
+				+ paymethod + ", deliverycom=" + deliverycom + ", state_nm=" + state_nm + ", payment=" + payment
+				+ ", deliveryday=" + deliveryday + ", rstate=" + rstate + ", salevalue=" + salevalue + ", pointvalue="
+				+ pointvalue + ", addressDTO=" + addressDTO + "]";
 	}
+
 }

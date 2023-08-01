@@ -6,56 +6,48 @@
 <mapper namespace="kr.co.dong.BoardMapper">
 	
 	<resultMap id="dr_reviewMapper" type="kr.co.dong.DTO.Dr_reviewDTO">
-      <result column="drnum" property="drnum"/>
-      <result column="reviewno" property="reviewno"/>
-      <result column="drcontent" property="drcontent"/>
-      <result column="drdate" property="drdate"/>
-      <collection property="reviewDTO" resultMap="reviewMapper"/>
-   </resultMap>
-   <resultMap id="reviewMapper" type="kr.co.dong.DTO.ReviewDTO">   
-      <result column="reviewno" property="reviewno"/>
-      <result column="itemnum" property="itemnum"/>
-      <result column="membernum" property="membernum"/>
-      <result column="rcontent" property="rcontent"/>
-      <result column="rdate" property="rdate"/>
-      <result column="rstar" property="rstar"/>
-      <result column="reviewlike" property="reviewlike"/>
-      <result column="reviewreport" property="reviewreport"/>
-      <result column="rstate" property="rstate"/>
-      <result column="del" property="del"/>
-   </resultMap>
-
-	<resultMap id="orderMapper" type="kr.co.dong.DTO.OrderDTO">
-		<result column="buynum" property="buynum"/>
-		<result column="cartno" property="cartno"/>
-		<result column="addrnum" property="addrnum"/>
-		<result column="paymethod" property="paymethod"/>
-		<result column="buydate" property="buydate"/>
-		<result column="deliverycom" property="deliverycom"/>
-		<result column="state" property="state"/>
-		<result column="deliveryday" property="deliveryday"/>
-		<collection property="cartDTO" resultMap="cartMapper"/>
-		<collection property="addressDTO" resultMap="addressMapper"/>
-	</resultMap>
-	<resultMap id="cartMapper" type="kr.co.dong.DTO.CartDTO">
-		<result column="cartno" property="cartno"/>
-		<result column="membernum" property="membernum"/>
-		<result column="itemnum" property="itemnum"/>
-		<result column="iv_itemnum" property="iv_itemnum"/>
-		<result column="itemcnt" property="itemcnt"/>
-		<result column="cartstate" property="cartstate"/>
-	</resultMap>
-	<resultMap id="addressMapper" type="kr.co.dong.DTO.AddressDTO">
-		<result column="addrnum" property="addrnum"/>
-		<result column="membernum" property="membernum"/>
-		<result column="delroadaddr" property="delroadaddr"/>
-		<result column="deljibunaddr" property="deljibunaddr"/>
-		<result column="deldetailaddr" property="deldetailaddr"/>
-		<result column="delextraaddr" property="delextraaddr"/>
-		<result column="addrstate" property="addrstate"/>
-		<result column="delpostcode" property="delpostcode"/>
-	</resultMap>
-	
+      	<result column="drnum" property="drnum"/>
+      	<result column="reviewno" property="reviewno"/>
+      	<result column="drcontent" property="drcontent"/>
+      	<result column="drdate" property="drdate"/>
+      	<association property="reviewDTO" resultMap="reviewMapper"/>
+   	</resultMap>
+   	<resultMap id="reviewMapper" type="kr.co.dong.DTO.ReviewDTO">   
+		<result column="reviewno" property="reviewno"/>
+      	<result column="itemnum" property="itemnum"/>
+      	<result column="membernum" property="membernum"/>
+      	<result column="buynum" property="buynum"/>
+      	<result column="rcontent" property="rcontent"/>
+     	<result column="rdate" property="rdate"/>
+      	<result column="rstar" property="rstar"/>
+      	<result column="reviewlike" property="reviewlike"/>
+      	<result column="reviewreport" property="reviewreport"/>
+      	<result column="del" property="del"/>
+      	<association property="memberDTO" resultMap="memberMapper"/>
+      	<collection property="itemDTO" resultMap="itemMapper"/>
+   	</resultMap>
+   	<resultMap id="memberMapper" type="kr.co.dong.DTO.MemberDTO">
+   	  	<result column="membernum" property="membernum"/>
+   	  	<result column="id" property="id"/>
+   	  	<result column="pw" property="pw"/>
+   	  	<result column="name" property="name"/>
+   	  	<result column="email" property="email"/>
+   	  	<result column="tel" property="tel"/>
+   	  	<result column="birth" property="birth"/>
+   	  	<result column="point" property="point"/>
+   	  	<result column="pointac" property="pointac"/>
+   	  	<result column="roadaddr" property="roadaddr"/>
+   	  	<result column="jibunaddr" property="jibunaddr"/>
+   	  	<result column="detailaddr" property="detailaddr"/>
+   	  	<result column="extraaddr" property="extraaddr"/>
+   	  	<result column="postcode" property="postcode"/>
+   	  	<result column="joindate" property="joindate"/>
+   	  	<result column="state" property="state"/>
+   	  	<result column="authority" property="authority"/>
+   	  	<result column="gender" property="gender"/>
+   	  	<result column="agree" property="agree"/>
+   	  	<result column="deleteagree" property="deleteagree"/>
+   	</resultMap>
 	<resultMap id="itemMapper" type="kr.co.dong.DTO.ItemDTO">
 		<result column="itemnum" property="itemnum"/>
 		<result column="itemname" property="itemname"/>
@@ -65,6 +57,7 @@
 		<result column="itemb" property="itemb"/>
 		<result column="items" property="items"/>
 		<result column="itemcontent" property="itemcontent"/>
+		<result column="sale" property="sale"/>
 		<result column="rstar" property="rstar"/>
 		<collection property="iv_itemDTO" resultMap="ivMapper"/>
 		<collection property="imgDTO" resultMap="imgMapper"/>
@@ -72,6 +65,7 @@
 	<resultMap id="ivMapper" type="kr.co.dong.DTO.Iv_itemDTO">
 		<result column="iv_itemnum" property="iv_itemnum"/>
 		<result column="itemnum" property="itemnum"/>
+		<result column="itemcnt" property="itemcnt"/>
 		<result column="itemsize" property="itemsize"/>
 		<result column="itemcolor" property="itemcolor"/>
 		<result column="iv_date" property="iv_date"/>
@@ -84,44 +78,249 @@
 		<result column="imgname" property="imgname"/>
 	</resultMap>
 	
+	
+	
 	<resultMap id="returnMapper" type="kr.co.dong.DTO.ReturnDTO">
 		<result column="returnnum" property="returnnum"/>
 		<result column="buynum" property="buynum"/>
+		<result column="dv_itemno" property="dv_itemno"/>
 		<result column="returncontent" property="returncontent"/>
 		<result column="returndate" property="returndate"/>
 		<result column="recomdate" property="recomdate"/>
 		<result column="state" property="state"/>
 		<result column="type" property="type"/>
-		<association property="orderDTO" resultMap="orderMapper2"/>
+		<collection property="orderDTO" resultMap="orderMapper"/>
+		<collection property="dv_order_itemDTO" resultMap="dv_order_itemMapper"/>
 	</resultMap>
-	<resultMap id="orderMapper2" type="kr.co.dong.DTO.OrderDTO">
-		<result column="cartno" property="cartno"/>
+	<resultMap id="orderMapper" type="kr.co.dong.DTO.OrderDTO">
+		<result column="buynum" property="buynum"/>
 		<result column="addrnum" property="addrnum"/>
-		<result column="paymethod" property="paymethod"/>
 		<result column="buydate" property="buydate"/>
+		<result column="paymethod" property="paymethod"/>
 		<result column="deliverycom" property="deliverycom"/>
-		<result column="state" property="state"/>
+		<result column="state_nm" property="state_nm"/>
 		<result column="payment" property="payment"/>
 		<result column="deliveryday" property="deliveryday"/>
-		<collection property="cartDTO" resultMap="cartMapper2"/>
+		<result column="rstate" property="rstate"/>
+		<result column="salevalue" property="salevalue"/>
+		<result column="pointvalue" property="pointvalue"/>
+		<collection property="addressDTO" resultMap="addressMapper"/>
 	</resultMap>
-	<resultMap id="cartMapper2" type="kr.co.dong.DTO.CartDTO">
-		<result column="cartno" property="cartno"/>
+	<resultMap id="addressMapper" type="kr.co.dong.DTO.AddressDTO">
+		<result column="addrnum" property="addrnum"/>
 		<result column="membernum" property="membernum"/>
-		<result column="itemnum" property="itemnum"/>
+		<result column="delroadaddr" property="delroadaddr"/>
+		<result column="deljibunaddr" property="deljibunaddr"/>
+		<result column="deldetailaddr" property="deldetailaddr"/>
+		<result column="delextraaddr" property="delextraaddr"/>
+		<result column="addrstate" property="addrstate"/>
+		<result column="deladdrstate" property="deladdrstate"/>
+		<result column="delpostcode" property="delpostcode"/>
+	</resultMap>
+	<resultMap id="dv_order_itemMapper" type="kr.co.dong.DTO.Dv_order_itemDTO">
+		<result column="dv_itemno" property="dv_itemno"/>
+		<result column="buynum" property="buynum"/>
+		<result column="cartno" property="cartno"/>
+		<collection property="cartDTO" resultMap="cartMapper"/>
+	</resultMap>
+	<resultMap id="cartMapper" type="kr.co.dong.DTO.CartDTO">
+      	<result column="cartno" property="cartno"/>
+      	<result column="membernum" property="membernum"/>
+      	<result column="iv_itemnum" property="iv_itemnum"/>
+      	<result column="itemnum" property="itemnum"/>
+      	<result column="cartstate" property="cartstate"/>
+      	<result column="itemcnt" property="itemcnt"/>
+      	<collection property="memberDTO" resultMap="memberMapper2"/>
+      	<collection property="iv_itemDTO" resultMap="iv_itemMapper2"/>
+      	<collection property="itemDTO" resultMap="itemMapper2"/>
+   	</resultMap>
+   	<resultMap id="memberMapper2" type="kr.co.dong.DTO.MemberDTO">
+   	  	<result column="membernum" property="membernum"/>
+   	  	<result column="id" property="id"/>
+   	  	<result column="pw" property="pw"/>
+   	  	<result column="name" property="name"/>
+   	  	<result column="email" property="email"/>
+   	  	<result column="tel" property="tel"/>
+   	  	<result column="birth" property="birth"/>
+   	  	<result column="point" property="point"/>
+   	  	<result column="pointac" property="pointac"/>
+   	  	<result column="roadaddr" property="roadaddr"/>
+   	  	<result column="jibunaddr" property="jibunaddr"/>
+   	  	<result column="detailaddr" property="detailaddr"/>
+   	  	<result column="extraaddr" property="extraaddr"/>
+   	  	<result column="postcode" property="postcode"/>
+   	  	<result column="joindate" property="joindate"/>
+   	  	<result column="state" property="state"/>
+   	  	<result column="authority" property="authority"/>
+   	  	<result column="gender" property="gender"/>
+   	  	<result column="agree" property="agree"/>
+   	  	<result column="deleteagree" property="deleteagree"/>
+   	</resultMap>
+ 	<resultMap id="iv_itemMapper2" type="kr.co.dong.DTO.Iv_itemDTO">
 		<result column="iv_itemnum" property="iv_itemnum"/>
+		<result column="itemnum" property="itemnum"/>
 		<result column="itemcnt" property="itemcnt"/>
-		<result column="cartstate" property="cartstate"/>
+		<result column="itemsize" property="itemsize"/>
+		<result column="itemcolor" property="itemcolor"/>
+		<result column="iv_date" property="iv_date"/>
+		<result column="itemstate" property="itemstate"/>
+	</resultMap>  	
+   	<resultMap id="itemMapper2" type="kr.co.dong.DTO.ItemDTO">
+		<result column="itemnum" property="itemnum"/>
+		<result column="itemname" property="itemname"/>
+		<result column="itempay" property="itempay"/>
+		<result column="itembuycnt" property="itembuycnt"/>
+		<result column="itemdate" property="itemdate"/>
+		<result column="itemb" property="itemb"/>
+		<result column="items" property="items"/>
+		<result column="itemcontent" property="itemcontent"/>
+		<result column="sale" property="sale"/>
+		<result column="rstar" property="rstar"/>
+		<collection property="imgDTO" resultMap="imgMapper2"/>
+	</resultMap>
+	<resultMap id="imgMapper2" type="kr.co.dong.DTO.ImgDTO">
+		<result column="imgnum" property="imgnum"/>
+		<result column="itemnum" property="itemnum"/>
+		<result column="url" property="url"/>
+		<result column="imgname" property="imgname"/>
 	</resultMap>
 	
 	
-
-	<select id="adminItem" resultType="ItemDTO">
-		select * from item
+	<resultMap id="helpMapper" type="kr.co.dong.DTO.HelpDTO">
+      	<result column="hno" property="hno"/>
+      	<result column="membernum" property="membernum"/>
+      	<result column="title" property="title"/>
+      	<result column="content" property="content"/>
+      	<result column="recomment" property="recomment"/>
+      	<result column="hdate" property="hdate"/>
+      	<result column="rehdate" property="rehdate"/>
+      	<result column="state" property="state"/>
+      	<result column="del" property="del"/>
+      	<association property="memberDTO" resultMap="memberMapper3"/>
+   	</resultMap>
+   	<resultMap id="memberMapper3" type="kr.co.dong.DTO.MemberDTO">   
+		<result column="membernum" property="membernum"/>
+   	  	<result column="id" property="id"/>
+   	  	<result column="pw" property="pw"/>
+   	  	<result column="name" property="name"/>
+   	  	<result column="email" property="email"/>
+   	  	<result column="tel" property="tel"/>
+   	  	<result column="birth" property="birth"/>
+   	  	<result column="point" property="point"/>
+   	  	<result column="pointac" property="pointac"/>
+   	  	<result column="roadaddr" property="roadaddr"/>
+   	  	<result column="jibunaddr" property="jibunaddr"/>
+   	  	<result column="detailaddr" property="detailaddr"/>
+   	  	<result column="extraaddr" property="extraaddr"/>
+   	  	<result column="postcode" property="postcode"/>
+   	  	<result column="joindate" property="joindate"/>
+   	  	<result column="state" property="state"/>
+   	  	<result column="authority" property="authority"/>
+   	  	<result column="gender" property="gender"/>
+   	  	<result column="agree" property="agree"/>
+   	  	<result column="deleteagree" property="deleteagree"/>
+   	</resultMap>
+    
+    <resultMap id="orderMapper2" type="kr.co.dong.DTO.OrderDTO">
+		<result column="buynum" property="buynum"/>
+		<result column="addrnum" property="addrnum"/>
+		<result column="buydate" property="buydate"/>
+		<result column="paymethod" property="paymethod"/>
+		<result column="deliverycom" property="deliverycom"/>
+		<result column="state_nm" property="state_nm"/>
+		<result column="payment" property="payment"/>
+		<result column="deliveryday" property="deliveryday"/>
+		<result column="rstate" property="rstate"/>
+		<result column="salevalue" property="salevalue"/>
+		<result column="pointvalue" property="pointvalue"/>
+		<association property="addressDTO" resultMap="addressMapper2"/>
+	</resultMap>
+	<resultMap id="addressMapper2" type="kr.co.dong.DTO.AddressDTO">
+		<result column="addrnum" property="addrnum"/>
+		<result column="membernum" property="membernum"/>
+		<result column="delroadaddr" property="delroadaddr"/>
+		<result column="deljibunaddr" property="deljibunaddr"/>
+		<result column="deldetailaddr" property="deldetailaddr"/>
+		<result column="delextraaddr" property="delextraaddr"/>
+		<result column="addrstate" property="addrstate"/>
+		<result column="deladdrstate" property="deladdrstate"/>
+		<result column="delpostcode" property="delpostcode"/>
+		<association property="memberDTO" resultMap="memberMapper4"/>
+	</resultMap>
+    <resultMap id="memberMapper4" type="kr.co.dong.DTO.MemberDTO">
+   	  	<result column="membernum" property="membernum"/>
+   	  	<result column="id" property="id"/>
+   	  	<result column="pw" property="pw"/>
+   	  	<result column="name" property="name"/>
+   	  	<result column="email" property="email"/>
+   	  	<result column="tel" property="tel"/>
+   	  	<result column="birth" property="birth"/>
+   	  	<result column="point" property="point"/>
+   	  	<result column="pointac" property="pointac"/>
+   	  	<result column="roadaddr" property="roadaddr"/>
+   	  	<result column="jibunaddr" property="jibunaddr"/>
+   	  	<result column="detailaddr" property="detailaddr"/>
+   	  	<result column="extraaddr" property="extraaddr"/>
+   	  	<result column="postcode" property="postcode"/>
+   	  	<result column="joindate" property="joindate"/>
+   	  	<result column="state" property="state"/>
+   	  	<result column="authority" property="authority"/>
+   	  	<result column="gender" property="gender"/>
+   	  	<result column="agree" property="agree"/>
+   	  	<result column="deleteagree" property="deleteagree"/>
+   	</resultMap>
+   	
+   	
+   	<resultMap id="memberMapper5" type="kr.co.dong.DTO.MemberDTO">
+   	  	<result column="membernum" property="membernum"/>
+   	  	<result column="id" property="id"/>
+   	  	<result column="pw" property="pw"/>
+   	  	<result column="name" property="name"/>
+   	  	<result column="email" property="email"/>
+   	  	<result column="tel" property="tel"/>
+   	  	<result column="birth" property="birth"/>
+   	  	<result column="point" property="point"/>
+   	  	<result column="pointac" property="pointac"/>
+   	  	<result column="roadaddr" property="roadaddr"/>
+   	  	<result column="jibunaddr" property="jibunaddr"/>
+   	  	<result column="detailaddr" property="detailaddr"/>
+   	  	<result column="extraaddr" property="extraaddr"/>
+   	  	<result column="postcode" property="postcode"/>
+   	  	<result column="joindate" property="joindate"/>
+   	  	<result column="state" property="state"/>
+   	  	<result column="authority" property="authority"/>
+   	  	<result column="gender" property="gender"/>
+   	  	<result column="agree" property="agree"/>
+   	  	<result column="deleteagree" property="deleteagree"/>
+   	  	<association property="rankDTO"></association>
+   	</resultMap>
+   	<resultMap type="rankMapper" id="kr.co.dong.DTO.RankDTO">
+   		<result column="rating" property="rating"/>
+   		<result column="lowpoint" property="lowpoint"/>
+   		<result column="highpoint" property="highpoint"/>
+   		<result column="discount" property="discount"/>
+   		<result column="accumulation" property="accumulation"/>
+   	</resultMap>
+    
+	<select id="adminItem" resultMap="itemMapper">
+	   select
+	        I.itemnum,I.itemname,I.itempay, I.itemdate, 
+	        (select codestring from codetable where codename="대분류" and codenum = I.itemb) AS itemb,
+			(select codestring from codetable where codename="소분류" and codenum = I.items) AS items,
+	        I.itemcontent,I.sale,I.rstar,IMG.imgnum,IMG.url,IMG.imgname
+	    from item I
+	    join img IMG on (I.itemnum = IMG.itemnum)
+	    where I.itemname is not null
 	</select>
+
 	
-	<select id="adminItemSearch" resultType="ItemDTO" parameterType="java.util.Map">
-		select * from item
+	<select id="adminItemSearch" resultMap="itemMapper" parameterType="java.util.Map">
+		select I.itemnum,I.itemname,I.itempay,I.itembuycnt, I.itemdate, 
+	        (select codestring from codetable where codename="대분류" and codenum = I.itemb) AS itemb,
+			(select codestring from codetable where codename="소분류" and codenum = I.items) AS items,
+	        I.itemcontent,I.sale,I.rstar,IMG.imgnum,IMG.url,IMG.imgname
+	    from item I
+	    join img IMG on (I.itemnum = IMG.itemnum)
 		where 1=1
 	    <if test="search != null and search != ''">
 	        and ${searchType} like concat('%', #{search}, '%')
@@ -135,15 +334,17 @@
 	    <if test="categoryType2 != null and categoryType2 != '' and categoryType2 != '0'">
 	      AND items = #{categoryType2}
 	    </if>
-	</select>
-	
-	<select id="adminItem2" resultType="java.lang.Integer">
-		select count(*) from item
+	    and I.itemname is not null
 	</select>
 	
 	<insert id="adminItemInsert" parameterType="ItemDTO">
-		insert into item (itemname,itempay,itembuycnt,itemdate,itemb,items,itemcontent)
-		values (#{itemname},#{itempay},0,now(),#{itemb},#{items},#{itemcontent})
+		insert into item (itemname,itempay,itemdate,itemb,items,itemcontent)
+		values (#{itemname},#{itempay},now(),#{itemb},#{items},#{itemcontent})
+	</insert>
+	
+	<insert id="adminImageInsert" parameterType="ImgDTO">
+		insert into img (itemnum,url,imgname)
+		values (#{itemnum},#{url},#{imgname})
 	</insert>
 	
 	<select id="adminItemInsertItemnum" resultType="ItemDTO">
@@ -156,13 +357,18 @@
 		{ CALL insert_iv_items(#{itemnum, mode=IN, jdbcType=INTEGER}) }
 	</insert>
 	
-	<select id="adminItemDetail" resultType="ItemDTO" parameterType="java.lang.Integer">
-		select * from item
-		where itemnum = #{itemnum}
+	<select id="adminItemDetail" resultMap="itemMapper" parameterType="java.lang.Integer">
+		select ITEM.*,IMG.* 
+		from item ITEM join img IMG on(ITEM.itemnum = IMG.itemnum)
+		where ITEM.itemnum = #{itemnum}
 	</select>
 	
 	<select id="adminItemDetail2" resultType="Iv_itemDTO" parameterType="java.lang.Integer">
-		select * from iv_item
+		select iv_itemnum,itemnum,itemcnt,iv_date, 
+		(select codestring from codetable where codename="사이즈" and codenum = itemsize) as itemsize,
+		(select codestring from codetable where codename="색깔" and codenum = itemcolor) as itemcolor,
+		(select codestring from codetable where codename="재고상태" and codenum = itemstate) as itemstate
+		from iv_item
 		where itemnum = #{itemnum}
 	</select>
 	
@@ -180,7 +386,7 @@
 		where iv_itemnum = #{iv_itemnum}
 	</update>
 	
-	<update id="adminItemUpdate" parameterType="ItemDTO">
+	<update id="adminItemUpdate" parameterType="ItemDTO" >
 		update item
 		set itemname = #{itemname},
 			itempay = #{itempay},
@@ -191,13 +397,42 @@
 		where itemnum = #{itemnum}
 	</update>
 	
+	<update id="adminImageUpdate" parameterType="ImgDTO">
+		update img
+		set url = #{url},
+			imgname = #{imgname}
+		where imgnum = #{imgnum}
+	</update>
+	
+	<update id="adminItemDelete" parameterType="java.lang.Integer">
+		update item
+		set itemname = null,
+			itempay = null,
+			itembuycnt = null,
+			itemdate = null,
+			itemb = null,
+			items = null,
+			itemcontent = null,
+			sale = null,
+			rstar = null
+		where itemnum = #{itemnum}
+	</update>
+	
 	<select id="adminMember" resultType="MemberDTO">
-		select * from member
+		select membernum,id,name,email,tel,birth,point,pointac,joindate,
+		(select codestring from codetable where codename="회원상태" and codenum=state) as state,
+		(select codestring from codetable where codename="권한" and codenum=authority) as authority,
+		(select codestring from codetable where codename="성별" and codenum=gender) as gender
+		from member
 		where authority != 0
 	</select>
 	
 	<select id="adminMemberSearch" resultType="MemberDTO" parameterType="java.util.Map">
-		select * from member
+		select membernum,id,name,email,tel,birth,point,pointac,joindate,
+		(select codestring from codetable where codename="회원상태" and codenum=state) as state,
+		(select codestring from codetable where codename="권한" and codenum=authority) as authority,
+		(select codestring from codetable where codename="성별" and codenum=gender) as gender 
+		from member
 		where 1=1
 	    <if test="search != null and search != ''">
 	        and ${searchType} like concat('%', #{search}, '%')
@@ -208,8 +443,10 @@
 	    and authority != 0
 	</select>
 	
-	<select id="adminMemberDetail" resultType="MemberDTO" parameterType="java.lang.Integer">
-		select * from member
+	<select id="adminMemberDetail" resultMap="MemberMapper5" parameterType="java.lang.Integer">
+		select membernum,id,name,email,tel,birth,point,pointac,roadaddr,jibunaddr,detailaddr,extraaddr,postcode,joindate,state,authority,gender,agree
+		from member
+		join ratinglist 
 		where membernum = #{membernum}
 	</select>
 	
@@ -226,7 +463,8 @@
 			postcode = #{postcode},
 			state = #{state},
 			authority = #{authority},
-			gender = #{gender}
+			gender = #{gender},
+			agree = #{agree}
 		where membernum = #{membernum}
 	</update>
 	
@@ -241,8 +479,13 @@
 	  insert into member
 	  values (null, #{id}, #{pw}, #{name}, #{email}, #{tel}, #{birth}, 0, 0, 
 	          #{roadaddr}, #{jibunaddr}, #{detailaddr}, #{extraaddr}, #{postcode}, 
-	          curdate(), 1, #{authority}, #{gender}, #{agree})
+	          curdate(), 1, #{authority}, #{gender}, #{agree}, 2)
 	</insert>
+	
+	<insert id="adminMemberRegisterAddr" parameterType="AddressDTO">
+     	insert into address(membernum, delroadaddr, deljibunaddr, deldetailaddr, delextraaddr, delpostcode, deladdrstate)
+     	values ((SELECT MAX(membernum) FROM member), #{delroadaddr}, #{deljibunaddr}, #{deldetailaddr}, #{delextraaddr}, #{delpostcode}, 1)
+   	</insert>
 	
 	<select id="adminCheckID" parameterType="MemberDTO" resultType="java.lang.Integer">
 		select count(*)
@@ -250,12 +493,47 @@
 		where id = #{id}
 	</select>
 	
-	<select id="adminHelp" resultType="HelpDTO">
-		select * from help_board
+	<select id="adminMemberRank" resultType="RankDTO">
+		select lowpoint,highpoint,discount,accumulation,rating,
+		(select codestring from codetable where codename='등급명' and codenum=rating) as rating_nm
+		from ratinglist
+		
 	</select>
 	
-	<select id="adminHelpSearch" resultType="HelpDTO" parameterType="java.util.Map">
-		select * from help_board
+	<update id="adminMemberRankUpdate" parameterType="RankDTO">
+	    update codetable
+    	set codestring = #{rating_nm}
+    	where codename = '등급명' and codenum = #{rating}
+	</update>
+	
+	<update id="adminMemberRankUpdate2" parameterType="RankDTO">
+	    update ratinglist
+	    set lowpoint = #{lowpoint},
+	        highpoint = #{highpoint},
+	        discount = #{discount},
+	        accumulation = #{accumulation}
+	    where rating = #{rating}
+	</update>
+
+	<select id="adminHelp" resultMap="helpMapper">
+	    SELECT
+	        H.hno,H.membernum,H.title, H.content, H.recomment,H.hdate,H.rehdate,
+	        (SELECT codestring FROM codetable WHERE codename='문의확인' AND codenum=H.state) AS state,
+	        (SELECT codestring FROM codetable WHERE codename='문의상태' AND codenum=H.del) AS del,
+	        M.*
+	    FROM help_board H
+	    JOIN member M ON (H.membernum = M.membernum)
+	</select>
+
+	
+	<select id="adminHelpSearch" resultMap="helpMapper" parameterType="java.util.Map">
+		SELECT
+	        H.hno,H.membernum,H.title, H.content, H.recomment,H.hdate,H.rehdate,
+	        (SELECT codestring FROM codetable WHERE codename='문의확인' AND codenum=H.state) AS state,
+	        (SELECT codestring FROM codetable WHERE codename='문의상태' AND codenum=H.del) AS del,
+	        M.*
+	    FROM help_board H
+		join member M on ( H.membernum = M.membernum)
 		where 1=1
 	    <if test="search != null and search != ''">
 	        and ${searchType} like concat('%', #{search}, '%')
@@ -265,8 +543,10 @@
 	    </if>
 	</select>	
 	
-	<select id="adminHelpDetail" resultType="HelpDTO" parameterType="java.lang.Integer">
-		select * from help_board
+	<select id="adminHelpDetail" resultMap="helpMapper" parameterType="java.lang.Integer">
+		select H.*,M.* 
+		from help_board H
+	    join member M ON (H.membernum = M.membernum)
 		where hno = #{hno}
 	</select>
 	
@@ -276,80 +556,293 @@
 		where hno = #{hno}
 	</update>
 	
-	<select id="adminOrder" resultMap="orderMapper">
-		select O.buynum, O.cartno, O.addrnum, O.paymethod, O.buydate, O.deliverycom, O.state, O.deliveryday, 
-			C.membernum, C.itemnum,C.iv_itemnum, C.itemcnt, A.delroadaddr,A.addrstate, A.deldetailaddr
-        from dv_order O 
-        join cart C on O.cartno=C.cartno
-		join address A on O.addrnum=A.addrnum
-		where O.state not in(5,6,7) 
+	<select id="adminOrder" resultMap="orderMapper2">
+	    select O.buynum, O.addrnum, O.buydate, O.deliveryday, O.deliverycom, O.payment,
+	    (SELECT codestring FROM codetable WHERE codename='결제방법' AND codenum=O.paymethod) AS paymethod,
+	    (SELECT codestring FROM codetable WHERE codename='주문상태' AND codenum=O.state) AS state_nm,
+	    M.membernum,M.id,M.name
+	    from dv_order O
+	    join address A on (O.addrnum = A.addrnum)
+	    join member M on (M.membernum = A.membernum)
+	    where O.state not in (5, 6, 7)
+	    order by O.buynum desc
 	</select>
-	<select id="adminOrderDetail" resultMap="orderMapper" parameterType="java.lang.Integer">
-		select O.buynum,O.cartno,O.addrnum,O.buydate,O.paymethod,O.deliverycom,O.state,O.payment,O.deliveryday,
-			C.membernum,C.itemnum,C.iv_itemnum,C.itemcnt
-		from dv_order O join cart C on (O.cartno = C.cartno)
-		where O.buynum = #{buynum}
+
+	
+	<select id="adminOrderSearch" resultMap="orderMapper2" parameterType="java.util.Map">
+		select O.buynum, O.addrnum, O.buydate, O.deliveryday, O.deliverycom, O.payment,
+	    (SELECT codestring FROM codetable WHERE codename='결제방법' AND codenum=O.paymethod) AS paymethod,
+	    (SELECT codestring FROM codetable WHERE codename='주문상태' AND codenum=O.state) AS state_nm,
+	   	M.membernum,M.id,M.name
+	    from dv_order O
+	    join address A on (O.addrnum = A.addrnum)
+	    join member M on (M.membernum = A.membernum)
+		WHERE 1=1
+	    <if test="search != null and search != ''">
+	        AND ${searchType} LIKE CONCAT('%', #{search}, '%')
+	    </if>
+	    <if test="startDate != null and startDate != ''">
+	        AND ${dateType} BETWEEN #{startDate} AND #{endDate}
+	    </if>
+	    <if test="state != null and state.length > 0">
+	        AND O.state IN
+	        <foreach item="state" collection="state" open="(" separator="," close=")">
+	            #{state}
+	        </foreach>
+	    </if>
+	    <if test="paymethod != null and paymethod.length > 0">
+	        AND O.paymethod IN
+	        <foreach item="paymethod" collection="paymethod" open="(" separator="," close=")">
+	            #{paymethod}
+	        </foreach>
+	    </if>
+	    and O.state not in(5,6,7)
 	</select>
 	
+	<select id="adminOrderDetail" resultMap="returnMapper" parameterType="java.lang.Integer">
+		 select O.buynum, O.addrnum, O.buydate, O.deliveryday, O.deliverycom, O.payment, D.dv_itemno, D.cartno,
+	           C.membernum, C.iv_itemnum, C.itemnum, C.cartstate, C.itemcnt, I.itemname, I.itempay, M.id, M.name, M.tel,
+	           IV.itemcnt, IV.itemsize, IV.itemcolor, IV.itemstate,
+	           A.delroadaddr, A.deljibunaddr, A.deldetailaddr, A.delextraaddr, A.delpostcode,
+	           (SELECT codestring FROM codetable WHERE codename='결제방법' AND codenum=O.paymethod) AS paymethod,
+	           (SELECT codestring FROM codetable WHERE codename='주문상태' AND codenum=O.state) AS state_nm,
+	           IMG.url, IMG.imgname
+	    from dv_order O
+	    join dv_order_item D on (D.buynum = O.buynum)
+	    join cart C on (C.cartno = D.cartno)
+	    join item I on (C.itemnum = I.itemnum)
+	    join member M on (M.membernum = C.membernum)
+	    join iv_item IV on (C.itemnum = IV.itemnum)
+	    join address A on (A.addrnum = O.addrnum)
+	    join img IMG on (I.itemnum = IMG.itemnum)
+	    where O.buynum = #{buynum}
+	</select>
+	
+	<update id="adminOrderDetail2" parameterType="java.lang.Integer">
+		update dv_order
+		set state = 2
+		where buynum = #{buynum}
+	</update>
+	
+	<update id="adminDeliveryCom">
+		update dv_order
+		set state=1, deliverycom=curdate()
+		where deliveryday &lt;= curdate() 
+		and deliverycom is null 
+		and state=2
+	</update>
+	
 	<select id="adminReturn" resultMap="returnMapper">
-		select I.returnnum,I.buynum,I.returndate,I.recomdate,I.state,I.type,O.cartno,O.addrnum,O.paymethod,O.buydate,O.payment
-		from itemreturn I, dv_order O
-		where I.type = 1
+		select R.returnnum,R.buynum,R.dv_itemno,R.returndate,R.recomdate,R.type,O.addrnum,O.buydate,O.payment,D.dv_itemno,D.cartno,
+				C.membernum, C.iv_itemnum,C.itemnum,C.cartstate,C.itemcnt,M.id,M.name,IV.itemcnt,IV.itemsize,IV.itemcolor,IV.itemstate,
+				(SELECT codestring FROM codetable WHERE codename='결제방법' AND codenum=O.paymethod) AS paymethod,
+				(SELECT codestring FROM codetable WHERE codename='반품상태' AND codenum=R.state) AS state
+		from itemreturn R
+		join dv_order O on (R.buynum=O.buynum)
+		join dv_order_item D on (D.buynum = R.buynum)
+		join cart C on (C.cartno = D.cartno)
+		join member M on (M.membernum = C.membernum)
+		join iv_item IV on (C.itemnum = IV.itemnum)
+		where R.type = 1
+		order by R.returnnum desc
+	</select>
+	
+	<select id="adminReturnSearch" resultMap="returnMapper" parameterType="java.util.Map">
+		select R.returnnum,R.buynum,R.dv_itemno,R.returncontent,R.returndate,R.recomdate,R.type,O.addrnum,O.buydate,O.payment,D.dv_itemno,D.cartno,
+				C.membernum, C.iv_itemnum,C.itemnum,C.cartstate,C.itemcnt,M.id,M.name,IV.itemcnt,IV.itemsize,IV.itemcolor,IV.itemstate,
+				(SELECT codestring FROM codetable WHERE codename='결제방법' AND codenum=O.paymethod) AS paymethod,
+				(SELECT codestring FROM codetable WHERE codename='반품상태' AND codenum=R.state) AS state
+		from itemreturn R
+		join dv_order O on (R.buynum=O.buynum)
+		join dv_order_item D on (D.buynum = R.buynum)
+		join cart C on (C.cartno = D.cartno)
+		join member M on (M.membernum = C.membernum)
+		join iv_item IV on (C.itemnum = IV.itemnum)		
+		WHERE 1=1
+		and R.type = 1
+	    <if test="search != null and search != ''">
+	        AND ${searchType} LIKE CONCAT('%', #{search}, '%')
+	    </if>
+	    <if test="startDate != null and startDate != ''">
+	        AND ${dateType} BETWEEN #{startDate} AND #{endDate}
+	    </if>
+	    <if test="state != null and state.length > 0">
+	        AND R.state IN
+	        <foreach item="state" collection="state" open="(" separator="," close=")">
+	            #{state}
+	        </foreach>
+	    </if>
+	    <if test="paymethod != null and paymethod.length > 0">
+	        AND O.paymethod IN
+	        <foreach item="paymethod" collection="paymethod" open="(" separator="," close=")">
+	            #{paymethod}
+	        </foreach>
+	    </if>
 	</select>
 	
 	<select id="adminReturnDetail" parameterType="java.lang.Integer" resultMap="returnMapper">
-		select I.returnnum,I.buynum,I.returncontent,I.returndate,I.recomdate,I.state,I.type,O.cartno,O.addrnum,O.paymethod,O.buydate,O.payment
-		from itemreturn I, dv_order O
-		where type = 1 and returnnum = #{returnnum}
+		select R.returnnum,R.buynum,R.dv_itemno,R.returncontent,R.returndate,R.recomdate,R.type,
+			   O.buynum, O.addrnum, O.buydate, O.deliveryday, O.deliverycom, O.payment, D.dv_itemno, D.cartno,
+	           C.membernum, C.iv_itemnum, C.itemnum, C.cartstate, C.itemcnt, I.itemname, I.itempay, M.id, M.name, M.tel,
+	           IV.itemcnt, IV.itemsize, IV.itemcolor, IV.itemstate, IMG.url, IMG.imgname,
+	           A.delroadaddr, A.deljibunaddr, A.deldetailaddr, A.delextraaddr, A.delpostcode,
+	           (SELECT codestring FROM codetable WHERE codename='결제방법' AND codenum=O.paymethod) AS paymethod,
+	           (SELECT codestring FROM codetable WHERE codename='주문상태' AND codenum=O.state) AS state_nm,
+	    	   (SELECT codestring FROM codetable WHERE codename='반품상태' AND codenum=R.state) AS state
+		from itemreturn R
+		join dv_order O on (R.buynum = O.buynum)
+		join address A on (A.addrnum = O.addrnum)
+		join dv_order_item D on (D.buynum = R.buynum)
+		join cart C on (C.cartno = D.cartno)
+		join item I on (C.itemnum = I.itemnum)
+		join member M on (M.membernum = C.membernum)
+		join iv_item IV on (C.itemnum = IV.itemnum)
+		join img IMG on (I.itemnum = IMG.itemnum)
+		where returnnum = #{returnnum}
 	</select>
 	
 	<update id="adminReturnDetail2" parameterType="java.lang.Integer">
-		update itemreturn I 
-		join dv_order O on I.buynum = O.buynum
-		set I.state = 2, O.state = 7, I.recomdate = now()
-		where I.type = 1 and returnnum = #{returnnum}
+		update itemreturn R 
+		join dv_order O on R.buynum = O.buynum
+		set R.state = 2, O.state = 7, R.recomdate = now()
+		where R.type = 1 and R.returnnum = #{returnnum}
 	</update>
 	
 	<select id="adminExchange" resultMap="returnMapper">
-		select I.returnnum,I.buynum,I.returndate,I.recomdate,I.state,I.type,O.cartno,O.addrnum,O.paymethod,O.buydate,O.payment
-		from itemreturn I, dv_order O
-		where I.type = 2
+		select R.returnnum,R.buynum,R.dv_itemno,R.returndate,R.recomdate,R.type,O.addrnum,O.buydate,O.payment,D.dv_itemno,D.cartno,
+				C.membernum, C.iv_itemnum,C.itemnum,C.cartstate,C.itemcnt,M.id,M.name,IV.itemcnt,IV.itemsize,IV.itemcolor,IV.itemstate,
+				(SELECT codestring FROM codetable WHERE codename='결제방법' AND codenum=O.paymethod) AS paymethod,
+	    		(SELECT codestring FROM codetable WHERE codename='반품상태' AND codenum=R.state) AS state
+		from itemreturn R
+		join dv_order O on (R.buynum=O.buynum)
+		join dv_order_item D on (D.buynum = R.buynum)
+		join cart C on (C.cartno = D.cartno)
+		join member M on (M.membernum = C.membernum)
+		join iv_item IV on (C.itemnum = IV.itemnum)
+		where R.type = 2
+		order by R.returnnum desc
+	</select>
+	
+	<select id="adminExchangeSearch" resultMap="returnMapper" parameterType="java.util.Map">
+		select R.returnnum,R.buynum,R.dv_itemno,R.returncontent,R.returndate,R.recomdate,R.type,O.addrnum,O.buydate,O.payment,D.dv_itemno,D.cartno,
+				C.membernum, C.iv_itemnum,C.itemnum,C.cartstate,C.itemcnt,M.id,M.name,IV.itemcnt,IV.itemsize,IV.itemcolor,IV.itemstate,
+				(SELECT codestring FROM codetable WHERE codename='결제방법' AND codenum=O.paymethod) AS paymethod,
+	    		(SELECT codestring FROM codetable WHERE codename='반품상태' AND codenum=R.state) AS state
+		from itemreturn R
+		join dv_order O on (R.buynum=O.buynum)
+		join dv_order_item D on (D.buynum = R.buynum)
+		join cart C on (C.cartno = D.cartno)
+		join member M on (M.membernum = C.membernum)
+		join iv_item IV on (C.itemnum = IV.itemnum)		
+		WHERE 1=1
+		and R.type = 2
+	    <if test="search != null and search != ''">
+	        AND ${searchType} LIKE CONCAT('%', #{search}, '%')
+	    </if>
+	    <if test="startDate != null and startDate != ''">
+	        AND ${dateType} BETWEEN #{startDate} AND #{endDate}
+	    </if>
+	    <if test="state != null and state.length > 0">
+	        AND R.state IN
+	        <foreach item="state" collection="state" open="(" separator="," close=")">
+	            #{state}
+	        </foreach>
+	    </if>
+	    <if test="paymethod != null and paymethod.length > 0">
+	        AND O.paymethod IN
+	        <foreach item="paymethod" collection="paymethod" open="(" separator="," close=")">
+	            #{paymethod}
+	        </foreach>
+	    </if>
 	</select>
 	
 	<select id="adminExchangeDetail" parameterType="java.lang.Integer" resultMap="returnMapper">
-		select I.returnnum,I.buynum,I.returncontent,I.returndate,I.recomdate,I.state,I.type,O.cartno,O.addrnum,O.paymethod,O.buydate,O.payment
-		from itemreturn I, dv_order O
-		where type = 2 and returnnum = #{returnnum}
+		select R.returnnum,R.buynum,R.dv_itemno,R.returncontent,R.returndate,R.recomdate,R.type,
+			   O.buynum, O.addrnum, O.buydate, O.deliveryday, O.deliverycom, O.payment, D.dv_itemno, D.cartno,
+	           C.membernum, C.iv_itemnum, C.itemnum, C.cartstate, C.itemcnt, I.itemname, I.itempay, M.id, M.name, M.tel,
+	           IV.itemcnt, IV.itemsize, IV.itemcolor, IV.itemstate, IMG.url, IMG.imgname,
+	           A.delroadaddr, A.deljibunaddr, A.deldetailaddr, A.delextraaddr, A.delpostcode,
+	           (SELECT codestring FROM codetable WHERE codename='결제방법' AND codenum=O.paymethod) AS paymethod,
+	           (SELECT codestring FROM codetable WHERE codename='주문상태' AND codenum=O.state) AS state_nm,
+	    	   (SELECT codestring FROM codetable WHERE codename='반품상태' AND codenum=R.state) AS state
+		from itemreturn R
+		join dv_order O on (R.buynum = O.buynum)
+		join address A on (A.addrnum = O.addrnum)
+		join dv_order_item D on (D.buynum = R.buynum)
+		join cart C on (C.cartno = D.cartno)
+		join item I on (C.itemnum = I.itemnum)
+		join member M on (M.membernum = C.membernum)
+		join iv_item IV on (C.itemnum = IV.itemnum)
+		join img IMG on (I.itemnum = IMG.itemnum)
+		where R.type = 2 and returnnum = #{returnnum}
 	</select>
 	
 	<update id="adminExchangeDetail2" parameterType="java.lang.Integer">
-		update itemreturn I 
-		join dv_order O on I.buynum = O.buynum
-		set I.state = 2, O.state = 2, I.recomdate = now(), O.deliveryday = now() + interval 3 day
-		where I.type = 2 and returnnum = #{returnnum}
+		update itemreturn R 
+		join dv_order O on R.buynum = O.buynum
+		set R.state = 2, O.state = 2, R.recomdate = now(), O.deliveryday = now() + interval 3 day
+		where R.type = 2 and returnnum = #{returnnum}
 	</update>
 	
 	<select id="adminReview" resultMap="dr_reviewMapper">
-		select D.drnum, R.reviewno, R.itemnum, D.drdate, R.del
-		from dr_review D join review R on D.reviewno = R.reviewno
+		select D.drnum, D.reviewno, D.drdate, R.itemnum, R.rdate, M.membernum, M.id, M.name, I.itemname,
+		(SELECT codestring FROM codetable WHERE codename='리뷰상태' AND codenum=R.del) AS del
+		from dr_review D 
+		join review R on (D.reviewno = R.reviewno)
+		join member M on (R.membernum = M.membernum)
+		join item I on (R.itemnum = I.itemnum)
 		where D.reviewno = R.reviewno
 	</select>
 	
+	<select id="adminReviewSearch" resultMap="dr_reviewMapper" parameterType="java.util.Map">
+	    select D.drnum,D.reviewno,D.drcontent,D.drdate,R.itemnum,R.membernum,R.buynum,R.rcontent,R.rdate,R.rstar,R.reviewlike,R.reviewreport,M.id,M.name,I.itemname,
+	    (SELECT codestring FROM codetable WHERE codename='리뷰상태' AND codenum=R.del) AS del
+	    from dr_review D
+	    join review R on (D.reviewno = R.reviewno)
+	    join member M on (R.membernum=M.membernum)
+	    join item I on (R.itemnum = I.itemnum)
+	    WHERE 1=1
+	    <if test="search != null and search != ''">
+	        AND ${searchType} LIKE CONCAT('%', #{search}, '%')
+	    </if>
+	    <if test="startDate != null and startDate != ''">
+	        AND ${dateType} BETWEEN #{startDate} AND #{endDate}
+	    </if>
+	    <if test="delStates != null and delStates.length > 0">
+	        AND R.del IN
+	        <foreach item="del" index="index" collection="delStates" open="(" separator="," close=")">
+	            #{del}
+	        </foreach>
+	    </if>
+	</select>
+	
 	<select id="adminReviewDetail" resultMap="dr_reviewMapper" parameterType="java.lang.Integer">
-		select D.drnum, D.reviewno, D.drcontent, D.drdate, R.itemnum, R.membernum, R.rcontent, R.rdate, R.rstar, R.reviewreport, R.del
-		from dr_review D join review R on D.reviewno = R.reviewno 
+		select D.drnum, D.reviewno, D.drcontent, D.drdate, R.itemnum, R.membernum, R.rcontent, R.rdate, R.rstar, R.reviewreport, M.membernum, M.id, M.name, I.itemname,
+		(SELECT codestring FROM codetable WHERE codename='리뷰상태' AND codenum=R.del) AS del
+		from dr_review D 
+		join review R on (D.reviewno = R.reviewno)
+		join member M on (R.membernum = M.membernum)
+		join item I on (R.itemnum = I.itemnum) 
 		where D.drnum = #{drnum}
 	</select>
 	
 	<update id="adminReviewDetail2" parameterType="java.lang.Integer">
-		update dr_review D join review R on (D.reviewno = R.reviewno)
+		update dr_review D 
+		join review R on (D.reviewno = R.reviewno)
+		join member M on (R.membernum = M.membernum)
+		join item I on (R.itemnum = I.itemnum)
 		set R.del = 1
 		where D.drnum = #{drnum}
 	</update>
 	
 	<update id="adminReviewDetail3" parameterType="Dr_reviewDTO">
-		update dr_review D join review R on (D.reviewno = R.reviewno)
+		update dr_review D 
+		join review R on (D.reviewno = R.reviewno)
+		join member M on (R.membernum = M.membernum)
+		join item I on (R.itemnum = I.itemnum)
 		set R.del = 3
 		where D.drnum = #{drnum}
 	</update>
+	
+
 </mapper>

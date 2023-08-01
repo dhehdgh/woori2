@@ -8,13 +8,18 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.co.dong.DTO.AddressDTO;
 import kr.co.dong.DTO.Dr_reviewDTO;
+import kr.co.dong.DTO.Dv_order_itemDTO;
 import kr.co.dong.DTO.HelpDTO;
+import kr.co.dong.DTO.ImgDTO;
 import kr.co.dong.DTO.ItemDTO;
 import kr.co.dong.DTO.Iv_itemDTO;
 import kr.co.dong.DTO.MemberDTO;
 import kr.co.dong.DTO.OrderDTO;
+import kr.co.dong.DTO.RankDTO;
 import kr.co.dong.DTO.ReturnDTO;
+import kr.co.dong.DTO.ReviewDTO;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO{
@@ -48,17 +53,17 @@ public class BoardDAOImpl implements BoardDAO{
 	    params.put("categoryType2", category2);
 		return sqlsession.selectList(namespace+".adminItemSearch",params);
 	}
-
-	@Override
-	public int adminItem2() {
-		// TODO Auto-generated method stub
-		return sqlsession.selectOne(namespace+".adminItem2");
-	}
 	
 	@Override
 	public int adminItemInsert(ItemDTO itemDTO) {
 		// TODO Auto-generated method stub
 		return sqlsession.insert(namespace+".adminItemInsert",itemDTO);
+	}
+
+	@Override
+	public int adminImageInsert(ImgDTO imgDTO) {
+		// TODO Auto-generated method stub
+		return sqlsession.insert(namespace+".adminImageInsert",imgDTO);
 	}
 	
 	@Override
@@ -95,6 +100,18 @@ public class BoardDAOImpl implements BoardDAO{
 	public int adminItemUpdate(ItemDTO itemDTO) {
 		// TODO Auto-generated method stub
 		return sqlsession.update(namespace+".adminItemUpdate",itemDTO);
+	}
+
+	@Override
+	public int adminImageUpdate(ImgDTO imgDTO) {
+		// TODO Auto-generated method stub
+		return sqlsession.update(namespace+".adminImageUpdate",imgDTO);
+	}
+	
+	@Override
+	public int adminItemDelete(int itemnum) {
+		// TODO Auto-generated method stub
+		return sqlsession.update(namespace+".adminItemDelete",itemnum);
 	}
 	
 	@Override
@@ -141,9 +158,33 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 
 	@Override
+	public int adminMemberRegisterAddr(AddressDTO addressDTO) {
+		// TODO Auto-generated method stub
+		return sqlsession.insert(namespace+".adminMemberRegisterAddr",addressDTO);
+	}
+	
+	@Override
 	public int adminCheckID(MemberDTO memberDTO) {
 		// TODO Auto-generated method stub
 		return sqlsession.selectOne(namespace+".adminCheckID",memberDTO);
+	}
+
+	@Override
+	public List<RankDTO> adminMemberRank() {
+		// TODO Auto-generated method stub
+		return sqlsession.selectList(namespace+".adminMemberRank");
+	}
+
+	@Override
+	public int adminMemberRankUpdate(RankDTO rankDTO) {
+		// TODO Auto-generated method stub
+		return sqlsession.update(namespace+".adminMemberRankUpdate",rankDTO);
+	}
+	
+	@Override
+	public int adminMemberRankUpdate2(RankDTO rankDTO) {
+		// TODO Auto-generated method stub
+		return sqlsession.update(namespace+".adminMemberRankUpdate2",rankDTO);
 	}
 	
 	@Override
@@ -184,15 +225,63 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 
 	@Override
+	public List<OrderDTO> adminOrderSearch(String searchType, String search, String dateType, String startDate,
+			String endDate, String[] paymethod, String[] state) {
+		// TODO Auto-generated method stub
+		Map<String, Object> params = new HashMap<>();
+		params.put("searchType", searchType);
+		params.put("search", search);
+		params.put("dateType", dateType);
+		params.put("startDate", startDate);
+		params.put("endDate", endDate);
+		params.put("paymethod", paymethod);
+		params.put("state", state);
+		return sqlsession.selectList(namespace+".adminOrderSearch",params);
+	}
+
+	@Override
+	public List<ReturnDTO> adminOrderDetail(int buynum) {
+		// TODO Auto-generated method stub
+		return sqlsession.selectList(namespace+".adminOrderDetail",buynum);
+	}
+	
+	@Override
+	public int adminOrderDetail2(int returnnum) {
+		// TODO Auto-generated method stub
+		return sqlsession.update(namespace+".adminOrderDetail2",returnnum);
+	}
+	
+	@Override
+	public int adminDeliveryCom() {
+		// TODO Auto-generated method stub
+		return sqlsession.update(namespace+".adminDeliveryCom");
+	}
+	
+	@Override
 	public List<ReturnDTO> adminReturn() {
 		// TODO Auto-generated method stub
 		return sqlsession.selectList(namespace+".adminReturn");
 	}
 
 	@Override
-	public ReturnDTO adminReturnDetail(int returnnum) {
+	public List<ReturnDTO> adminReturnSearch(String searchType, String search, String dateType, String startDate,
+			String endDate, String[] paymethod, String[] state) {
 		// TODO Auto-generated method stub
-		return sqlsession.selectOne(namespace+".adminReturnDetail",returnnum);
+		Map<String, Object> params = new HashMap<>();
+		params.put("searchType", searchType);
+		params.put("search", search);
+		params.put("dateType", dateType);
+		params.put("startDate", startDate);
+		params.put("endDate", endDate);
+		params.put("paymethod", paymethod);
+		params.put("state", state);
+		return sqlsession.selectList(namespace+".adminReturnSearch",params);
+	}
+
+	@Override
+	public List<ReturnDTO> adminReturnDetail(int returnnum) {
+		// TODO Auto-generated method stub
+		return sqlsession.selectList(namespace+".adminReturnDetail",returnnum);
 	}
 	
 	@Override
@@ -206,11 +295,26 @@ public class BoardDAOImpl implements BoardDAO{
 		// TODO Auto-generated method stub
 		return sqlsession.selectList(namespace+".adminExchange");
 	}
+
+	@Override
+	public List<ReturnDTO> adminExchangeSearch(String searchType, String search, String dateType, String startDate,
+			String endDate, String[] paymethod, String[] state) {
+		// TODO Auto-generated method stub
+		Map<String, Object> params = new HashMap<>();
+		params.put("searchType", searchType);
+		params.put("search", search);
+		params.put("dateType", dateType);
+		params.put("startDate", startDate);
+		params.put("endDate", endDate);
+		params.put("paymethod", paymethod);
+		params.put("state", state);
+		return sqlsession.selectList(namespace+".adminExchangeSearch",params);
+	}
 	
 	@Override
-	public ReturnDTO adminExchangeDetail(int returnnum) {
+	public List<ReturnDTO> adminExchangeDetail(int returnnum) {
 		// TODO Auto-generated method stub
-		return sqlsession.selectOne(namespace+".adminExchangeDetail",returnnum);
+		return sqlsession.selectList(namespace+".adminExchangeDetail",returnnum);
 	}
 	
 	@Override
@@ -224,6 +328,20 @@ public class BoardDAOImpl implements BoardDAO{
 		// TODO Auto-generated method stub
 		return sqlsession.selectList(namespace+".adminReview");
 		
+	}
+	
+	@Override
+	public List<Dr_reviewDTO> adminReviewSearch(String searchType, String search, String dateType, String startDate,
+			String endDate, String[] delStates) {
+		// TODO Auto-generated method stub
+		Map<String, Object> params = new HashMap<>();
+		params.put("searchType", searchType);
+		params.put("search", search);
+		params.put("dateType", dateType);
+		params.put("startDate", startDate);
+		params.put("endDate", endDate);
+		params.put("delStates", delStates);
+		return sqlsession.selectList(namespace+".adminReviewSearch",params);
 	}
 
 	@Override

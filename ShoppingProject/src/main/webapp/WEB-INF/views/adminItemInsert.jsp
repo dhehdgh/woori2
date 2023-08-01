@@ -33,6 +33,24 @@
             <dd class="m10 active">
                 <a class="nav-link" href="${contextPath}/board/adminItemInsert">상품 추가하기</a>
             </dd>
+            <dt class="m10 menu_toggle">고객지원</dt>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminHelp">1:1 상담문의</a>
+            </dd>
+            <dt class="m10 menu_toggle">주문관리</dt>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminOrder">주문리스트</a>
+            </dd>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminReturn">반품리스트</a>
+            </dd>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminExchange">교환리스트</a>
+            </dd>
+            <dt class="m10 menu_toggle">리뷰관리</dt>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminReview">신고리뷰리스트</a>
+            </dd>            
         </dl>
     </div>
     
@@ -56,6 +74,14 @@
 									<col>
 								</colgroup>
 								<tbody>
+									<tr>
+										<th scope="row">이미지</th>
+										<td>
+									    	<img src="" id="uploadImg" width="1200">
+											
+											<input type="file" name="imageFile" id="imageFile" accept=".jpg, .jpeg, .png, .webp">
+										</td>
+									</tr>
 									<tr>
 										<th scope="row">상품명</th>
 										<td><input type="text" name="itemname" id="itemname" class="required frm_input" size="60"></td>
@@ -99,7 +125,8 @@
 						</div>
 					</section>
 					<div class="btn_confirm">
-				    	<button type="submit" class="genric-btn info large" style="font-size:15px">상품 추가</button>
+				    	<button type="button" id="btnInsert" class="genric-btn info large thick">상품 추가</button>
+				    	<a href="adminItem" class="genric-btn default radius large thick">목록</a>
 				    </div>
 				</form>
 	        </div>
@@ -194,6 +221,96 @@
 	                categoryType2.append('<option value="0">=카테고리선택=</option>');
 	                break;
 	        }
+	    });
+	 	
+	 	// 이미지 업로드
+	    $(function() {
+	        $("#imageFile").on("change", function() {
+	          var formData = new FormData();
+    		  formData.append("imageFile", this.files[0]);
+
+	          $.ajax({
+	            url: "${contextPath}/board/adminInsertImageUpload",
+	            type: "POST",
+	            data: formData,
+	            contentType: false,
+	            processData: false,
+	            dataType: "text",
+	            success: function(response) {
+	              $("#uploadImg").attr("src", response);
+	              console.log("이미지 업로드 성공:", response);
+	            },
+	            error: function(error) {
+	              console.log("이미지 업로드 실패:", error);
+	            }
+	          });
+	        });
+	      });
+	 	
+	    $(function(){
+	    	$("#btnInsert").click(function(){
+	    		var itemname = $("#itemname").val();
+	    		var itempay = $("#itempay").val();
+	    		var itemb = $("#itemb").val();
+	    		var items = $("#items").val();
+	    		var itemcontent = $("#itemcontent").val();
+	    		
+	    		if(itemname.length==0){
+					   alert("상품명을 입력해주세요.");
+					   return false;
+			 	 }
+	    		if(itempay.length==0){
+					   alert("상품 가격을 입력해주세요.");
+					   return false;
+			 	 }
+	    		if(itemb==0){
+					   alert("대분류를 선택해주세요.");
+					   return false;
+			 	 }
+	    		if(items==0){
+					   alert("소분류를 선택해주세요.");
+					   return false;
+			 	 }
+	    		if(itemcontent.length==0){
+					   alert("상품 설명을 입력해주세요.");
+					   return false;
+			 	 }
+	    		
+	    		
+	            var data = {
+	                itemname: itemname,
+	                itempay: itempay,
+	                itemb: itemb,
+	                items: items,
+	                itemcontent: itemcontent
+	            };
+	            
+	            $.ajax({
+	                url: "${contextPath}/board/adminItemInsert",
+	                type: "POST",
+	                data: JSON.stringify(data),
+	                contentType: "application/json",
+	                success: function(response) {
+	                    console.log("성공:", response);
+	                },
+	                error: function(error) {
+	                    console.log("실패:", error);
+	                }
+	            });
+	    		
+	    		$.ajax({
+	                url: "${contextPath}/board/adminImageInsert",
+	                type: "POST",
+	                success: function(response) {
+	                	console.log("성공:", response);
+	                	window.location.href = "${contextPath}/board/adminItem";
+	                },
+	                error: function(error) {
+	                	console.log("실패:", error);
+	                }
+	            });
+	    		
+	    	});
 	    });
     </script>
 </body>

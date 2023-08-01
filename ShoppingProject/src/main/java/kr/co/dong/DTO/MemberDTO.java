@@ -16,11 +16,14 @@ public class MemberDTO {
 	private String extraaddr;
 	private int postcode;
 	private String joindate;
-	private int state;
-	private int authority;
-	private int gender;
-	private int agree;
-	
+	private String state;
+	private String authority;
+	private String gender;
+	private String agree;
+	private String deleteagree;
+	private HelpDTO helpDTO;
+	private CartDTO cartDTO;
+	private RankDTO rankDTO;
 	
 	public int getMembernum() {
 		return membernum;
@@ -112,40 +115,62 @@ public class MemberDTO {
 	public void setJoindate(String joindate) {
 		this.joindate = joindate;
 	}
-	public int getState() {
+	public String getState() {
 		return state;
 	}
-	public void setState(int state) {
+	public void setState(String state) {
 		this.state = state;
 	}
-	public int getAuthority() {
+	public String getAuthority() {
 		return authority;
 	}
-	public void setAuthority(int authority) {
+	public void setAuthority(String authority) {
 		this.authority = authority;
 	}
-	public int getGender() {
+	public String getGender() {
 		return gender;
 	}
-	public void setGender(int gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public int getAgree() {
+	public String getAgree() {
 		return agree;
 	}
-	public void setAgree(int agree) {
+	public void setAgree(String agree) {
 		this.agree = agree;
 	}
-	
+	public String getDeleteagree() {
+		return deleteagree;
+	}
+	public void setDeleteagree(String deleteagree) {
+		this.deleteagree = deleteagree;
+	}
+	public HelpDTO getHelpDTO() {
+		return helpDTO;
+	}
+	public void setHelpDTO(HelpDTO helpDTO) {
+		this.helpDTO = helpDTO;
+	}
+	public CartDTO getCartDTO() {
+		return cartDTO;
+	}
+	public void setCartDTO(CartDTO cartDTO) {
+		this.cartDTO = cartDTO;
+	}
+	public RankDTO getRankDTO() {
+		return rankDTO;
+	}
+	public void setRankDTO(RankDTO rankDTO) {
+		this.rankDTO = rankDTO;
+	}
 	@Override
 	public String toString() {
 		return "MemberDTO [membernum=" + membernum + ", id=" + id + ", pw=" + pw + ", name=" + name + ", email=" + email
 				+ ", tel=" + tel + ", birth=" + birth + ", point=" + point + ", pointac=" + pointac + ", roadaddr="
 				+ roadaddr + ", jibunaddr=" + jibunaddr + ", detailaddr=" + detailaddr + ", extraaddr=" + extraaddr
 				+ ", postcode=" + postcode + ", joindate=" + joindate + ", state=" + state + ", authority=" + authority
-				+ ", gender=" + gender + ", agree=" + agree + "]";
+				+ ", gender=" + gender + ", agree=" + agree + ", deleteagree=" + deleteagree + ", helpDTO=" + helpDTO
+				+ ", cartDTO=" + cartDTO + ", rankDTO=" + rankDTO + "]";
 	}
-	
-	
 	
 }

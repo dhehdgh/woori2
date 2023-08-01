@@ -6,13 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.dong.DAO.BoardDAO;
+import kr.co.dong.DTO.AddressDTO;
 import kr.co.dong.DTO.Dr_reviewDTO;
+import kr.co.dong.DTO.Dv_order_itemDTO;
 import kr.co.dong.DTO.HelpDTO;
+import kr.co.dong.DTO.ImgDTO;
 import kr.co.dong.DTO.ItemDTO;
 import kr.co.dong.DTO.Iv_itemDTO;
 import kr.co.dong.DTO.MemberDTO;
 import kr.co.dong.DTO.OrderDTO;
+import kr.co.dong.DTO.RankDTO;
 import kr.co.dong.DTO.ReturnDTO;
+import kr.co.dong.DTO.ReviewDTO;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -34,24 +39,23 @@ public class BoardServiceImpl implements BoardService{
 	}
 	
 	@Override
-	public int adminItem2() {
-		// TODO Auto-generated method stub
-		return dao.adminItem2();
-	}
-	
-	@Override
 	public int adminItemInsert(ItemDTO itemDTO) {
 		// TODO Auto-generated method stub
 		return dao.adminItemInsert(itemDTO);
 	}
-	
 
+	@Override
+	public int adminImageInsert(ImgDTO imgDTO) {
+		// TODO Auto-generated method stub
+		return dao.adminImageInsert(imgDTO);
+	}
+	
 	@Override
 	public ItemDTO adminItemInsertItemnum() {
 		// TODO Auto-generated method stub
 		return dao.adminItemInsertItemnum();
 	}
-
+	
 	@Override
 	public int adminItemInsert2(int itemnum) {
 		// TODO Auto-generated method stub
@@ -82,6 +86,18 @@ public class BoardServiceImpl implements BoardService{
 		return dao.adminItemUpdate(itemDTO);
 	}
 
+	@Override
+	public int adminImageUpdate(ImgDTO imgDTO) {
+		// TODO Auto-generated method stub
+		return dao.adminImageUpdate(imgDTO);
+	}
+	
+	@Override
+	public int adminItemDelete(int itemnum) {
+		// TODO Auto-generated method stub
+		return dao.adminItemDelete(itemnum);
+	}
+	
 	@Override
 	public List<MemberDTO> adminMember() {
 		// TODO Auto-generated method stub
@@ -117,11 +133,35 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		return dao.adminMemberRegister(memberDTO);
 	}
+	
+	@Override
+	public int adminMemberRegisterAddr(AddressDTO addressDTO) {
+		// TODO Auto-generated method stub
+		return dao.adminMemberRegisterAddr(addressDTO);
+	}
 
 	@Override
 	public int adminCheckID(MemberDTO memberDTO) {
 		// TODO Auto-generated method stub
 		return dao.adminCheckID(memberDTO);
+	}
+
+	@Override
+	public List<RankDTO> adminMemberRank() {
+		// TODO Auto-generated method stub
+		return dao.adminMemberRank();
+	}
+
+	@Override
+	public int adminMemberRankUpdate(RankDTO rankDTO) {
+		// TODO Auto-generated method stub
+		return dao.adminMemberRankUpdate(rankDTO);
+	}
+	
+	@Override
+	public int adminMemberRankUpdate2(RankDTO rankDTO) {
+		// TODO Auto-generated method stub
+		return dao.adminMemberRankUpdate2(rankDTO);
 	}
 
 	@Override
@@ -156,13 +196,45 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
+	public List<OrderDTO> adminOrderSearch(String searchType, String search, String dateType, String startDate,
+			String endDate, String[] paymethod, String[] state) {
+		// TODO Auto-generated method stub
+		return dao.adminOrderSearch(searchType, search, dateType, startDate, endDate, paymethod, state);
+	}
+
+	@Override
+	public List<ReturnDTO> adminOrderDetail(int buynum) {
+		// TODO Auto-generated method stub
+		return dao.adminOrderDetail(buynum);
+	}
+
+	@Override
+	public int adminOrderDetail2(int returnnum) {
+		// TODO Auto-generated method stub
+		return dao.adminOrderDetail2(returnnum);
+	}
+
+	@Override
+	public int adminDeliveryCom() {
+		// TODO Auto-generated method stub
+		return dao.adminDeliveryCom();
+	}
+	
+	@Override
 	public List<ReturnDTO> adminReturn() {
 		// TODO Auto-generated method stub
 		return dao.adminReturn();
 	}
 
 	@Override
-	public ReturnDTO adminReturnDetail(int returnnum) {
+	public List<ReturnDTO> adminReturnSearch(String searchType, String search, String dateType, String startDate,
+			String endDate, String[] paymethod, String[] state) {
+		// TODO Auto-generated method stub
+		return dao.adminReturnSearch(searchType, search, dateType, startDate, endDate, paymethod, state);
+	}
+	
+	@Override
+	public List<ReturnDTO> adminReturnDetail(int returnnum) {
 		// TODO Auto-generated method stub
 		return dao.adminReturnDetail(returnnum);
 	}
@@ -178,9 +250,16 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		return dao.adminExchange();
 	}
+
+	@Override
+	public List<ReturnDTO> adminExchangeSearch(String searchType, String search, String dateType, String startDate,
+			String endDate, String[] paymethod, String[] state) {
+		// TODO Auto-generated method stub
+		return dao.adminExchangeSearch(searchType, search, dateType, startDate, endDate, paymethod, state);
+	}
 	
 	@Override
-	public ReturnDTO adminExchangeDetail(int returnnum) {
+	public List<ReturnDTO> adminExchangeDetail(int returnnum) {
 		// TODO Auto-generated method stub
 		return dao.adminExchangeDetail(returnnum);
 	}
@@ -195,6 +274,13 @@ public class BoardServiceImpl implements BoardService{
 	public List<Dr_reviewDTO> adminReview() {
 		// TODO Auto-generated method stub
 		return dao.adminReview();
+	}
+	
+	@Override
+	public List<Dr_reviewDTO> adminReviewSearch(String searchType, String search, String dateType, String startDate,
+			String endDate, String[] delStates) {
+		// TODO Auto-generated method stub
+		return dao.adminReviewSearch(searchType, search, dateType, startDate, endDate, delStates);
 	}
 
 	@Override
@@ -214,4 +300,5 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		return dao.adminReviewDetail3(dr_reviewDTO);
 	}
+
 }

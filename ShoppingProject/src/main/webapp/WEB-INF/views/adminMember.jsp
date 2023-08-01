@@ -7,38 +7,50 @@
 <!DOCTYPE html>
 <html lang="en">
 	<%@ include file="include/admin_header.jsp" %>
-	<style>
 
-	  th.active {
-	    text-decoration: underline;
-	    cursor: pointer;
-	  }
-	</style>
 	<div id="wrapper">
-	<div id="snb" class="col-md-3">
-        <div class="snb_header ico_config">
-            <h2><i class="ionicons ion-ios-people fs40"></i>회원관리</h2>
-        </div>
-        <dl class="nav flex-column">
-            <dt class="m10 menu_toggle">회원관리</dt>
-            <dd class="m10 active">
-                <a class="nav-link" href="${contextPath}/board/adminMember">회원 정보관리</a>
-            </dd>
-            <dd class="m10">
-                <a class="nav-link" href="${contextPath}/board/adminMemberRank">회원 등급관리</a>
-            </dd>
-            <dd class="m10">
-                <a class="nav-link" href="${contextPath}/board/adminMemberRegister">회원 등록하기</a>
-            </dd>
-            <dt class="m10 menu_toggle">상품관리</dt>
-            <dd class="m10">
-                <a class="nav-link" href="${contextPath}/board/adminItem">전체 상품관리</a>
-            </dd>
-            <dd class="m10">
-                <a class="nav-link" href="${contextPath}/board/adminItemInsert">상품 추가하기</a>
-            </dd>
-        </dl>
-    </div>
+		<div id="snb" class="col-md-3">
+	        <div class="snb_header ico_config">
+	            <h2><i class="ionicons ion-ios-people fs40"></i>회원관리</h2>
+	        </div>
+	        <dl class="nav flex-column">
+	            <dt class="m10 menu_toggle">회원관리</dt>
+	            <dd class="m10 active">
+	                <a class="nav-link" href="${contextPath}/board/adminMember">회원 정보관리</a>
+	            </dd>
+	            <dd class="m10">
+	                <a class="nav-link" href="${contextPath}/board/adminMemberRank">회원 등급관리</a>
+	            </dd>
+	            <dd class="m10">
+	                <a class="nav-link" href="${contextPath}/board/adminMemberRegister">회원 등록하기</a>
+	            </dd>
+	            <dt class="m10 menu_toggle">상품관리</dt>
+	            <dd class="m10">
+	                <a class="nav-link" href="${contextPath}/board/adminItem">전체 상품관리</a>
+	            </dd>
+	            <dd class="m10">
+	                <a class="nav-link" href="${contextPath}/board/adminItemInsert">상품 추가하기</a>
+	            </dd>
+	            <dt class="m10 menu_toggle">고객지원</dt>
+	            <dd class="m10">
+	                <a class="nav-link" href="${contextPath}/board/adminHelp">1:1 상담문의</a>
+	            </dd>
+	            <dt class="m10 menu_toggle">주문관리</dt>
+	            <dd class="m10">
+	                <a class="nav-link" href="${contextPath}/board/adminOrder">주문리스트</a>
+	            </dd>
+	            <dd class="m10">
+	                <a class="nav-link" href="${contextPath}/board/adminReturn">반품리스트</a>
+	            </dd>
+	            <dd class="m10">
+	                <a class="nav-link" href="${contextPath}/board/adminExchange">교환리스트</a>
+	            </dd>
+	            <dt class="m10 menu_toggle">리뷰관리</dt>
+	            <dd class="m10">
+	                <a class="nav-link" href="${contextPath}/board/adminReview">신고리뷰리스트</a>
+	            </dd>            
+	        </dl>
+	    </div>
     
 	    <div id="content" class="col-md-9">
 	        <div class="breadcrumb">
@@ -97,13 +109,11 @@
 					    <input type="button" value="초기화" class="btn btn-secondary btn-medium" onclick="resetForm();">
 					</div>
 				</form>
-	            <div class="row mt-3">
-	                <div class="col-md-6">
-	                    <div class="local_ov">
-	                        총 회원수 : <b class="fc_red">${cnt}</b>명
-	                    </div>
-	                </div>
-	                <div class="col-md-6 text-right">
+                <div class="local_ov mart30 mt-3">
+                    총 회원수 : <b class="fc_red">${cnt}</b>명
+                </div>
+               	<div class="row">
+	                <div class="col-md-12 text-right">
 	                    <a href="${contextPath}/board/adminMemberRegister" class="genric-btn info medium">회원추가</a>
 	                </div>
 	            </div>

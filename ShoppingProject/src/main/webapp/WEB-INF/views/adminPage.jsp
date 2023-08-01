@@ -7,18 +7,46 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<%@ include file="include/header.jsp" %>
+<%@ include file="include/admin_header.jsp" %>
 
     <!-- 여기부터 작성-->
-    <div class="d-flex justify-content-center">
-		<a href="${contextPath}/board/adminItem" class="genric-btn info-border">상품관리</a>
-		<a href="${contextPath}/board/adminMember" class="genric-btn info-border">회원관리</a>
-		<a href="${contextPath}/board/adminHelp" class="genric-btn info-border">문의사항</a>
-		<a href="${contextPath}/board/adminReturn" class="genric-btn info-border">반품내역</a>
-		<a href="${contextPath}/board/adminExchange" class="genric-btn info-border">교환내역</a>
-		<a href="${contextPath}/board/adminOrder" class="genric-btn info-border">주문내역</a>
-		<a href="${contextPath}/board/adminReview" class="genric-btn info-border">신고리뷰</a>
-   	</div>
+	<div class="box-container">
+		<div class="box">
+		    <a href="adminMember">
+		      	<img src="${contextPath}/resources/bootstrap/img/회원관리.png" alt="adminMember">
+		      	<p>회원관리</p>
+		    </a>
+		</div>
+	
+	  	<div class="box">
+	    	<a href="adminItem"">
+	      		<img src="${contextPath}/resources/bootstrap/img/상품관리.png" alt="adminItem">
+	      		<p>상품관리</p>
+	    	</a>
+		</div>
+	  
+	  
+		<div class="box">
+		    <a href="adminHelp">
+		      	<img src="${contextPath}/resources/bootstrap/img/고객지원.png" alt="adminHelp">
+		      	<p>고객지원</p>
+		    </a>
+		</div>
+	  
+	  
+	  	<div class="box">
+	    	<a href="adminOrder">
+	      		<img src="${contextPath}/resources/bootstrap/img/주문관리.png" alt="adminOrder">
+	      		<p>주문관리</p>
+	    	</a>
+		</div>
+	  	<div class="box">
+	    	<a href="adminReview">
+	      		<img src="${contextPath}/resources/bootstrap/img/리뷰관리.png" alt="adminReivew">
+	      		<p>리뷰관리</p>
+	    	</a>
+		</div>
+	</div>
     <!-- 끝 -->
 
     <!--::footer_part start::-->

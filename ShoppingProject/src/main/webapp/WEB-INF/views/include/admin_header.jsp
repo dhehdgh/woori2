@@ -87,34 +87,37 @@
 *  로고 
 ----------------------------------------------------------------->
 			<div class="logo"><a href="${contextPath}" class="xans-element- xans-layout xans-layout-logotop "><img src="${contextPath}/resources/bootstrap/img/logo4.jpg" alt=""/></a>
-			     <header class="main_menu home_menu">
-			        <div class="container">
-			            <div class="row align-items-center">
-			                <div class="col-lg-12">
-			                    <nav class="navbar navbar-expand-lg navbar-light">
-			
-			                        <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
-			                        </div>
-			                        <div class="hearer_icon d-flex">
-			                            <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
-			                            <a href=""><i class="ti-heart"></i></a>
-			                            <a href=""><i class="ti-user"></i></a>
-			                            <a href="${contextPath}/board/cartView"><i class="fas fa-cart-plus"></i></a>
-			                            
-			                        </div>
-			                    </nav>
-			                </div>
-			            </div>
-			        </div>
-			        <div class="search_input" id="search_input_box">
-			            <div class="container ">
-			                <form class="d-flex justify-content-between search-inner">
-			                    <input type="text" class="form-control" id="search_input" placeholder="Search Here">
-			                    <button type="submit" class="btn"></button>
-			                    <span class="ti-close" id="close_search" title="Close Search"></span>
-			                </form>
-			            </div>
-			        </div>
-			    </header>
+				<header id="hd">
+					<div id="hd_wrap">
+					
+						<nav class="navbar navbar-expand navbar-dark bg-dark">
+						  <a class="navbar-brand" href="adminPage">관리자페이지</a>
+						  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+						    <span class="navbar-toggler-icon"></span>
+						  </button>
+						
+						  <div class="collapse navbar-collapse" id="navbarsExample02">
+						    <ul class="navbar-nav mr-auto">
+						      <li class="nav-item active">
+						        <a class="nav-link" href="adminMember">회원관리</a>
+						      </li>
+						      <li class="nav-item active">
+						        <a class="nav-link" href="adminItem">상품관리</a>
+						      </li>
+						      <li class="nav-item active">
+						        <a class="nav-link" href="adminHelp">고객지원</a>
+						      </li>
+						      <li class="nav-item active">
+						        <a class="nav-link" href="adminOrder">주문관리</a>
+						      </li>
+						      <li class="nav-item active">
+						        <a class="nav-link" href="adminReview">리뷰관리</a>
+						      </li>
+						    </ul>
+						  </div>
+						</nav>
+						
+					</div>
+				</header>
 			</div>
 		</div>            

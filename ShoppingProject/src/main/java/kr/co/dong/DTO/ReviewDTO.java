@@ -4,14 +4,15 @@ public class ReviewDTO {
 	private int reviewno;
 	private int itemnum;
 	private int membernum;
+	private int buynum;
 	private String rcontent;
 	private String rdate;
 	private int rstar;
 	private int reviewlike;
 	private int reviewreport;
-	private int rstate;
-	private int del;
-	
+	private String del;
+	private MemberDTO memberDTO;
+	private ItemDTO itemDTO;
 	
 	public int getReviewno() {
 		return reviewno;
@@ -30,6 +31,12 @@ public class ReviewDTO {
 	}
 	public void setMembernum(int membernum) {
 		this.membernum = membernum;
+	}
+	public int getBuynum() {
+		return buynum;
+	}
+	public void setBuynum(int buynum) {
+		this.buynum = buynum;
 	}
 	public String getRcontent() {
 		return rcontent;
@@ -58,26 +65,35 @@ public class ReviewDTO {
 	public int getReviewreport() {
 		return reviewreport;
 	}
-	public void setReviewreorot(int reviewreport) {
+	public void setReviewreport(int reviewreport) {
 		this.reviewreport = reviewreport;
 	}
-	public int getDel() {
+	public String getDel() {
 		return del;
 	}
-	public void setDel(int del) {
+	public void setDel(String del) {
 		this.del = del;
 	}
-	public int getRstate() {
-		return rstate;
+	public MemberDTO getMemberDTO() {
+		return memberDTO;
 	}
-	public void setRstate(int rstate) {
-		this.rstate = rstate;
+	public void setMemberDTO(MemberDTO memberDTO) {
+		this.memberDTO = memberDTO;
+	}
+	public ItemDTO getItemDTO() {
+		return itemDTO;
+	}
+	public void setItemDTO(ItemDTO itemDTO) {
+		this.itemDTO = itemDTO;
 	}
 	@Override
 	public String toString() {
-		return "ReviewDTO [reviewno=" + reviewno + ", itemnum=" + itemnum + ", membernum=" + membernum + ", rcontent="
-				+ rcontent + ", rdate=" + rdate + ", rstar=" + rstar + ", reviewlike=" + reviewlike + ", reviewreport="
-				+ reviewreport + ", rstate=" + rstate + ", del=" + del + "]";
+		return "ReviewDTO [reviewno=" + reviewno + ", itemnum=" + itemnum + ", membernum=" + membernum + ", buynum="
+				+ buynum + ", rcontent=" + rcontent + ", rdate=" + rdate + ", rstar=" + rstar + ", reviewlike="
+				+ reviewlike + ", reviewreport=" + reviewreport + ", del=" + del + ", memberDTO=" + memberDTO
+				+ ", itemDTO=" + itemDTO + "]";
 	}
+	
+	
 	
 }

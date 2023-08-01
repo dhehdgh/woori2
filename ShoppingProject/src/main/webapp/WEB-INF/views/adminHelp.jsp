@@ -32,12 +32,26 @@
 	            </dd>
 	            <dt class="m10 menu_toggle">고객지원</dt>
 	            <dd class="m10 active">
-	                <a class="nav-link" href="${contextPath}/board/test2">1:1 상담문의</a>
+	                <a class="nav-link" href="${contextPath}/board/adminHelp">1:1 상담문의</a>
+	            </dd>
+	            <dt class="m10 menu_toggle">주문관리</dt>
+	            <dd class="m10">
+	                <a class="nav-link" href="${contextPath}/board/adminOrder">주문리스트</a>
+	            </dd>
+	            <dd class="m10">
+	                <a class="nav-link" href="${contextPath}/board/adminReturn">반품리스트</a>
+	            </dd>
+	            <dd class="m10">
+	                <a class="nav-link" href="${contextPath}/board/adminExchange">교환리스트</a>
+	            </dd>
+	            <dt class="m10 menu_toggle">리뷰관리</dt>
+	            <dd class="m10">
+	                <a class="nav-link" href="${contextPath}/board/adminReview">신고리뷰리스트</a>
 	            </dd>
 	        </dl>
 	    </div>
 	    
-		<div id="content">
+		<div id="content"  class="col-md-9">
 			<div class="breadcrumb">
 				<span>HOME</span><i class="bi bi-chevron-right"></i>고객지원<i class="bi bi-chevron-right"></i>1:1 상담문의
 			</div>
@@ -59,7 +73,8 @@
 								<select id="searchType" name="searchType">
 									<option value="hno">문의번호</option>
 									<option value="title">제목</option>
-									<option value="membernum">작성자</option>
+									<option value="H.membernum">회원번호</option>
+									<option value="id">회원아이디</option>
 								</select>
 								<input type="text" name="search" id="search" class="frm_input" size="30">
 							</td>
@@ -90,33 +105,35 @@
 						</tbody>
 						</table>
 					</div>
-					<div class="btn_confirm ">
+					<div class="btn_confirm">
 					    <input type="button" value="검색" class="btn btn-dark btn-medium" id="searchButton" name="searchButton">
 					    <input type="button" value="초기화" class="btn btn-secondary btn-medium" onclick="resetForm();">
 					</div>
 				</form>
-				<div class="local_ov mart30">
+				<div class="local_ov mart30 mt-3">
 					전체 : <b class="fc_red">${cnt}</b> 건 조회
 				</div>
 				
 				<div class="tbl_head01">
-					<table class="table table-bordered table-striped table-hover table-responsive" table-layout: auto;">
+					<table id="myTable" class="table table-bordered table-striped table-hover table-responsive" table-layout: auto;">
 						<colgroup>
-							<col style="width:15%">
-							<col style="width:35%">
-							<col style="width:15%">
+							<col style="width:10%">
+							<col style="width:20%">
 							<col style="width:10%">
 							<col style="width:10%">
-							<col style="width:15%">
+							<col style="width:20%">
+							<col style="width:20%">
+							<col style="width:10%">
 						</colgroup>
 						<thead>
 							<tr>
-								<th scope="col">문의번호</th>
-								<th scope="col">제목</th>
-								<th scope="col">작성자</th>
-								<th scope="col">문의날짜</th>
-								<th scope="col">답변날짜</th>
-								<th scope="col">문의확인</th>
+								<th scope="col" onclick="sortTable(0)" class="active">문의번호</th>
+								<th scope="col" onclick="sortTable(1)" class="active">제목</th>
+								<th scope="col" onclick="sortTable(2)" class="active">회원번호</th>
+								<th scope="col" onclick="sortTable(3)" class="active">회원아이디</th>
+								<th scope="col" onclick="sortTable(4)" class="active">문의날짜</th>
+								<th scope="col" onclick="sortTable(5)" class="active">답변날짜</th>
+								<th scope="col" onclick="sortTable(6)" class="active">문의확인</th>
 							</tr>
 						</thead>
 						<tbody class="list">
@@ -125,6 +142,7 @@
 						            <td>${adminHelp.hno}</td>
 						            <td>${adminHelp.title}</td>
 						            <td>${adminHelp.membernum}</td>
+						            <td>${adminHelp.memberDTO.id}</td>
 						            <td>${adminHelp.hdate}</td>
 						            <td>${adminHelp.rehdate}</td>
 						            <td>${adminHelp.state}</td>
@@ -174,13 +192,14 @@
 		                    $("<td>").text(help.hno).appendTo(row);
 		                    $("<td>").text(help.title).appendTo(row);
 		                    $("<td>").text(help.membernum).appendTo(row);
+		                    $("<td>").text(help.memberDTO.id).appendTo(row);
 		                    $("<td>").text(help.hdate).appendTo(row);
 		                    $("<td>").text(help.rehdate).appendTo(row);
 		                    $("<td>").text(help.state).appendTo(row);
 		                    // 클릭 시 회원 상세 페이지로 이동
 		                    row.on("click", function () {
 		                        var hno = help.hno;
-		                        window.location.href = "${contextPath}/board/adminMemberHelp?hno=" + hno;
+		                        window.location.href = "${contextPath}/board/adminHelpDetail?hno=" + hno;
 		                    });
 	
 		                    // 마우스 오버 시 커서 변경
@@ -202,6 +221,33 @@
 	    function resetForm() {
 	        document.getElementById("fsearch").reset();
 	    }   
+	    
+	    
+	 // 테이블 정렬
+	    function sortTable(n) {
+		  	const table = document.getElementById("myTable");
+		  	const tbody = table.querySelector("tbody");
+		 	const rows = Array.from(tbody.querySelectorAll("tr"));
+		   
+		    rows.sort((rowA, rowB) => {
+		      	const cellA = rowA.querySelectorAll("td")[n].textContent;
+		      	const cellB = rowB.querySelectorAll("td")[n].textContent;
+		      	return cellA.localeCompare(cellB, undefined, { numeric: true, sensitivity: 'base' });
+		    });
+		  	
+		  	if (table.getAttribute("data-sort-dir") === "asc") {
+		    	rows.reverse();
+		    	table.setAttribute("data-sort-dir", "desc");
+		  	} else {
+		    	table.setAttribute("data-sort-dir", "asc");
+		  	}
+		
+		  	table.removeChild(tbody);
+		  	rows.forEach(row => tbody.appendChild(row));
+		  	table.appendChild(tbody);
+		  	
+		}
+	    
     </script>
 
 </body>

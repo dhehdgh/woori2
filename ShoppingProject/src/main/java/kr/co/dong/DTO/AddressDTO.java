@@ -10,6 +10,7 @@ public class AddressDTO {
 	private int addrstate;
 	private int delpostcode;
 	private int deladdrstate;
+	private MemberDTO memberDTO;
 	
 	public int getAddrnum() {
 		return addrnum;
@@ -65,12 +66,17 @@ public class AddressDTO {
 	public void setDeladdrstate(int deladdrstate) {
 		this.deladdrstate = deladdrstate;
 	}
-	
+	public MemberDTO getMemberDTO() {
+		return memberDTO;
+	}
+	public void setMemberDTO(MemberDTO memberDTO) {
+		this.memberDTO = memberDTO;
+	}
 	@Override
 	public String toString() {
 		return "AddressDTO [addrnum=" + addrnum + ", membernum=" + membernum + ", delroadaddr=" + delroadaddr
 				+ ", deljibunaddr=" + deljibunaddr + ", deldetailaddr=" + deldetailaddr + ", delextraaddr="
 				+ delextraaddr + ", addrstate=" + addrstate + ", delpostcode=" + delpostcode + ", deladdrstate="
-				+ deladdrstate + "]";
+				+ deladdrstate + ", memberDTO=" + memberDTO + "]";
 	}
 }

@@ -33,6 +33,24 @@
             <dd class="m10">
                 <a class="nav-link" href="${contextPath}/board/adminItemInsert">상품 추가하기</a>
             </dd>
+            <dt class="m10 menu_toggle">고객지원</dt>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminHelp">1:1 상담문의</a>
+            </dd>
+            <dt class="m10 menu_toggle">주문관리</dt>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminOrder">주문리스트</a>
+            </dd>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminReturn">반품리스트</a>
+            </dd>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminExchange">교환리스트</a>
+            </dd>
+            <dt class="m10 menu_toggle">리뷰관리</dt>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminReview">신고리뷰리스트</a>
+            </dd>
         </dl>
     </div>
     
@@ -63,7 +81,7 @@
 									<th scope="row">검색어</th>
 									<td colspan="3">
 										<select id="searchType" name="searchType">
-											<option value="itemnum">상품번호</option>
+											<option value="I.itemnum">상품번호</option>
 											<option value="itemname">상품명</option>
 										</select>
 										<input type="text" name="search" id="search" class="frm_input" size="30">
@@ -123,17 +141,14 @@
 				
 				
 				
-	            <div class="row mt-3">
-	                <div class="col-md-6">
-	                    <div class="local_ov">
-	                        총 상품수 : <b class="fc_red">${cnt}</b>개
-	                    </div>
-	                </div>
-	                <div class="col-md-6 text-right">
-	                    <a href="${contextPath}/board/adminItemInsert" class="genric-btn info medium">상품추가</a>
-	                </div>
+                <div class="local_ov mart30 mt-3">
+                      총 상품수 : <b class="fc_red">${cnt}</b>개
+                </div>
+                <div class="row">
+	               	<div class="col-md-12 text-right">
+	                   	<a href="${contextPath}/board/adminItemInsert" class="genric-btn info medium">상품추가</a>
+	               	</div>
 	            </div>
-	            
 	            
 	            <div class="tbl_head01 mt-3">
 	               	<table id="myTable" class="table table-bordered table-striped table-hover table-responsive" table-layout: auto;">
@@ -150,29 +165,33 @@
 						<thead>
 						<tr>
 							<th scope="col" onclick="sortTable(0)" class="active">상품번호</th>
-           					<th scope="col" onclick="sortTable(1)" class="active">상품명</th>
-            				<th scope="col" onclick="sortTable(2)" class="active">가격</th>
-                           	<th scope="col" onclick="sortTable(3)" class="active">판매량</th>
-                          	<th scope="col" onclick="sortTable(4)" class="active">등록날짜</th>
+							<th scope="col">이미지</th>
+           					<th scope="col" onclick="sortTable(2)" class="active">상품명</th>
+            				<th scope="col" onclick="sortTable(3)" class="active">가격</th>
+                           	<th scope="col" onclick="sortTable(4)" class="active">판매량</th>
+                          	<th scope="col" onclick="sortTable(5)" class="active">등록날짜</th>
                           	<th scope="col">대분류</th>
                           	<th scope="col">소분류</th>
-                         	<th scope="col" onclick="sortTable(7)" class="active">평점</th>
+                         	<th scope="col" onclick="sortTable(8)" class="active">평점</th>
                          	
 						</tr>
 						</thead>
 						<tbody class="list">
-						<c:forEach items="${adminItem}" var="adminItem">
-	                               <tr onclick="window.location.href = '${contextPath}/board/adminItemDetail?itemnum=${adminItem.itemnum}';" onmouseover="this.style.cursor='pointer';">
-	                                   <td>${adminItem.itemnum}</td>
-				                       <td>${adminItem.itemname}</td>
-				                       <td>${adminItem.itempay}</td>
-				                       <td>${adminItem.itembuycnt}</td>
-				                       <td>${adminItem.itemdate}</td>
-				                       <td>${adminItem.itemb}</td>
-				                       <td>${adminItem.items}</td>
-				                       <td>${adminItem.rstar}</td>
-	                               </tr>
-	                       </c:forEach>
+							<c:forEach items="${adminItem}" var="adminItem">
+                               	<tr onclick="window.location.href = '${contextPath}/board/adminItemDetail?itemnum=${adminItem.itemnum}';" onmouseover="this.style.cursor='pointer';">
+                                   	<td>${adminItem.itemnum}</td>
+                                   	<td>
+									    <img src="${adminItem.imgDTO.url}${adminItem.imgDTO.imgname}" alt="이미지" width="70" height="40">
+									</td>
+			                       	<td>${adminItem.itemname}</td>
+			                       	<td>${adminItem.itempay}</td>
+			                       	<td>${adminItem.itembuycnt}</td>
+			                       	<td>${adminItem.itemdate}</td>
+			                       	<td>${adminItem.itemb}</td>
+			                       	<td>${adminItem.items}</td>
+			                       	<td>${adminItem.rstar}</td>
+                               	</tr>
+                       		</c:forEach>
 						</tbody>
 					</table>
 	            </div>
@@ -324,10 +343,13 @@
 	                tableBody.empty();
 	                
 	                for (var i = 0; i < response.searchResult.length; i++) {
-	                    var item = response.searchResult[i];
+	                    let item = response.searchResult[i];
 	                    
-	                    var row = $("<tr>").appendTo(tableBody);
+	                    let row = $("<tr>").appendTo(tableBody);
+	                    let imgTag = $("<img>").attr("src", item.imgDTO.url + item.imgDTO.imgname).attr("alt", "이미지").attr("width", "70").attr("height", "40");
+	                    
 	                    $("<td>").text(item.itemnum).appendTo(row);
+	                    $("<td>").append(imgTag).appendTo(row);
 	                    $("<td>").text(item.itemname).appendTo(row);
 	                    $("<td>").text(item.itempay).appendTo(row);
 	                    $("<td>").text(item.itembuycnt).appendTo(row);
@@ -336,7 +358,7 @@
 	                    $("<td>").text(item.items).appendTo(row);
 	                    $("<td>").text(item.rstar).appendTo(row);
 
-	                    // 클릭 시 회원 상세 페이지로 이동
+	                 	// 클릭 시 상품 상세 페이지로 이동
 	                    row.on("click", function () {
 	                        var itemnum = item.itemnum;
 	                        window.location.href = "${contextPath}/board/adminItemDetail?itemnum=" + itemnum;
@@ -345,6 +367,7 @@
 	                    // 마우스 오버 시 커서 변경
 	                    row.css("cursor", "pointer");
 	                }
+
 	                $(".fc_red").text(response.searchCount);
 	            },
 	            error: function (xhr, status, error) {

@@ -34,138 +34,78 @@
             <dd class="m10">
                 <a class="nav-link" href="${contextPath}/board/adminItemInsert">상품 추가하기</a>
             </dd>
+            <dt class="m10 menu_toggle">고객지원</dt>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminHelp">1:1 상담문의</a>
+            </dd>
+            <dt class="m10 menu_toggle">주문관리</dt>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminOrder">주문리스트</a>
+            </dd>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminReturn">반품리스트</a>
+            </dd>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminExchange">교환리스트</a>
+            </dd>
+            <dt class="m10 menu_toggle">리뷰관리</dt>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminReview">신고리뷰리스트</a>
+            </dd>            
         </dl>
     </div>
-	<div id="content">
+	<div id="content"  class="col-md-9">
 		<div class="breadcrumb">
 			<span>HOME</span> <i class="ionicons ion-ios-arrow-right"></i> 회원관리 <i class="ionicons ion-ios-arrow-right"></i> 회원 등급관리		
+		</div>
+	
+		<div class="s_wrap">
+			<h1>회원 등급관리</h1>
+			
+		<h2>세부설정</h2>
+		<form name="frmlist" method="post" action="${contextPath}/board/adminMemberRank">
+			<div class="tbl_head01 mt-3">
+               	<table id="myTable" class="table table-bordered table-hover table-responsive" table-layout: auto;">
+					<colgroup>
+						<col class="w50">
+						<col class="w130">
+						<col class="w150">
+						<col>
+						<col class="w130">
+					</colgroup>
+					<thead>
+					<tr>
+						<th scope="col" onclick="sortTable(0)" class="active">등급</th>
+                          	<th scope="col" onclick="sortTable(1)" class="active">등급명</th>
+                          	<th scope="col" onclick="sortTable(2)" class="active">할인률</th>
+                          	<th scope="col" onclick="sortTable(3)" class="active">적립률</th>
+                         	<th scope="col" onclick="sortTable(4)" class="active">비고</th>
+					</tr>
+					</thead>
+					<tbody class="list">
+						<c:forEach items="${rank}" var="rank">
+						    <tr>
+						        <td><input type="text" value="${rank.rating}" name="rating" id="rating" readonly></td>
+						        <td><input type="text" value="${rank.rating_nm}" name="rating_nm" id="rating_nm"></td>
+						        <td><input type="text" value="${rank.discount}" name="discount" id="discount"></td>
+						        <td><input type="text" value="${rank.accumulation}" name="accumulation" id="accumulation"></td>
+						        <td>
+						            <input type="text" value="${rank.lowpoint}" size="8" name="lowpoint" id="lowpoint">
+						            ~
+						            <input type="text" value="${rank.highpoint != null && rank.highpoint != 0 ? rank.highpoint : ''}" size="8" name="highpoint" id="highpoint">
+            					</td>
+						    </tr>
+						</c:forEach>
+					</tbody>
+				</table>
+            </div>
+			<div class="btn_confirm">
+				<input type="submit" value="저장" class="btn btn-primary">
+			</div>
+		</form>
+		</div>
 	</div>
-	
-<div class="s_wrap">
-	<h1>회원 등급관리</h1>
-	
-<h2>세부설정</h2>
-<form name="frmlist" method="post" action="${contextPath}/board/adminMemberRank">
-<div class="tbl_head01">
-	<table>
-	<colgroup>
-		<col class="w70">
-		<col class="w170">
-		<col class="w130">
-		<col class="w150">
-		<col>
-	</colgroup>
-	<thead>
-	<tr>
-		<th scope="col">등급</th>
-		<th scope="col">레벨명</th>
-		<th scope="col">할인률</th>
-		<th scope="col">비고</th>
-	</tr>
-	</thead>
-	<tbody class="list">
-		<tr class="list1">
-			<td class="bold">
-				Lv.6	<input type="hidden" name="gb_no[6]" value="6">
-				<input type="hidden" name="chk[]" value="6" checked>
-			</td>
-			<td><input type="text" name="gb_name[6]" value="다이아" class="form-control"></td>
-			<td>
-				<input type="text" name="gb_sale[6]" value="0" class="form-control w-50 d-inline">
-				<select name="gb_sale_rate[6]" class="form-control w-auto d-inline">
-					<option value="0" selected="selected">%</option>
-					<option value="1">원</option>
-				</select>
-			</td>
-			<td class="tal">최고 등급 회원</td>
-		</tr>
-		<tr class="list0">
-			<td class="bold">
-				Lv.5	<input type="hidden" name="gb_no[5]" value="5">
-				<input type="hidden" name="chk[]" value="5" checked>
-			</td>
-			<td><input type="text" name="gb_name[5]" value="플래티넘" class="form-control"></td>
-			<td>
-				<input type="text" name="gb_sale[5]" value="0" class="form-control w-50 d-inline">
-				<select name="gb_sale_rate[5]" class="form-control w-auto d-inline">
-					<option value="0" selected="selected">%</option>
-					<option value="1">원</option>
-				</select>
-			</td>
-			<td class="tal">포인트 30000~70000</td>
-		</tr>
-		<tr class="list1">
-			<td class="bold">
-				Lv.4	<input type="hidden" name="gb_no[4]" value="4">
-				<input type="hidden" name="chk[]" value="4" checked>
-			</td>
-			<td><input type="text" name="gb_name[4]" value="골드" class="form-control"></td>
-			<td>
-				<input type="text" name="gb_sale[4]" value="0" class="form-control w-50 d-inline">
-				<select name="gb_sale_rate[4]" class="form-control w-auto d-inline">
-					<option value="0" selected="selected">%</option>
-					<option value="1">원</option>
-				</select>
-			</td>
-			<td class="tal">포인트 10000~30000</td>
-		</tr>
-		<tr class="list0">
-			<td class="bold">
-				Lv.3	<input type="hidden" name="gb_no[3]" value="3">
-				<input type="hidden" name="chk[]" value="3" checked>
-			</td>
-			<td><input type="text" name="gb_name[3]" value="실버" class="form-control"></td>
-			<td>
-				<input type="text" name="gb_sale[3]" value="0" class="form-control w-50 d-inline">
-				<select name="gb_sale_rate[3]" class="form-control w-auto d-inline">
-					<option value="0" selected="selected">%</option>
-					<option value="1">원</option>
-				</select>
-			</td>
-			<td class="tal">포인트 1000~10000</td>
-		</tr>
-		<tr class="list1">
-			<td class="bold">
-				Lv.2	<input type="hidden" name="gb_no[2]" value="2">
-				<input type="hidden" name="chk[]" value="2" checked>
-			</td>
-			<td><input type="text" name="gb_name[2]" value="브론즈" class="form-control"></td>
-			<td>
-				<input type="text" name="gb_sale[2]" value="0" class="form-control w-50 d-inline">
-				<select name="gb_sale_rate[2]" class="form-control w-auto d-inline">
-					<option value="0" selected="selected">%</option>
-					<option value="1">원</option>
-				</select>
-			</td>
-			<td class="tal">포인트 1~1000</td>
-		</tr>
-		<tr class="list0">
-			<td class="bold">
-				Lv.1	<input type="hidden" name="gb_no[1]" value="1">
-				<input type="hidden" name="chk[]" value="1" checked>
-			</td>
-			<td><input type="text" name="gb_name[1]" value="신입" class="form-control"></td>
-			<td>
-				<input type="text" name="gb_sale[1]" value="0" class="form-control w-50 d-inline">
-				<select name="gb_sale_rate[1]" class="form-control w-auto d-inline">
-					<option value="0" selected="selected">%</option>
-					<option value="1">원</option>
-				</select>
-			</td>
-			<td class="tal">신규 가입 회원</td>
-		</tr>
-		</tbody>
-	</table>
-</div>
-
-<div class="btn_confirm">
-	<input type="submit" value="저장" class="btn btn-primary">
-</div>
-</form>
-</div>
-
-</div>
-</div>
+	</div>
    
     <!-- 끝 -->
 

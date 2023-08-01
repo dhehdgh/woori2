@@ -6,131 +6,199 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
-
-<%@ include file="include/header.jsp" %>
-
-    <!-- 여기부터 작성-->
-	<section class="checkout_area padding_top">
-	    <div class="container">  
-	    	<div class="row mb-3 align-items-center">
-		        <div class="col-6">
-		            <h1 class="text-heading" style="font-size: 1.5rem;">신고리뷰 상세</h1>
-		        </div>
-		    </div>
-	      <div class="billing_details">
-	        <div class="row justify-content-center">
-	          <div class="col-lg-8">
-	            	<form class="row contact_form" action="${contextPath}/board/adminReviewDetail3" method="post" id="form">
-		            	<div class="col-md-2 form-group p_star">
-			              <label for="drnum" class="col-form-label">신고번호</label>
-			            </div>  
-		              	<div class="col-md-10 form-group p_star">
-			              <input type="text" class="form-control" id="drnum" name="drnum" value="${detail.drnum}" readonly>
-			            </div>
-	              		<div class="col-md-2 form-group p_star">
-			            	<label for="drdate" class="col-form-label">신고날짜</label>
-			            </div>
-		              	<div class="col-md-10 form-group p_star">
-		                	<input type="text" class="form-control" id="drdate" name="drdate" value="${detail.drdate}" readonly>
-		              	</div>
-	              		<div class="col-md-2 form-group p_star">
-			            	<label for="drcontent" class="col-form-label">신고내용</label>
-			            </div>
-			        	<div class="col-md-10 form-group p_star">
-			        		<textarea class="form-control" id="drcontent" name="drcontent" readonly>${detail.drcontent}</textarea>
-			            </div>
-			            <div class="col-md-2 form-group p_star">
-			              <label for="reviewno" class="col-form-label">리뷰번호</label>
-			            </div>
-			            <div class="col-md-10 form-group p_star">
-			              <input type="text" class="form-control" id="reviewno" name="reviewno" value="${detail.reviewno}" readonly>
-			            </div>
-	              		<div class="col-md-2 form-group p_star">
-			            	<label for="itemnum " class="col-form-label">상품번호</label>
-			            </div>
-		              	<div class="col-md-10 form-group p_star">
-		                	<input type="text" class="form-control" id="itemnum " name="itemnum " value="${detail.reviewDTO.itemnum }" readonly>
-		              	</div>
-	              		<div class="col-md-2 form-group p_star">
-			            	<label for="membernum" class="col-form-label">회원번호</label>
-			            </div>
-		              	<div class="col-md-10 form-group p_star">
-		                	<input type="text" class="form-control" id="membernum" name="membernum" value="${detail.reviewDTO.membernum}" readonly>
-		              	</div>
-	              		<div class="col-md-2 form-group p_star">
-			            	<label for="rcontent" class="col-form-label">리뷰내용</label>
-			            </div>
-		              	<div class="col-md-10 form-group p_star">
-		              		<textarea class="form-control" id="rcontent" name="rcontent" readonly>${detail.reviewDTO.rcontent}</textarea>
-		              	</div>
-	              		<div class="col-md-2 form-group p_star">
-			            	<label for="rdate" class="col-form-label">리뷰날짜</label>
-			            </div>
-		              	<div class="col-md-10 form-group p_star">
-		                	<input type="text" class="form-control" id="rdate" name="rdate" value="${detail.reviewDTO.rdate}" readonly>
-		              	</div>
-	              		<div class="col-md-2 form-group p_star">
-			            	<label for="reviewreport" class="col-form-label">리뷰신고</label>
-			            </div>
-		              	<div class="col-md-10 form-group p_star">
-		                	<input type="text" class="form-control" id="reviewreport" name="reviewreport" value="${detail.reviewDTO.reviewreport}" readonly>
-		              	</div>
-	              		<div class="col-md-2 form-group p_star">
-			            	<label for="del" class="col-form-label">리뷰상태</label>
-			            </div>
-		              	<div class="col-md-10 form-group p_star">
-		                	<input type="text" class="form-control" id="del" name="del" value="${detail.reviewDTO.del}" readonly>
-		              	</div>
-	          		</form>
-		            <div class="row">
+	<%@ include file="include/admin_header.jsp" %>
+	<div id="wrapper">
+	
+	<!-- 사이드메뉴 -->
+	
+	<div id="snb" class="col-md-3">
+        <div class="snb_header ico_config">
+            <h2><i class="ionicons ion-ios-people fs40"></i>메뉴</h2>
+        </div>
+        <dl class="nav flex-column">
+            <dt class="m10 menu_toggle">회원관리</dt>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminMember">회원 정보관리</a>
+            </dd>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminMemberRank">회원 등급관리</a>
+            </dd>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminMemberRegister">회원 등록하기</a>
+            </dd>
+            <dt class="m10 menu_toggle">상품관리</dt>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminItem">전체 상품관리</a>
+            </dd>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminItemInsert">상품 추가하기</a>
+            </dd>
+            <dt class="m10 menu_toggle">고객지원</dt>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminHelp">1:1 상담문의</a>
+            </dd>
+            <dt class="m10 menu_toggle">주문관리</dt>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminOrder">주문리스트</a>
+            </dd>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminReturn">반품리스트</a>
+            </dd>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminExchange">교환리스트</a>
+            </dd>
+            <dt class="m10 menu_toggle">리뷰관리</dt>
+            <dd class="m10 active">
+                <a class="nav-link" href="${contextPath}/board/adminReview">신고리뷰리스트</a>
+            </dd>
+        </dl>
+    </div>
+    
+    <!-- 사이드메뉴 끝 -->
+    
+    
+	    <div id="content" class="col-md-9">
+	        <div class="breadcrumb">
+			    <span>HOME</span><i class="bi bi-chevron-right"></i>리뷰관리<i class="bi bi-chevron-right"></i>신고리뷰리스트<i class="bi bi-chevron-right"></i>신고리뷰 상세정보
+			</div>
+	        <div class="s_wrap">
+	            <h1>신고리뷰 상세정보</h1>
+		        <section id="anc_sitfrm_ini">
+	            	<form action="${contextPath}/board/adminReviewDetail3" method="post" id="form">
+						<h2>신고정보</h2>
+						<div class="tbl_frm02">
+							<table>
+								<colgroup>
+									<col style="width:10%">
+									<col>
+								</colgroup>
+								<tbody>
+									<tr>
+										<th scope="row">신고번호</th>
+										<td>${detail.drnum}</td>
+									</tr>
+									<tr>
+										<th scope="row">신고날짜</th>
+										<td>${detail.drdate}</td>
+									</tr>
+									<tr>
+										<th scope="row">신고내용</th>
+										<td> <textarea rows="5" cols="50" readonly>${detail.drcontent}</textarea></td>
+									</tr>
+									
+								</tbody>
+							</table>
+						</div>
+						<h2>리뷰정보</h2>
+						<div class="tbl_frm02">
+							<table>
+								<colgroup>
+									<col style="width:10%">
+									<col>
+								</colgroup>
+								<tbody>
+									<tr>
+										<th scope="row">리뷰번호</th>
+										<td>${detail.reviewno}</td>
+									</tr>
+									<tr>
+										<th scope="row">상품번호</th>
+										<td>${detail.reviewDTO.itemnum}</td>
+									</tr>
+									
+									<tr onclick="window.location.href = '${contextPath}/board/adminMemberDetail?membernum=${detail.reviewDTO.membernum}';" onmouseover="this.style.cursor='pointer';">
+										<th scope="row">회원번호</th>
+										<td>${detail.reviewDTO.membernum}</td>
+									</tr>
+									<tr onclick="window.location.href = '${contextPath}/board/adminMemberDetail?membernum=${detail.reviewDTO.membernum}';" onmouseover="this.style.cursor='pointer';">
+										<th scope="row">회원아이디</th>
+										<td>${detail.reviewDTO.memberDTO.id}</td>
+									</tr>
+									<tr onclick="window.location.href = '${contextPath}/board/adminMemberDetail?membernum=${detail.reviewDTO.membernum}';" onmouseover="this.style.cursor='pointer';">
+										<th scope="row">회원이름</th>
+										<td>${detail.reviewDTO.memberDTO.name}</td>
+									</tr>
+									<tr>
+										<th scope="row">리뷰날짜</th>
+										<td>${detail.reviewDTO.rdate}</td>
+									</tr>
+									<tr>
+										<th scope="row">리뷰내용</th>
+										<td><textarea rows="5" cols="50" readonly>${detail.reviewDTO.rcontent}</textarea></td> 
+									</tr>
+									<tr>
+										<th scope="row">리뷰신고 횟수</th>
+										<td>${detail.reviewDTO.reviewreport}</td>
+									</tr>
+									<tr>
+										<th scope="row">리뷰상태</th>
+										<td>${detail.reviewDTO.del}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					<input type="hidden" id="drnum" name="drnum" value="${detail.drnum}">
+					<input type="hidden" id="drdate" name="drdate" value="${detail.drdate}">
+					<input type="hidden" id="drcontent" name="drcontent" value="${detail.drcontent}">
+					<input type="hidden" id="reviewno" name="reviewno" value="${detail.reviewno}">
+					<input type="hidden" id="itemnum" name="itemnum" value="${detail.reviewDTO.itemnum}">
+					<input type="hidden" id="membernum" name="membernum" value="${detail.reviewDTO.membernum}">
+					<input type="hidden" id="id" name="id" value="${detail.reviewDTO.memberDTO.id}">
+					<input type="hidden" id="name" name="name" value="${detail.reviewDTO.memberDTO.name}">
+					<input type="hidden" id="rdate" name="rdate" value="${detail.reviewDTO.rdate}">
+					<input type="hidden" id="rcontent" name="rcontent" value="${detail.reviewDTO.rcontent}">
+					<input type="hidden" id="reviewreport" name="reviewreport" value="${detail.reviewDTO.reviewreport}">
+					<input type="hidden" id="del" name="del" value="${detail.reviewDTO.del}">
+					</form>
+					<div class="row">
 			            <div class="col-md-12 form-group text-center">
-			              <button type="button" class="btn btn-primary">게시</button>
-			              <button type="button" class="btn btn-danger">삭제</button>
-			              <a href="adminReview" class="btn btn-info">목록으로</a>
+			              <button type="button" class="genric-btn info large thick" id="btnPost">게시</button>
+			              <button type="button" class="genric-btn danger large thick" id="btnDelete">삭제</button>
+			              <a href="adminReview" class="genric-btn default radius large thick">목록</a>
 			            </div>
 			    	</div>
-	          	</div>
+				</section>
 	        </div>
-	      </div>
 	    </div>
-  	</section>
-    <!-- 끝 -->
+	</div>
 
-    <!--::footer_part start::-->
+	<div id="anc_header"><a href="#snb"><span><i class="fas fa-arrow-up"></i></span>TOP</a></div>
+	
+	<!--::footer_part start::-->
 	<%@ include file="include/footer.jsp" %>
     <!--::footer_part end::-->
 
     <!-- jquery plugins here-->
 	<%@ include file="include/javascript.jsp" %>
     <%@ include file="include/style.jsp" %>
-    <script type="text/javascript">
-    	$(function(){
-    		$(".btn-primary").click(function(){
-    			
-    			var url = "${pageContext.request.contextPath }/board/adminReviewDetail2";
-    			var drnum = $("#drnum").val();
-    			
-    			 $.ajax({
- 			    	url:   url,
- 			        dataType: 'text',
- 			       	data: { drnum: drnum },
- 			        type: 'POST',
- 			        success: function(result){
- 			           console.log(result);
- 			           console.log("성공");
- 			           window.location.href = "${contextPath}/board/adminReviewDetail?drnum="+drnum
- 			        },
- 			        error: function(result){
- 			           console.log(result);
- 			           console.log("실패");
- 			        }
- 				});
-    		});
-    		$(".btn-danger").click(function(){
-    			$("#form").submit();
-    		});
-    	});
-    </script>
-</body>
+	<script>
+	$(function(){
+		$("#btnPost").click(function(){
+			
+			var url = "${pageContext.request.contextPath }/board/adminReviewDetail2";
+			var drnum = $("#drnum").val();
+			
+			 $.ajax({
+			    	url:   url,
+			        dataType: 'text',
+			       	data: { drnum: drnum },
+			        type: 'POST',
+			        success: function(result){
+			           console.log(result);
+			           console.log("성공");
+			           window.location.href = "${contextPath}/board/adminReviewDetail?drnum="+drnum
+			        },
+			        error: function(result){
+			           console.log(result);
+			           console.log("실패");
+			        }
+				});
+		});
+		$("#btnDelete").click(function(){
+			$("#form").submit();
+		});
+	});
+	</script>
 
+</body>
 </html>

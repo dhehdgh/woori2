@@ -33,6 +33,24 @@
             <dd class="m10">
                 <a class="nav-link" href="${contextPath}/board/adminItemInsert">상품 추가하기</a>
             </dd>
+            <dt class="m10 menu_toggle">고객지원</dt>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminHelp">1:1 상담문의</a>
+            </dd>
+            <dt class="m10 menu_toggle">주문관리</dt>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminOrder">주문리스트</a>
+            </dd>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminReturn">반품리스트</a>
+            </dd>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminExchange">교환리스트</a>
+            </dd>
+            <dt class="m10 menu_toggle">리뷰관리</dt>
+            <dd class="m10">
+                <a class="nav-link" href="${contextPath}/board/adminReview">신고리뷰리스트</a>
+            </dd>
         </dl>
     </div>
     
@@ -46,7 +64,7 @@
 	        <div class="s_wrap">
 	            <h1>상품 상세정보</h1>
 		        <section id="anc_sitfrm_ini">
-	            	<form action="${contextPath}/board/adminItemDetail" method="post">
+	            	<form action="${contextPath}/board/adminItemDetail" method="post" id="form1" enctype="multipart/form-data">
 						<h2>기본정보</h2>
 						<div class="tbl_frm02">
 							<table>
@@ -56,8 +74,16 @@
 								</colgroup>
 								<tbody>
 									<tr>
+										<th scope="row">이미지</th>
+										<td>
+									    	<img id="uploadImg" src="${item.imgDTO.url}${item.imgDTO.imgname}" alt="이미지" width="1200">
+											
+											<input type="file" name="imageFile" id="imageFile" accept=".jpg, .jpeg, .png, .webp">
+										</td>
+									</tr>
+									<tr>
 										<th scope="row">상품번호</th>
-										<td><input type="text" name="itemnum" id="itemnum" value="${item.itemnum}" readonly class="required frm_input" size="60"></td>
+										<td>${item.itemnum}</td>
 									</tr>
 									<tr>
 										<th scope="row">상품명</th>
@@ -69,11 +95,11 @@
 									</tr>
 									<tr>
 										<th scope="row">판매량</th>
-										<td><input type="text" name="itembuycnt" id="itembuycnt" value="${item.itembuycnt}" readonly class="required frm_input"></td>
+										<td>${item.itembuycnt}</td>
 									</tr>
 									<tr>
 										<th scope="row">등록날짜</th>
-										<td><input type="text" name="itemdate" id="itemdate" value="${item.itemdate}" readonly class="required frm_input"></td>
+										<td>${item.itemdate}</td>
 									</tr>
 									<tr>
 										<th scope="row">대분류</th>
@@ -107,14 +133,23 @@
 									</tr>
 									<tr>
 										<th scope="row">평점</th>
-										<td><input type="text" name="rstar" id="rstar" value="${item.rstar}" readonly class="required frm_input"></td>
+										<td>${item.rstar}</td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
+						<input type="hidden" name="itemnum" id="itemnum" value="${item.itemnum}">
+						<input type="hidden" name="itembuycnt" id="itembuycnt" value="${item.itembuycnt}">
+						<input type="hidden" name="itemdate" id="itemdate" value="${item.itemdate}">
+						<input type="hidden" name="rstar" id="rstar" value="${item.rstar}">
+						<input type="hidden" name="imgnum" id="imgnum" value="${item.imgDTO.imgnum}">
+						<input type="hidden" name="url" id="url" value="${item.imgDTO.url}">
+						<input type="hidden" name="imgname" id="imgname" value="${item.imgDTO.imgname}">
+
 						<div class="btn_confirm">
-					    	<button type="submit" class="genric-btn info large" style="font-size:15px">상품 정보수정</button>
-					    	<a href="adminItem" class="genric-btn default radius large" style="font-size:15px">목록</a>
+					    	<button type="button" id="btnUpdate" class="genric-btn info large thick">상품 정보수정</button>
+					    	<button type="button" id="btnDelete" class="genric-btn danger large thick">상품 제거</button>
+					    	<a href="adminItem" class="genric-btn default radius large thick">목록</a>
 					    </div>
 					</form>
 					<form action="${contextPath}/board/adminItemDetail2" method="post">
@@ -156,18 +191,16 @@
 							</table>
 						</div>
 						<div class="btn_confirm">
-					    	<button type="button" class="genric-btn info large" style="font-size:15px" id="addButton">재고 추가</button>
-					    	<a href="adminItem" class="genric-btn default radius large" style="font-size:15px">목록</a>
+					    	<button type="button" class="genric-btn info large thick" id="addButton">재고 추가</button>
+					    	<a href="adminItem" class="genric-btn default radius large thick">목록</a>
 					    </div>
 					</form>
 				</section>
 	        </div>
-	        
 	    </div>
 	</div>
 
-	<div id="ajax-loading"><img src="http://demofran.com/img/ajax-loader.gif"></div>
-	<div id="anc_header"><a href="#anc_hd"><span></span>TOP</a></div>
+	<div id="anc_header"><a href="#snb"><span><i class="fas fa-arrow-up"></i></span>TOP</a></div>
 	
 	<!--::footer_part start::-->
 	<%@ include file="include/footer.jsp" %>
@@ -307,6 +340,111 @@
 				});
 			});
 		});
+	    
+	    
+	    var uploadedImageUrl;
+	    $(function() {
+	        $("#imageFile").on("change", function() {
+	          var formData = new FormData();
+    		  formData.append("imageFile", this.files[0]);
+
+	          $.ajax({
+	            url: "${contextPath}/board/adminImageUpload",
+	            type: "POST",
+	            data: formData,
+	            contentType: false,
+	            processData: false,
+	            dataType: "text",
+	            success: function(response) {
+	              $("#uploadImg").attr("src", response);
+	              uploadedImageUrl = response;
+	              console.log("이미지 업로드 성공:", response);
+	            },
+	            error: function(error) {
+	              console.log("이미지 업로드 실패:", error);
+	            }
+	          });
+	        });
+	      });
+	    
+	    $(function(){
+	    	$("#btnUpdate").click(function(){
+	    		var itemname = $("#itemname").val();
+	    		var itempay = $("#itempay").val();
+	    		var itemcontent = $("#itemcontent").val();
+	    		
+	    		if(itemname.length==0){
+					   alert("상품명을 입력해주세요.");
+					   return false;
+			 	 }
+	    		if(itempay.length==0){
+					   alert("상품 가격을 입력해주세요.");
+					   return false;
+			 	 }
+	    		if(itemcontent.length==0){
+					   alert("상품 설명을 입력해주세요.");
+					   return false;
+			 	 }
+	    		
+	    		
+	    		var imagenum = $("#imgnum").val();
+	    		var url = $("#url").val();
+	    		var imagename = $("#imgname").val();
+	    		var itemnum = $("#itemnum").val();
+	    		
+	    		
+	    		if(uploadedImageUrl !== undefined && uploadedImageUrl !== null && uploadedImageUrl.trim() !== ""){
+	    			
+		    		var imageData = {
+		    	            imgnum: imagenum,
+		    	            url: url,
+		    	            imgname: imagename,
+		    	            itemnum: itemnum
+		    	        };
+		    		
+		    		$.ajax({
+		                url: "${contextPath}/board/adminImageUpdate",
+		                type: "POST",
+		                data: JSON.stringify(imageData), // JavaScript 객체를 JSON 문자열로 변환하여 전송
+		                contentType: "application/json", // JSON 형식의 데이터를 전송하기 위해 contentType 설정
+		                success: function(response) {
+		                    // 이미지 업데이트 성공한 경우의 처리
+		                	console.log("성공:", response);
+		                },
+		                error: function(error) {
+		                    // 이미지 업데이트 실패한 경우의 처리
+		                	console.log("실패:", error);
+		                }
+		            });
+	    		}
+	    		var form1 = $("#form1");
+	    		form1.submit();
+	    	});
+	    	
+	    	$("#btnDelete").click(function(){
+	    		var itemnum = $("#itemnum").val();
+				var url = "${pageContext.request.contextPath }/board/adminItemDetail3";
+			    var paramData   = {
+			    		"itemnum" : itemnum
+			    };
+			    
+			    $.ajax({
+			    	url:   url,
+			        data:   paramData,
+			        dataType: 'text',
+			        type: 'POST',
+			        success: function(result){
+			           console.log(result);
+			           console.log("성공");
+			           window.location.href = "${contextPath}/board/adminItem";
+			        },
+			        error: function(result){
+			           console.log(result);
+			           console.log("실패");
+			        }
+				});
+	    	});
+	    });
 	    
 	</script>
 

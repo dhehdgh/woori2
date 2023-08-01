@@ -8,9 +8,9 @@ public class HelpDTO {
 	private String recomment;
 	private String hdate;
 	private String rehdate;
-	private int state;
-	private int del;
-	
+	private String state;
+	private String del;
+	private MemberDTO memberDTO;
 	
 	public int getHno() {
 		return hno;
@@ -54,23 +54,28 @@ public class HelpDTO {
 	public void setRehdate(String rehdate) {
 		this.rehdate = rehdate;
 	}
-	public int getState() {
+	public String getState() {
 		return state;
 	}
-	public void setState(int state) {
+	public void setState(String state) {
 		this.state = state;
 	}
-	public int getDel() {
+	public String getDel() {
 		return del;
 	}
-	public void setDel(int del) {
+	public void setDel(String del) {
 		this.del = del;
 	}
-	
+	public MemberDTO getMemberDTO() {
+		return memberDTO;
+	}
+	public void setMemberDTO(MemberDTO memberDTO) {
+		this.memberDTO = memberDTO;
+	}
 	@Override
 	public String toString() {
 		return "HelpDTO [hno=" + hno + ", membernum=" + membernum + ", title=" + title + ", content=" + content
 				+ ", recomment=" + recomment + ", hdate=" + hdate + ", rehdate=" + rehdate + ", state=" + state
-				+ ", del=" + del + "]";
+				+ ", del=" + del + ", memberDTO=" + memberDTO + "]";
 	}
 }
