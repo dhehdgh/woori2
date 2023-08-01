@@ -6,6 +6,32 @@
 <!DOCTYPE html>
 
 <html lang="en">
+<script>
+function orderlist(){
+	var user = "${user}";
+	if (user == ""){
+		alert("로그인 후 이용하실 수 있습니다.");
+		location.href="${contextPath}/board/loginForm";
+	}else{
+		location.href="${contextPath}/board/myorderlist"
+	}	
+}
+
+function mywishlist(){
+	var user = "${user}";
+	if (user == ""){
+		alert("로그인 후 이용하실 수 있습니다.");
+		location.href="${contextPath}/board/loginForm";
+	}else{
+		location.href="${contextPath}/board/mywishlist"
+	}	
+}
+</script>
+<c:set var="user" value="${sessionScope.user}" />
+
+<%-- user 값 사용 --%>
+<c:if test="${not empty user}">
+</c:if>
 
 <head>
     <!-- Required meta tags -->
@@ -40,7 +66,7 @@
         
         
         
-        	<link href="${contextPath}/resources/bootstrap/style.min.css" rel="stylesheet">
+           <link href="${contextPath}/resources/bootstrap/style.min.css" rel="stylesheet">
             <link rel="stylesheet" type="text/css" href="${contextPath}/resources/bootstrap/multicheck/multicheck.css">
             
             
@@ -64,24 +90,33 @@
 <div class="toplog">           
               
                 
-	<ul><li class="xans-element- xans-layout xans-layout-statelogoff "><a href="/member/login.html" title="로그인">LOGIN</a>
-		</li>
-	
-		<li class="xans-element- xans-layout xans-layout-statelogoff "><a href="/member/join.html" title="회원가입">JOIN</a>
-		<li class="xans-element- xans-layout xans-layout-statelogon "><a href="/exec/front/Member/logout/" title="로그아웃">LOGOUT</a>
-			</li>
-		<div id="joinpoint2" class="xans-element- xans-layout xans-layout-statelogoff disnoneB pointbg "><a href="/member/join.html" class="point_text"></a>
-		</div>
-			</li>
-        <li><a href="/myshop/order/list.html" title="주문조회">ORDER</a></li>
+   <ul>
+      <c:choose>
+              <c:when test="${not empty user}">
+                  <a href="#">${user.id}</a>&nbsp;님<br/>
+                  <li class="xans-element- xans-layout xans-layout-statelogon "><a href="${contextPath}/board/logOut" title="로그아웃">LOGOUT</a>
+               </li>
+	               
+              </c:when>
+              <c:otherwise>
+	              	
+                  <li class="xans-element- xans-layout xans-layout-statelogoff "><a href="${contextPath}/board/loginForm" title="로그인">LOGIN</a>
+               </li>
+               <li class="xans-element- xans-layout xans-layout-statelogoff "><a href="${contextPath}/board/joinView" title="회원가입">JOIN</a>
+					</li>
+              </c:otherwise>
+          </c:choose>
+   		
+		
+        <li><a href="javascript:void(0)" onclick="orderlist()" title="주문조회">ORDER</a></li>
         	 <li>
 <!---------------------------------------------------------------- 
 *  게시판 
 -----------------------------------------------------------------> 
 <div id="community">
 	<ul><li><h2 class="">community</h2>
-		<ul class="xans-element- xans-layout xans-layout-boardinfo middle_category"><li class="xans-record-"><a href="/board/공지사항/1/">공지사항</a></li>
-			<li class="xans-record-"><a href="/board/qa/6/">Q&A</a></li>
+		<ul class="xans-element- xans-layout xans-layout-boardinfo middle_category"><li class="xans-record-"><a href="${contextPath}/board/boardlist">공지사항</a></li>
+			<li class="xans-record-"><a href="${contextPath}/board/helplist">Q&A</a></li>
 			<li class="xans-record-"><a href="/board/리뷰/4/">리뷰</a></li>
 		</ul>
 	</li>
@@ -107,8 +142,11 @@
                         </div>
                         <div class="hearer_icon d-flex">
                             <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <a href=""><i class="ti-heart"></i></a>
-                            <a href="myorderlist"><i class="ti-user"></i></a>
+                            
+                            <a href="javascript:void(0)" onclick="mywishlist()"><i class="ti-heart"></i></a>
+                            
+                            <a href="javascript:void(0)" onclick="orderlist()"><i class="ti-user"></i></a>
+                            
                             <div class="dropdown cart">
                                 <a class="dropdown-toggle" href="#" id="navbarDropdown3" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

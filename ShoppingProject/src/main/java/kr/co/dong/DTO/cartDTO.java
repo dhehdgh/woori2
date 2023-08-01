@@ -1,7 +1,12 @@
 package kr.co.dong.DTO;
 
 
+<<<<<<< HEAD
 public class cartDTO {
+=======
+@Data
+public class CartDTO {
+>>>>>>> 2c90b6fdf3bb8aeba88af843c7de8acf5507203e
 	
 	private int cartno;
 	private int membernum;

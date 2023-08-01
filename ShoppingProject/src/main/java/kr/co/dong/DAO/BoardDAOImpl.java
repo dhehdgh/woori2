@@ -7,10 +7,14 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+<<<<<<< HEAD
 import kr.co.dong.DTO.addressDTO;
 import kr.co.dong.DTO.itemreturnDTO;
 import kr.co.dong.DTO.memberDTO;
 import kr.co.dong.DTO.mylistDTO;
+=======
+import kr.co.dong.DTO.CartDTO;
+>>>>>>> 2c90b6fdf3bb8aeba88af843c7de8acf5507203e
 
 @Service
 public class BoardDAOImpl implements BoardDAO{
@@ -19,7 +23,11 @@ public class BoardDAOImpl implements BoardDAO{
 	private String namespace = "kr.co.dong.BoardMapper";
 	
 	@Override
+<<<<<<< HEAD
 	public memberDTO memdetail(int membernum) {
+=======
+	public List<CartDTO> list() {
+>>>>>>> 2c90b6fdf3bb8aeba88af843c7de8acf5507203e
 		// TODO Auto-generated method stub
 		return sqlsession.selectOne(namespace+".memdetail");
 	}

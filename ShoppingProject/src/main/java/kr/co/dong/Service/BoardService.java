@@ -2,7 +2,11 @@ package kr.co.dong.Service;
 
 import java.util.List;
 
+<<<<<<< HEAD
 import org.springframework.stereotype.Service;
+=======
+import kr.co.dong.DTO.CartDTO;
+>>>>>>> 2c90b6fdf3bb8aeba88af843c7de8acf5507203e
 
 import kr.co.dong.DTO.addressDTO;
 import kr.co.dong.DTO.itemreturnDTO;
@@ -11,6 +15,11 @@ import kr.co.dong.DTO.mylistDTO;
 
 @Service
 public interface BoardService {
+<<<<<<< HEAD
+=======
+	
+	public List<CartDTO> list();
+>>>>>>> 2c90b6fdf3bb8aeba88af843c7de8acf5507203e
 
 //내정보수정
 	//회원 상세조회

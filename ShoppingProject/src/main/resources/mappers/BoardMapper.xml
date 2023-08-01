@@ -2,74 +2,894 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
   
-<mapper namespace = "kr.co.dong.BoardMapper">
+  <mapper namespace="kr.co.dong.BoardMapper">
+  
+  
+
+<!-- 반품테이블이랑 주문테이블 buynum으로 조인 -->
+ <!-- 반품테이블이랑 주문상품테이블을 dv_itemno으로 조인 -->
+	<resultMap id="returnMapper" type="kr.co.dong.DTO.itemreturnDTO"> 
+      <result column="returnnum" property="returnnum"/>    
+      <result column="buynum" property="buynum"/>
+      <result column="returncontent" property="returncontent"/>
+      <result column="returndate" property="returndate"/>
+      <result column="state" property="state"/>
+      <result column="type" property="type"/>   
+      <result column="itembname" property="itembname"/>   
+      <result column="itemsname" property="itemsname"/>  
+      <result column="typename" property="typename"/>  
+      <result column="pay" property="pay"/>   
+      <result column="sta" property="sta"/>
+      <result column="color" property="color"/>   
+      <result column="size" property="size"/>   
+      <result column="recomdate" property="recomdate"/> 
+      <result column="dv_itemno" property="dv_itemno"/>   
+      <collection property="dv_orderDTO" resultMap="orderMapper"/>
+      <collection property="dv_order_itemDTO" resultMap="orderitemMapper"/> 
+   </resultMap> 
+   <!-- 주문테이블이랑 배송지 addrnum으로 조인 -->
+   <!-- 주문테이블이랑 주문상품테이블을 buynum으로 조인 -->
+   <resultMap id="orderMapper" type="kr.co.dong.DTO.dv_orderDTO">   
+  	  <result column="buynum" property="buynum"/>
+      <result column="buydate" property="buydate"/>
+      <result column="paymethod" property="paymethod"/>      
+      <result column="deliverycom" property="deliverycom"/>
+      <result column="state" property="state"/>
+      <result column="deliveryday" property="deliveryday"/>
+       <result column="pay" property="pay"/>   
+      <result column="sta" property="sta"/>
+      <result column="color" property="color"/>   
+      <result column="size" property="size"/>  
+      <result column="review" property="review"/>   
+      <result column="addrnum" property="addrnum"/>
+       <result column="payment" property="payment"/>
+      <result column="salevalue" property="salevalue"/>
+      <result column="pointvalue" property="pointvalue"/>
+      <collection property="addressDTO" resultMap="addrMapper"/>
+      <collection property="dv_order_itemDTO" resultMap="orderitemMapper"/>           
+   </resultMap>
+   <resultMap id="addrMapper" type="kr.co.dong.DTO.addressDTO">    
+      <result column="membernum" property="membernum"/>
+     <result column="delroadaddr" property="delroadaddr"/>
+      <result column="deljibunaddr" property="deljibunaddr"/>
+      <result column="deldetailaddr" property="deldetailaddr"/>
+      <result column="delextraaddr" property="delextraaddr"/>
+      <result column="delpostcode" property="delpostcode"/>
+      <result column="addrstate" property="addrstate"/>      
+   </resultMap>
+   <!-- 주문상품테이블을 장바구니이랑 cartno으로 조인 -->
+    <resultMap id="orderitemMapper" type="kr.co.dong.DTO.dv_order_itemDTO">   
+    <result column="dv_itemno" property="dv_itemno"/>  
+      <result column="buynum" property="buynum"/>
+      <result column="cartno" property="cartno"/>
+      <collection property="cartDTO" resultMap="cartMapper"/>     
+   </resultMap>
+   
+   <!-- 장바구니이랑 상품 itemnum으로 조인 -->
+   <!-- 장바구니이랑 회원 membernum으로 조인 -->
+    <!-- 장바구니이랑 이미지테이블 itemnum으로 조인 -->
+     <!-- 장바구니이랑 iv아이템 iv_itemnum으로 조인 -->
+   <resultMap id="cartMapper" type="kr.co.dong.DTO.cartDTO">    
+      <result column="membernum" property="membernum"/>
+      <result column="itemnum" property="itemnum"/>
+      <result column="itemcnt" property="itemcnt"/>
+      <result column="iv_itemnum" property="iv_itemnum"/>
+      <collection property="memberDTO" resultMap="memberMapper"/>   
+       <collection property="itemDTO" resultMap="itemMapper"/>
+       <collection property="imgDTO" resultMap="imgMapper"/> 
+       <collection property="iv_itemDTO" resultMap="iv_itemDTOMapper"/>     
+   </resultMap>
+    <!-- 회원이랑 배송지 membernum으로 조인 -->
+   <resultMap id="memberMapper" type="kr.co.dong.DTO.memberDTO">   
+       <result column="id" property="id"/>
+        <result column="pw" property="pw"/>
+      <result column="name" property="name"/>
+       <result column="email" property="email"/>
+      <result column="tel" property="tel"/>
+       <result column="birth" property="birth"/>
+      <result column="point" property="point"/>
+      <result column="pointac" property="pointac"/>
+      <result column="gender" property="gender"/>
+      <result column="gen" property="gen"/> 
+       <result column="roadaddr" property="roadaddr"/>
+      <result column="jibunaddr" property="jibunaddr"/>
+      <result column="detailaddr" property="detailaddr"/>
+      <result column="extraaddr" property="extraaddr"/>
+      <result column="postcode" property="postcode"/> 
+      <collection property="addressDTO" resultMap="addrMapper2"/>         
+   </resultMap>
+    <resultMap id="iv_itemDTOMapper" type="kr.co.dong.DTO.iv_itemDTO">    
+      <result column="itemnum" property="itemnum"/>
+     <result column="itemcnt" property="itemcnt"/>
+      <result column="itemsize" property="itemsize"/>
+      <result column="itemcolor" property="itemcolor"/>
+      <result column="iv_date" property="iv_date"/>
+      <result column="itembuycnt" property="itembuycnt"/>
+      <result column="itemstate_" property="itemstate_"/>       
+   </resultMap> 
+   <resultMap id="addrMapper2" type="kr.co.dong.DTO.addressDTO">    
+      <result column="membernum" property="membernum"/>
+     <result column="delroadaddr" property="delroadaddr"/>
+      <result column="deljibunaddr" property="deljibunaddr"/>
+      <result column="deldetailaddr" property="deldetailaddr"/>
+      <result column="delextraaddr" property="delextraaddr"/>
+      <result column="delpostcode" property="delpostcode"/>
+      <result column="addrstate" property="addrstate"/>      
+   </resultMap>  
+	<resultMap id="itemMapper" type="kr.co.dong.DTO.itemDTO">  
+      <result column="itemname" property="itemname"/>
+      <result column="itempay" property="itempay"/>
+      <result column="itemdate" property="itemdate"/>
+      <result column="itemb" property="itemb"/> 
+      <result column="items" property="items"/> 
+      <result column="itemcontent" property="itemcontent"/>    
+      <result column="rstar" property="rstar"/> 
+      <result column="sale" property="sale"/> 
+   </resultMap>
+   <resultMap id="imgMapper" type="kr.co.dong.DTO.imgDTO">   
+      <result column="imgnum" property="imgnum"/>  
+      <result column="url" property="url"/>
+      <result column="imgname" property="imgname"/>     
+   </resultMap>   
+   
+   
+ <!-- 찜테이블이랑 상품테이블을 itemnum으로 조인 -->
+  <!-- 찜테이블이랑 이미지테이블을 itemnum으로 조인 -->
+ 	<resultMap id="likeMapper" type="kr.co.dong.DTO.mylistDTO"> 
+      <result column="zno" property="zno"/>    
+      <result column="membernum" property="membernum"/>
+      <result column="itemnum" property="itemnum"/>
+       <result column="itembname" property="itembname"/>   
+      <result column="itemsname" property="itemsname"/> 
+      <collection property="itemDTO" resultMap="likeitemMapper"/>
+      <collection property="imgDTO" resultMap="img2Mapper"/>
+   </resultMap>  
+   <resultMap id="likeitemMapper" type="kr.co.dong.DTO.itemDTO">   
+   		<result column="itemnum" property="itemnum"/>
+      <result column="itemname" property="itemname"/>
+      <result column="itempay" property="itempay"/>
+      <result column="itemdate" property="itemdate"/>
+      <result column="itemb" property="itemb"/> 
+      <result column="items" property="items"/> 
+      <result column="itemcontent" property="itemcontent"/>    
+      <result column="rstar" property="rstar"/> 
+   </resultMap>
+   <resultMap id="img2Mapper" type="kr.co.dong.DTO.imgDTO">   
+      <result column="imgnum" property="imgnum"/>  
+      <result column="url" property="url"/>
+      <result column="imgname" property="imgname"/>     
+   </resultMap>
+
+ <!-- 로그인-->  
+   <select id="login" parameterType="java.util.Map" resultType="java.util.Map">
+        select id, state, authority, pw, membernum
+        from member
+        where id = #{id}
+        and pw = #{pw}
+	</select>
 	
-	<select id ="memDetail" resultType="memberDTO" parameterType="java.lang.Integer" >
+ <!-- 아이디찾기, 비밀번호 찾기-->  	
+	<select id="findID" parameterType="memberDTO" resultType="memberDTO">
 	select * from member
-	where membernum =1;
+	where email = #{email}
+	and state = 1;
 	</select>
 
-	<update id ="memUpdate" parameterType="memberDTO">
+	<select id="findPW" parameterType="memberDTO" resultType="memberDTO">
+	select * from member
+	where id = #{id} 
+	and email = #{email} 
+	and state = 1;
+	</select>
+	
+	<update id ="pwupdate1" parameterType="memberDTO">
 	update member 
-	set	pw =#{pw}, email =#{email}, tel =#{tel}, roadaddress =#{roadaddress}, jibunaddress =#{jibunaddress},
-	detailaddress = #{detailaddress}, extraaddress = #{extraaddress}, gender = #{gender}
-	where membernum =1;
+	set	pw =#{pw}
+	where id =#{id};
 	</update>
 	
-	<delete id="memDelete" parameterType="java.lang.Integer">
-	delete member
-	where membernum =1
-	and pw = #{pw};
-	</delete>
+<!-- 회원가입 -->
+
+   <insert id="MemberRegister" parameterType="kr.co.dong.DTO.memberDTO">
+     insert into member(id, pw, name, email, tel, roadaddr, jibunaddr, detailaddr, extraaddr, postcode, birth, point, pointac, joindate, state, authority, gender, agree)
+     values (#{id}, #{pw}, #{name}, #{email}, #{tel}, #{roadaddr}, #{jibunaddr}, #{detailaddr}, #{extraaddr}, #{postcode}, #{birth}, 0, 0, curdate(), 1, 1, #{gender}, #{agree})
+   </insert>
+
+
+   <insert id="addrinsert1" parameterType="kr.co.dong.DTO.addressDTO">
+     insert into address(membernum, delroadaddr, deljibunaddr, deldetailaddr, delextraaddr, delpostcode, deladdrstate)
+     values ((SELECT MAX(membernum) FROM member), #{delroadaddr}, #{deljibunaddr}, #{deldetailaddr}, #{delextraaddr}, #{delpostcode}, 1)
+   </insert>
+   
+   
+   <select id="memberCheckID" parameterType="MemberDTO" resultType="java.lang.Integer">
+      select count(*)
+      from member
+      where id = #{id}
+   </select>
+   
 	
+ <!-- 회원정보 수정체크-->    
+ 	<select id="check"  resultType="memberDTO" parameterType="memberDTO">
+ 	select * from member
+    where membernum = #{membernum};
+ 	</select>
+ 	
+ 	
+ 	
+ <!-- 회원정보 수정--> 	 
+	<select id ="memdetail" resultType="memberDTO" parameterType="java.lang.Integer" >
+	select id, pw, tel, name, birth, point, pointac, gender, email,
+	(select codestring 
+	from codetable
+	where codename = "성별"
+	and codenum = gender) as 'gen'
+	from member
+	where 
+	membernum =#{membernum};
+	</select>
+	<update id ="mailupdate" parameterType="HashMap">
+	update member 
+	set	email =#{email}
+	where membernum =#{membernum};
+	</update>
+	<update id ="pwupdate" parameterType="HashMap">
+	update member 
+	set	pw =#{pw}
+	where membernum =#{membernum};
+	</update>
+	<update id ="birthupdate" parameterType="HashMap">
+	update member 
+	set birth =#{birth} 
+	where membernum =#{membernum};
+	</update>
+	<update id ="telupdate" parameterType="HashMap">
+	update member 
+	set	tel =#{tel} 
+	where membernum =#{membernum};
+	</update>
+
+ <!-- 회원탈퇴--> 
+    <select id="checkdelete"  resultType="memberDTO" parameterType="HashMap" >
+    select * from member
+    where membernum = #{membernum};
+ 	</select>
+ 	
+	<update id="memdelete" parameterType="memberDTO">
+	update member
+	set	id = null, pw =null, name = null, email =null, tel =null, birth=null, point = null, pointac = null, joindate = null,
+    state = null, authority = null, gender = null, agree =null, deleteagree = #{deleteagree}
+	where membernum = #{membernum};
+	</update>	
+	
+<!-- 배송지 관리-->	
 	<select id="addrlist" resultType="addressDTO">
 	select * from address
-	where membernum = 1;
+	where membernum = #{membernum}
+	and deladdrstate = 1
+	order by addrstate;
+	</select>
+	
+	<select id="addrdetail" resultType="addressDTO" parameterType="java.lang.Integer">
+	select * from address
+	where addrnum =#{addrnum};
 	</select>
 	
 	<update id="addrupdate" parameterType="addressDTO">
 	update address 
-	set	delroadaddress =#{delroadaddress}, deljibunaddress =#{deljibunaddress}, deldetailaddress =#{deldetailaddress}, 
-	delextraaddress =#{delextraaddress}, delpostcode =#{delpostcode}
-	where addressnum =#{addressnum};
+	set	delroadaddr =#{delroadaddr}, deljibunaddr =#{deljibunaddr}, deldetailaddr =#{deldetailaddr}, 
+	delextraaddr =#{delextraaddr}, delpostcode =#{delpostcode}
+	where addrnum =#{addrnum};
+	</update>
+	
+	<update id="addrbasic" parameterType="addressDTO">
+	UPDATE address
+	SET addrstate = CASE
+    WHEN addrstate = 1 THEN 2
+    WHEN addrnum =#{addrnum} 
+    AND addrstate = 2 THEN 1
+    ELSE addrstate
+	END;
 	</update>
 	
 	<delete id="addrdelete" parameterType="java.lang.Integer">
-	delete address
-	where addressnum =#{addressnum};
+	UPDATE address
+	set deladdrstate = 2
+	where addrnum =#{addrnum};
 	</delete>
 	
 	<insert id="addrinsert" parameterType="addressDTO">
-	insert into address(addressnum, delroadaddress, deljibunaddress, deldetailaddress, delextraaddress, delpostcode)
-	values(#{addressnum},#{delroadaddress},#{deljibunaddress},#{deldetailaddress},#{delextraaddress},#{delpostcode});
+	insert into address(addrnum, membernum, delroadaddr, deljibunaddr, deldetailaddr, delextraaddr, delpostcode, addrstate, deladdrstate)
+	values(#{addrnum},#{membernum}, #{delroadaddr},#{deljibunaddr},#{deldetailaddr},#{delextraaddr},#{delpostcode}, 2, 1);
 	</insert>
 	
-	<select id="likelist" resultType="mylistDTO">
-	select * from mylist
-	where membernum = 1;
+<!-- 찜 리스트 -->	
+	<select id="getTotalCount1" resultType="java.lang.Integer">
+	select count(*) as totalcount   
+	from mylist M join item I join img IM
+	where M.itemnum = I.itemnum 
+	and M.itemnum = IM.itemnum
+	and membernum = #{membernum};
+	</select>
+
+	<select id="getListByRange1" parameterType="HashMap" resultMap="likeMapper" >
+	select M.zno, M.membernum, M.itemnum,
+	I.itemname, I.itempay, I.itemcontent, I.rstar, I.itemb, I.items,
+	IM.imgnum, IM.imgname, IM.url,
+	(select codestring from codetable
+    where codename = "대분류" 
+    and codenum = I.itemb) as 'itembname',
+    
+    (select codestring from codetable
+    where codename = "소분류" 
+    and codenum = I.items) as 'itemsname'
+    
+	from mylist M join item I join img IM
+	where M.itemnum = I.itemnum 
+	and M.itemnum = IM.itemnum
+	and membernum = #{membernum}
+	order by zno desc
+	LIMIT #{startIdx}, #{endIdx};
 	</select>
 	
 	<delete id="likedelete" parameterType="java.lang.Integer">
-	delete mylist
+	delete from mylist
 	where zno = #{zno};
 	</delete>
 	
-	<select id="returnlist" resultType="itemreturnDTO">
-	select * from itemreturn
-	where buynum =#{buynum}
-	</select>
+	<delete id="selectdelete" parameterType="java.lang.String">
+	delete from mylist
+	where zno = #{zno};
+	</delete>
 	
-	<select id="returndetail" resultType="itemreturnDTO" parameterType="java.lang.Integer">
-	select * from itemreturn
-	where addressnum =#{addressnum};
+<!-- 교환/반품/취소 리스트 -->	
+	
+	<select id="returndetail" resultMap="returnMapper" parameterType="java.lang.Integer">
+	select I.returnnum, I.buynum, I.returncontent, I.returndate, I.state, I.recomdate,I.type,I.dv_itemno,
+	O.buydate,  O.paymethod, O.deliverycom, O.state, O.deliveryday, O.addrnum, O.payment, O.salevalue, O.pointvalue,
+	C.membernum, C.itemnum, C.itemcnt, C.iv_itemnum,
+    IT.itemname, IT.itempay,  IT.itemdate, IT.itemb, IT.items, IT.itemcontent, IT.rstar,
+    M.name, M.tel, M.point, M.pointac,
+    AD.membernum, AD.delroadaddr, AD.deldetailaddr, AD.delextraaddr, AD.delpostcode, AD.addrstate,
+    IM.imgnum, IM.imgname, IM.url,
+    DO.dv_itemno, DO.buynum, DO.cartno,
+    IV.itemnum, IV.itemcnt, IV.itemsize, IV.itemcolor, IV.iv_date, IV.itemstate, IV.itembuycnt,
+    
+    (select codestring from codetable
+    where codename = "대분류" 
+    and codenum = IT.itemb) as 'itembname',
+    
+    (select codestring from codetable
+    where codename = "소분류" 
+    and codenum = IT.items) as 'itemsname',
+    
+    (select codestring from codetable 
+    where codename = "신청타입"
+    and codenum = I.type ) as 'typename',
+    
+    (select codestring from codetable 
+    where codename = "결제방식"
+    and codenum = O.paymethod ) as 'pay',
+    
+    (select codestring from codetable 
+    where codename = "반품상태"
+    and codenum = I.state ) as 'sta',
+    
+    (select codestring from codetable 
+    where codename = "상품색상"
+    and codenum = IV.itemcolor ) as 'color',
+    
+    (select codestring from codetable 
+    where codename = "사이즈"
+    and codenum = IV.itemsize ) as 'size'
+    
+	from itemreturn I join dv_order O 
+    join address AD join cart C 
+    join item IT join member M join img IM 
+    join dv_order_item DO join iv_item IV
+    
+    where I.buynum = O.buynum
+	and I.dv_itemno = DO.dv_itemno
+	and DO.cartno = C.cartno
+	and C.itemnum = IT.itemnum 
+    and C.membernum = M.membernum
+    and C.itemnum = IM.itemnum
+	and O.addrnum = AD.addrnum
+	and C.iv_itemnum = IV.iv_itemnum
+    and (O.state = 4
+    or O.state = 5)
+	and returnnum =#{returnnum};
 	</select>
 	
 	<delete id="returndelete" parameterType="java.lang.Integer">
-	delete itemreturn
-	where addressnum =#{addressnum};
+	delete from itemreturn
+	where returnnum = #{returnnum};
 	</delete>
 	
+	
+	<select id="getTotalCount" parameterType="HashMap" resultType="java.lang.Integer">
+	select count(*) as totalcount 
+	from itemreturn I join dv_order O 
+    join address AD join cart C 
+    join item IT join member M join img IM 
+    join dv_order_item DO join iv_item IV
+    
+    where I.buynum = O.buynum
+	and I.dv_itemno = DO.dv_itemno
+	and DO.cartno = C.cartno
+	and C.itemnum = IT.itemnum 
+    and C.membernum = M.membernum
+    and C.itemnum = IM.itemnum
+	and O.addrnum = AD.addrnum
+	and C.iv_itemnum = IV.iv_itemnum
+    and M.membernum = #{membernum}   
+    and (O.state = 4
+    or O.state = 5)
+    <if test="searchtype ==  ''">
+    <choose>   	
+		<when test="kind.equals('6개월')">
+		and I.returndate >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+		</when>
+		<when test="kind == 2023">
+		and YEAR(I.returndate) = 2023
+		</when>
+		<when test="kind == 2022">
+		and YEAR(I.returndate) = 2022
+		</when>
+		<when test="kind == 2021">
+		and YEAR(I.returndate) = 2021
+		</when>
+		<when test="kind == 2020">
+		and YEAR(I.returndate) = 2020
+		</when>
+	</choose>
+	</if>
+    <if test="searchtype ==  1">
+    and IT.itemname like concat("%",#{keyword},"%")
+    and I.type = 1 
+    <choose>
+		<when test="kind.equals('6개월')">
+		and I.returndate >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+		</when>
+		<when test="kind.equals('2023')">
+            and YEAR(I.returndate) = 2023
+        </when>
+        <when test="kind.equals('2022')">
+            and YEAR(I.returndate) = 2022
+        </when>
+        <when test="kind.equals('2021')">
+            and YEAR(I.returndate) = 2021
+        </when>
+        <when test="kind.equals('2020')">
+            and YEAR(I.returndate) = 2020
+        </when>
+	</choose>
+	</if>
+	<if test="searchtype ==  2">
+    and IT.itemname like concat("%",#{keyword},"%")
+    and I.type = 2
+    <choose>
+		<when test="kind.equals('6개월')">
+		and I.returndate >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+		</when>
+		<when test="kind.equals('2023')">
+            and YEAR(I.returndate) = 2023
+        </when>
+        <when test="kind.equals('2022')">
+            and YEAR(I.returndate) = 2022
+        </when>
+        <when test="kind.equals('2021')">
+            and YEAR(I.returndate) = 2021
+        </when>
+        <when test="kind.equals('2020')">
+            and YEAR(I.returndate) = 2020
+        </when>
 
-</mapper>
+	</choose>
+	</if>
+	<if test="searchtype ==  3">
+    and IT.itemname like concat("%",#{keyword},"%")
+    and I.type = 3
+    <choose>
+		<when test="kind.equals('6개월')">
+		and I.returndate >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+		</when>
+		<when test="kind.equals('2023')">
+            and YEAR(I.returndate) = 2023
+        </when>
+        <when test="kind.equals('2022')">
+            and YEAR(I.returndate) = 2022
+        </when>
+        <when test="kind.equals('2021')">
+            and YEAR(I.returndate) = 2021
+        </when>
+        <when test="kind.equals('2020')">
+            and YEAR(I.returndate) = 2020
+        </when>
+	</choose>
+	</if>
+	</select>
+	
+	<select id="getListByRange" parameterType="HashMap" resultMap="returnMapper" >
+	select I.returnnum, I.buynum, I.returncontent, I.returndate, I.state, I.recomdate,I.type,I.dv_itemno,
+	O.buydate,  O.paymethod, O.deliverycom, O.state, O.deliveryday, O.addrnum, O.payment, O.salevalue, O.pointvalue,
+	C.membernum, C.itemnum, C.itemcnt, C.iv_itemnum,
+    IT.itemname, IT.itempay,  IT.itemdate, IT.itemb, IT.items, IT.itemcontent, IT.rstar,
+    M.name, M.tel, M.point, M.pointac,
+    AD.membernum, AD.delroadaddr, AD.deldetailaddr, AD.delextraaddr, AD.delpostcode, AD.addrstate,
+    IM.imgnum, IM.imgname, IM.url,
+    DO.dv_itemno, DO.buynum, DO.cartno,
+    IV.itemnum, IV.itemcnt, IV.itemsize, IV.itemcolor, IV.iv_date, IV.itemstate, IV.itembuycnt,
+    
+    (select codestring from codetable
+    where codename = "대분류" 
+    and codenum = IT.itemb) as 'itembname',
+    
+    (select codestring from codetable
+    where codename = "소분류" 
+    and codenum = IT.items) as 'itemsname',
+    
+    (select codestring from codetable 
+    where codename = "신청타입"
+    and codenum = I.type ) as 'typename',
+    
+    (select codestring from codetable 
+    where codename = "결제방식"
+    and codenum = O.paymethod ) as 'pay',
+    
+    (select codestring from codetable 
+    where codename = "반품상태"
+    and codenum = I.state ) as 'sta',
+    
+    (select codestring from codetable 
+    where codename = "상품색상"
+    and codenum = IV.itemcolor ) as 'color',
+    
+    (select codestring from codetable 
+    where codename = "사이즈"
+    and codenum = IV.itemsize ) as 'size'
+    
+	from itemreturn I join dv_order O 
+    join address AD join cart C 
+    join item IT join member M join img IM 
+    join dv_order_item DO join iv_item IV
+    
+    where I.buynum = O.buynum
+	and I.dv_itemno = DO.dv_itemno
+	and DO.cartno = C.cartno
+	and C.itemnum = IT.itemnum 
+    and C.membernum = M.membernum
+    and C.itemnum = IM.itemnum
+	and O.addrnum = AD.addrnum
+	and C.iv_itemnum = IV.iv_itemnum
+    and M.membernum = #{membernum}  
+    and (O.state = 4
+    or O.state = 5)
+    <if test="searchtype ==  ''">
+    <choose>
+		<when test="kind.equals('6개월')">
+		and I.returndate >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+		</when>
+		<when test="kind == 2023">
+		and YEAR(I.returndate) = 2023
+		</when>
+		<when test="kind == 2022">
+		and YEAR(I.returndate) = 2022
+		</when>
+		<when test="kind == 2021">
+		and YEAR(I.returndate) = 2021
+		</when>
+		<when test="kind == 2020">
+		and YEAR(I.returndate) = 2020
+		</when>
+	</choose>
+	</if>
+    <if test="searchtype ==  1">
+    and IT.itemname like concat("%",#{keyword},"%")
+    and I.type = 1 
+    <choose>
+		<when test="kind.equals('6개월')">
+		and I.returndate >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+		</when>
+		<when test="kind.equals('2023')">
+            and YEAR(I.returndate) = 2023
+        </when>
+        <when test="kind.equals('2022')">
+            and YEAR(I.returndate) = 2022
+        </when>
+        <when test="kind.equals('2021')">
+            and YEAR(I.returndate) = 2021
+        </when>
+        <when test="kind.equals('2020')">
+            and YEAR(I.returndate) = 2020
+        </when>
+	</choose>
+	</if>
+	<if test="searchtype ==  2">
+    and IT.itemname like concat("%",#{keyword},"%")
+    and I.type = 2
+    <choose>
+		<when test="kind.equals('6개월')">
+		and I.returndate >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+		</when>
+		<when test="kind.equals('2023')">
+            and YEAR(I.returndate) = 2023
+        </when>
+        <when test="kind.equals('2022')">
+            and YEAR(I.returndate) = 2022
+        </when>
+        <when test="kind.equals('2021')">
+            and YEAR(I.returndate) = 2021
+        </when>
+        <when test="kind.equals('2020')">
+            and YEAR(I.returndate) = 2020
+        </when>
+
+	</choose>
+	</if>
+	<if test="searchtype ==  3">
+    and IT.itemname like concat("%",#{keyword},"%")
+    and I.type = 3
+    <choose>
+		<when test="kind.equals('6개월')">
+		and I.returndate >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+		</when>
+		<when test="kind.equals('2023')">
+            and YEAR(I.returndate) = 2023
+        </when>
+        <when test="kind.equals('2022')">
+            and YEAR(I.returndate) = 2022
+        </when>
+        <when test="kind.equals('2021')">
+            and YEAR(I.returndate) = 2021
+        </when>
+        <when test="kind.equals('2020')">
+            and YEAR(I.returndate) = 2020
+        </when>
+	</choose>
+	</if>
+	
+	order by I.returnnum desc
+	LIMIT #{startIdx}, #{endIdx};
+	</select>
+	
+	<insert id="returninsert" parameterType="itemreturnDTO" >
+	insert into itemreturn(buynum, returncontent, returndate, state, type,  dv_itemno)
+	value(#{buynum}, #{returncontent}, now(), 1, #{type}, #{dv_itemno});
+	</insert>
+	
+	<!-- 주문목록 -->
+	<update id="orderstaupdate" parameterType="dv_orderDTO" >
+	update dv_order O 
+    join address AD join cart C 
+    join item IT join member M join img IM 
+    join dv_order_item DO join iv_item IV
+	set O.state = 4
+	where O.buynum = DO.buynum
+	and DO.cartno = C.cartno
+	and C.itemnum = IT.itemnum 
+    and C.membernum = M.membernum
+    and C.itemnum = IM.itemnum
+	and O.addrnum = AD.addrnum
+	and C.iv_itemnum = IV.iv_itemnum
+    and O.buynum = #{buynum}
+    and DO.dv_itemno = #{dv_itemno};
+	</update>
+	
+	<update id="ordersta" parameterType="dv_orderDTO" >
+	update dv_order O 
+    join address AD join cart C 
+    join item IT join member M join img IM 
+    join dv_order_item DO join iv_item IV
+	set O.state = 5
+	where O.buynum = DO.buynum
+	and DO.cartno = C.cartno
+	and C.itemnum = IT.itemnum 
+    and C.membernum = M.membernum
+    and C.itemnum = IM.itemnum
+	and O.addrnum = AD.addrnum
+	and C.iv_itemnum = IV.iv_itemnum
+    and O.buynum = #{buynum}
+    and DO.dv_itemno = #{dv_itemno};
+	</update>
+	
+	
+	
+	
+	<select id="getTotalCount2" parameterType="HashMap" resultType="java.lang.Integer">
+	select count(*) as totalcount 
+	from dv_order O 
+    join address AD join cart C 
+    join item IT join member M join img IM 
+    join dv_order_item DO join iv_item IV
+    
+    where O.buynum = DO.buynum
+	and DO.cartno = C.cartno
+	and C.itemnum = IT.itemnum 
+    and C.membernum = M.membernum
+    and C.itemnum = IM.itemnum
+	and O.addrnum = AD.addrnum
+	and C.iv_itemnum = IV.iv_itemnum
+    and M.membernum = #{membernum}
+	    <choose>   	
+			<when test="kind.equals('6개월')">
+			and O.buydate >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+			and IT.itemname like concat("%",#{keyword},"%");
+			</when>
+			<when test="kind == 2023">
+			and YEAR(O.buydate) = 2023
+			and IT.itemname like concat("%",#{keyword},"%");
+			</when>
+			<when test="kind == 2022">
+			and YEAR(O.buydate) = 2022
+			and IT.itemname like concat("%",#{keyword},"%");
+			</when>
+			<when test="kind == 2021">
+			and YEAR(O.buydate) = 2021
+			and IT.itemname like concat("%",#{keyword},"%");
+			</when>
+			<when test="kind == 2020">
+			and YEAR(O.buydate) = 2020
+			and IT.itemname like concat("%",#{keyword},"%");
+			</when>
+		</choose>
+	</select>
+	
+	
+	<select id="getListByRange2" parameterType="HashMap" resultMap="orderMapper" >
+	select O.buynum, O.buydate,  O.paymethod, O.deliverycom, O.state, O.deliveryday, O.addrnum, O.review, O.payment, O.salevalue, O.pointvalue,
+	C.membernum, C.itemnum, C.itemcnt, C.iv_itemnum,
+    IT.itemname, IT.itempay,  IT.itemdate, IT.itemb, IT.items, IT.itemcontent, IT.rstar,
+    M.name, M.tel, M.point, M.pointac,
+    AD.membernum, AD.delroadaddr, AD.deldetailaddr, AD.delextraaddr, AD.delpostcode, AD.addrstate,
+    IM.imgnum, IM.imgname, IM.url,
+    DO.dv_itemno, DO.buynum, DO.cartno,
+    IV.itemnum, IV.itemcnt, IV.itemsize, IV.itemcolor, IV.iv_date, IV.itemstate, IV.itembuycnt,
+    
+	(select codestring from codetable 
+    where codename = "결제방식"
+    and codenum = O.paymethod ) as 'pay',
+    
+    (select codestring from codetable 
+    where codename = "주문상태"
+    and codenum = O.state ) as 'sta',
+    
+    (select codestring from codetable 
+    where codename = "상품색상"
+    and codenum = IV.itemcolor ) as 'color',
+    
+    (select codestring from codetable 
+    where codename = "사이즈"
+    and codenum = IV.itemsize ) as 'size'
+    
+	from dv_order O 
+    join address AD join cart C 
+    join item IT join member M join img IM 
+    join dv_order_item DO join iv_item IV
+    
+    where O.buynum = DO.buynum
+	and DO.cartno = C.cartno
+	and C.itemnum = IT.itemnum 
+    and C.membernum = M.membernum
+    and C.itemnum = IM.itemnum
+	and O.addrnum = AD.addrnum
+	and C.iv_itemnum = IV.iv_itemnum
+    and M.membernum = #{membernum}
+		<choose>   	
+			<when test="kind.equals('')">
+			and IT.itemname like concat("%",#{keyword},"%")
+			</when>
+			<when test="kind.equals('6개월')">
+			and O.buydate >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+			and IT.itemname like concat("%",#{keyword},"%")
+			</when>
+			<when test="kind == 2023">
+			and YEAR(O.buydate) = 2023
+			and IT.itemname like concat("%",#{keyword},"%")
+			</when>
+			<when test="kind == 2022">
+			and YEAR(O.buydate) = 2022
+			and IT.itemname like concat("%",#{keyword},"%")
+			</when>
+			<when test="kind == 2021">
+			and YEAR(O.buydate) = 2021
+			and IT.itemname like concat("%",#{keyword},"%")
+			</when>
+			<when test="kind == 2020">
+			and YEAR(O.buydate) = 2020
+			and IT.itemname like concat("%",#{keyword},"%")
+			</when>
+		</choose>
+    order by O.buynum desc
+    LIMIT #{startIdx}, #{endIdx};
+	</select>
+	
+	<select id="orderdetail" resultMap= "orderMapper" parameterType="dv_orderDTO" >
+	select O.buynum, O.buydate,  O.paymethod, O.deliverycom, O.state, O.deliveryday, O.addrnum, O.review, O.payment, O.salevalue, O.pointvalue,
+	C.membernum, C.itemnum, C.itemcnt, C.iv_itemnum,
+    IT.itemname, IT.itempay,  IT.itemdate, IT.itemb, IT.items, IT.itemcontent, IT.rstar,
+    M.name, M.tel, M.point, M.pointac,
+    AD.membernum, AD.delroadaddr, AD.deldetailaddr, AD.delextraaddr, AD.delpostcode, AD.addrstate,
+    IM.imgnum, IM.imgname, IM.url,
+    DO.dv_itemno, DO.buynum, DO.cartno,
+    IV.itemnum, IV.itemcnt, IV.itemsize, IV.itemcolor, IV.iv_date, IV.itemstate, IV.itembuycnt,
+    
+	(select codestring from codetable 
+    where codename = "결제방식"
+    and codenum = O.paymethod ) as 'pay',
+    
+    (select codestring from codetable 
+    where codename = "주문상태"
+    and codenum = O.state ) as 'sta',
+    
+    (select codestring from codetable 
+    where codename = "상품색상"
+    and codenum = IV.itemcolor ) as 'color',
+    
+    (select codestring from codetable 
+    where codename = "사이즈"
+    and codenum = IV.itemsize ) as 'size'
+    
+	from dv_order O 
+    join address AD join cart C 
+    join item IT join member M join img IM 
+    join dv_order_item DO join iv_item IV
+    
+    where O.buynum = DO.buynum
+	and DO.cartno = C.cartno
+	and C.itemnum = IT.itemnum 
+    and C.membernum = M.membernum
+    and C.itemnum = IM.itemnum
+	and O.addrnum = AD.addrnum
+	and C.iv_itemnum = IV.iv_itemnum
+    and O.buynum = #{buynum}
+    and DO.dv_itemno = #{dv_itemno}
+    order by O.buynum;
+	</select>
+	
+	<select id="orderform" resultMap= "orderMapper" parameterType="dv_orderDTO" >
+	select O.buynum, O.buydate,  O.paymethod, O.deliverycom, O.state, O.deliveryday, O.addrnum, O.review, O.payment, O.salevalue, O.pointvalue,
+	C.membernum, C.itemnum, C.itemcnt, C.iv_itemnum,
+    IT.itemname, IT.itempay, IT.itemdate, IT.itemb, IT.items, IT.itemcontent, IT.rstar,
+    M.name, M.tel, M.point, M.pointac,
+    AD.membernum, AD.delroadaddr, AD.deldetailaddr, AD.delextraaddr, AD.delpostcode, AD.addrstate,
+    IM.imgnum, IM.imgname, IM.url,
+    DO.dv_itemno, DO.buynum, DO.cartno,
+    IV.itemnum, IV.itemcnt, IV.itemsize, IV.itemcolor, IV.iv_date, IV.itemstate, IV.itembuycnt,
+    
+	(select codestring from codetable 
+    where codename = "결제방식"
+    and codenum = O.paymethod ) as 'pay',
+    
+    (select codestring from codetable 
+    where codename = "주문상태"
+    and codenum = O.state ) as 'sta',
+    
+    (select codestring from codetable 
+    where codename = "상품색상"
+    and codenum = IV.itemcolor ) as 'color',
+    
+    (select codestring from codetable 
+    where codename = "사이즈"
+    and codenum = IV.itemsize ) as 'size'
+    
+	from dv_order O 
+    join address AD join cart C 
+    join item IT join member M join img IM 
+    join dv_order_item DO join iv_item IV
+    
+    where O.buynum = DO.buynum
+	and DO.cartno = C.cartno
+	and C.itemnum = IT.itemnum 
+    and C.membernum = M.membernum
+    and C.itemnum = IM.itemnum
+	and O.addrnum = AD.addrnum
+	and C.iv_itemnum = IV.iv_itemnum
+    and O.buynum = #{buynum}
+    and DO.dv_itemno = #{dv_itemno}
+    order by O.buynum;
+    </select>
+    
+  
+  </mapper>

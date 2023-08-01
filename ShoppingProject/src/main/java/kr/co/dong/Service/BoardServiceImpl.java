@@ -6,10 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.dong.DAO.BoardDAO;
+<<<<<<< HEAD
 import kr.co.dong.DTO.addressDTO;
 import kr.co.dong.DTO.itemreturnDTO;
 import kr.co.dong.DTO.memberDTO;
 import kr.co.dong.DTO.mylistDTO;
+=======
+import kr.co.dong.DTO.CartDTO;
+>>>>>>> 2c90b6fdf3bb8aeba88af843c7de8acf5507203e
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -18,7 +22,11 @@ public class BoardServiceImpl implements BoardService{
 	BoardDAO dao;
 
 	@Override
+<<<<<<< HEAD
 	public memberDTO memdetail(int membernum) {
+=======
+	public List<CartDTO> list() {
+>>>>>>> 2c90b6fdf3bb8aeba88af843c7de8acf5507203e
 		// TODO Auto-generated method stub
 		return dao.memdetail(membernum);
 	}

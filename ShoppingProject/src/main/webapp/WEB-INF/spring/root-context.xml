@@ -14,9 +14,13 @@
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://localhost:3306/woori?"></property>
 		<property name="username" value="root"></property>
+<<<<<<< HEAD
 
 		<property name="password" value="1234"></property>
 
+=======
+		<property name="password" value="1234"></property>
+>>>>>>> 2c90b6fdf3bb8aeba88af843c7de8acf5507203e
 	</bean>	
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

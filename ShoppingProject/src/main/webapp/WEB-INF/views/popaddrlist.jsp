@@ -6,44 +6,77 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>NUSINSA</title>
+    <link rel="icon" href="${contextPath}/resources/bootstrap/img/favicon.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="${contextPath}/resources/bootstrap/css/bootstrap.min.css">
+    <!-- animate CSS -->
+    <link rel="stylesheet" href="${contextPath}/resources/bootstrap/css/animate.css">
+    <!-- owl carousel CSS -->
+    <link rel="stylesheet" href="${contextPath}/resources/bootstrap/css/owl.carousel.min.css">
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="${contextPath}/resources/bootstrap/css/all.css">
+    <!-- flaticon CSS -->
+    <link rel="stylesheet" href="${contextPath}/resources/bootstrap/css/flaticon.css">
+    <link rel="stylesheet" href="${contextPath}/resources/bootstrap/css/themify-icons.css">
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="${contextPath}/resources/bootstrap/css/magnific-popup.css">
+    <!-- swiper CSS -->
+    <link rel="stylesheet" href="${contextPath}/resources/bootstrap/css/slick.css">
+    <!-- style CSS -->
+    <link rel="stylesheet" href="${contextPath}/resources/bootstrap/css/style.css">
+        <!-- Header part end-->
+<link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+        <link rel="stylesheet" href="${contextPath}/resources/bootstrap/css/tailwind.output.css" />
+        
+        
+        
+        
+        	<link href="${contextPath}/resources/bootstrap/style.min.css" rel="stylesheet">
+            <link rel="stylesheet" type="text/css" href="${contextPath}/resources/bootstrap/multicheck/multicheck.css">
+            
+            
+</head>
 <script>
 //기본배송지로 설정
 function addrbasic(addrnum){
-	 location.href="addrbasic?addrnum=" + addrnum.value; 
-	 return "redirect:addrlist";
-   
+	 location.href="popaddrbasic?addrnum=" + addrnum.value;   
 }
 //수정버튼
 function addrupdate(addrnum){
-		location.href='addrupdate?addrnum=' + addrnum.value;  
-           
+		location.href='popaddrupdate?addrnum=' + addrnum.value;          
 }
 
 //삭제버튼
 function addrdelete(addrnum){
-    	location.href='addrdelete?addrnum=' + addrnum.value;     	
+    	location.href='popaddrdelete?addrnum=' + addrnum.value;      	 
 }
 
 //팝업 오픈
-function openPop() {
-		window.open("addrinsert", "pop", "width=500, height=800, top=500, left=300");
+function openPop2() {
+		window.open("popaddrinsert", "pop2", "width=500, height=800, top=500, left=300");
 }
 
 </script>
 
 
-<%@ include file="include/header.jsp"%>
 <body>
  <section class="cat_product_area section_padding">
  
     <div class="container">
        <div class="row"> 
-<%@ include file="include/mypage_left_column.jsp"%>
  
      <div class="card-body">  
           	<h4 style="display:inline" class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
             배송지 관리</h4>
-            <div style="float:right;width:calc(100% - 822px)">
+            <div style="float:right">
             <button id="insert" name="insert" class="btn-insert" 
                           style="    width: 116px;
 						    padding: 5px 3px 3px;
@@ -59,7 +92,7 @@ function openPop() {
 						    border: 1px solid #346AFF;
 						    position: relative"
     						value=""
-    						onclick="openPop()"
+    						onclick="openPop2()"
     						> + 배송지 추가
                           </button></div><br>
                                         
@@ -86,7 +119,7 @@ function openPop() {
                           <!-- Avatar with inset shadow -->
                         
                       		
-                          <div style="padding:30px;width:calc(100% - 180px)">
+                          <div style="padding:30px;width:calc(100% - 126px)">
                            <c:set var="name" value="${addrlist.addrstate}" />
                           <c:choose>
 	                      		<c:when test="${name == 1}">    
@@ -186,9 +219,7 @@ function openPop() {
    </section>
 <!-- 레프트컬럼 끝 -->
 
-   <!--::footer_part start::-->
-   <%@ include file="include/footer.jsp"%>
-   <!--::footer_part end::-->
+   
 </body>
 <!-- jquery plugins here-->
 <%@ include file="include/javascript.jsp"%>

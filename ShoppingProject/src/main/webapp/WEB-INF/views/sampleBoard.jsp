@@ -39,7 +39,7 @@
                       <th class="px-4 py-3">Status</th>
                       <th class="px-4 py-3">Date</th>
                     </tr>
-                  </thead>
+                 
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                   >
@@ -413,7 +413,7 @@
                     </tr>
                   </tbody>
                 </table>
-              </div>
+              </div>	
               <div
                 class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800"
               >

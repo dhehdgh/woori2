@@ -10,43 +10,22 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-
-function checkbox(){
-	 var checkbox = document.getElementById("deleteagree");
-	if (checkbox.checked){
-		checkbox.value = "1";
-	}else {
-		checkbox.value="2";
-	}
-}
-$(function() {	
-	$(".btn-userdelete").on("click", function(){
-		var deleteagree = $("#deleteagree").val();
+$(function() {
+	$(".btn-mycheck").on("click", function(){
 	    const checkPassword = $('#password').val();
-		 const pass = $('#pass').val();
+		const pass = $('#pass').val();
 	    if(!checkPassword || checkPassword.trim() === ""){
 	        alert("비밀번호를 입력하세요.");
-	        return false;
-	    }else if(deleteagree == "2" ){
-	    	alert("탈퇴처리 확인에 동의해주세요.");
-	    	return false;
-	    } 
-	    else{
-	    	 var answer=confirm("정말 탈퇴하시겠습니까?");
-	         if(answer){
-	        	 if(pass == checkPassword && deleteagree == 1){
-	        		 alert("탈퇴되었습니다.");
-	        			        		
+	    } else{
+	        	if(pass == checkPassword){	        		
+	        		 var url = 'myupdate.membernum?membernum=' + ${member.membernum};
+	                 window.open(url, "_self",  '');
 	        	 }else{
 	        		 alert("비밀번호가 맞지 않습니다.");
 	        		 return false;
 	        	 }
 	             
-	         }else{
-	        	 return false;
-	         }
-	    }
-	    
+	         }    
 	});		
 });	    
 	    
@@ -67,41 +46,25 @@ $(function() {
 	    	<h4 
 	            class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
 	         >
-	         회원 탈퇴
-	         </h4>
-	        
-	         <i class="fas fa-exclamation-triangle" style="color:red;"> 주의사항</i><br>
-	          	- 회원 탈퇴 시 계정과 관련된 정보는 복구가 불가능합니다.<br>
-	          	- 현재 보유 중인 쿠폰, 포인트는 모두 소멸되어 재가입 후에도 복구 할 수 없습니다.<br>
-	          	- 회원탈퇴 후 서비스에 입력하신 상품문의 및 후기, 댓글은 삭제되지 않으며, 회원정보 삭제로 인해 작성자 본인을 확인할 수 없어 편집 및 삭제처리가 원천적으로 불가능 합니다.<br>
-				- 상품문의 및 후기, 댓글 삭제를 원하시는 경우에는 먼저 해당 게시물을 삭제하신 후 탈퇴를 신청하시기 바랍니다.<br>
-				- 이미 결제가 완료된 건은 탈퇴로 취소되지 않습니다.<br>
-		</div>
-		<form action ="${contextPath}/board/memdelete" method="POST" id="memdeleteForm">
-			<div style="margin-top:40px;padding: 10px 20px;color: #005bdb">
-			 <input  type="checkbox" name="deleteagree" value="${memdelete.deleteagree}" id="deleteagree" data-type="checked" 
-			 style="accent-color: #0073e9" required oninvalid="this.setCustomValidity('탈퇴처리 주의사항 확인에 동의해주세요.')"
-			 onchange="checkbox()"
-				/> 	 	
-             	<span> 회원탈퇴 시 주의사항을 모두 확인하였음에 동의합니다.</span>             
-             </div>	
+	         내정보 수정
+	         </h4>	       	         
+		</div>           	
              	<div style="margin-top: 20px;padding: 20px;border: 1px solid #dae5eb;background-color: #e9f4fa;text-align:center">
 		            <p class="secession-validate-user-msg">
 		                <strong>보안을 위해 회원님의 비밀번호를 확인 합니다.</strong>
 		            </p>
-		            
 		            <label>
 		                <span>ID : </span>
-		                <input class="secession-validate-user-tf-name" type="text" readonly="true" value="${memdelete.id}">
+		                <input class="secession-validate-user-tf-name" type="text" readonly="true" value="${member.id}">
 		            </label>            
 		            <label>
 		                <span>비밀번호 : </span>
-		                 <input type="hidden" id="pass" name="pass" value="${memdelete.pw}">
+		                 <input type="hidden" id="pass" name="pass" value="${member.pw}">
 		                <input type="password" id="password" name="password"  placeholder="비밀번호를 입력해주세요.">
 		            </label>
 		        </div>
 		       		 <div style="float: right;margin-right: 40%;margin-top: 10px">
-        				<button type="submit" id="userdelete" name="userdelete" class="btn-userdelete"
+        				<button id="mycheck" name="mycheck" class="btn-mycheck"
                           style="    width: 116px;
 						    padding: 5px 3px 3px;
 						    margin-bottom: 7px;
@@ -116,9 +79,9 @@ $(function() {
 						    border: 1px solid #346AFF;
 						    position: relative"
     						value=""
-    						 >탈퇴
+    						 >확인
                           </button>
-        				<button type="button" id="cancle" name="cancle" 
+        				<button id="cancle" name="cancle" 
 	                          	style="    
 	                          	margin-top: 6px;
 	                          	width: 116px;
@@ -137,7 +100,7 @@ $(function() {
 	    						 onclick="location.href='myorderlist';">취소
 	                          </button> <br><br>                                                                              
 	                 </div>          
-        	</form>
+        	
       </div>
       
     </div>

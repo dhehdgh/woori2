@@ -41,7 +41,9 @@ input:focus {
 .section_padding {
   padding: 140px 0px;
 }
-
+.section_padding_my {
+  padding: 80px 0px;
+}
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
   /* line 24, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_common.scss */
   .section_padding {
@@ -590,23 +592,7 @@ ul {
   margin-left: 15px;
 }
 
-/*=================== custom button rule start ====================*/
-/* line 113, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_button.scss */
-.button {
-  display: inline-block;
-  border: 1px solid transparent;
-  font-size: 15px;
-  font-weight: 500;
-  padding: 12px 54px;
-  border-radius: 4px;
-  color: #fff;
-  border: 1px solid #edeff2;
-  text-transform: uppercase;
-  background-color: #ff3368;
-  cursor: pointer;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-}
+
 
 @media (max-width: 767px) {
   /* line 113, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_button.scss */
@@ -3476,6 +3462,16 @@ ul {
   margin-top: 20px;
   font-size: 18px;
   color: #2a2a2a;
+  font-weight: 500;
+  line-height: 40px;
+  position: relative;
+}
+
+.l_w_title h2 {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-size: 30px;
+  color: black;
   font-weight: 500;
   line-height: 40px;
   position: relative;

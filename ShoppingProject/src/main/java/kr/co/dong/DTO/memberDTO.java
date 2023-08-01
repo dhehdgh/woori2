@@ -4,21 +4,83 @@ public class memberDTO {
 	public int membernum;
 	public String id;
 	public String pw;
+	public String name;	
 	public String email;
 	public String tel;
 	public String birth;
 	public int point;
 	public int pointac;
-	public String roadaddr;
-	public String jibunaddr;
-	public String detailaddr;
-	public String extraaddr;
-	public int postcode;
 	public String joindate;
 	public int state;
 	public int authority;
 	public int gender;
 	public int agree;
+	public String gen;
+	public String roadaddr;
+	public String jibunaddr;
+	public String detailaddr;
+	public String extraaddr;
+	public int postcode;
+	
+	public String getRoadaddr() {
+		return roadaddr;
+	}
+	public void setRoadaddr(String roadaddr) {
+		this.roadaddr = roadaddr;
+	}
+	public String getJibunaddr() {
+		return jibunaddr;
+	}
+	public void setJibunaddr(String jibunaddr) {
+		this.jibunaddr = jibunaddr;
+	}
+	public String getDetailaddr() {
+		return detailaddr;
+	}
+	public void setDetailaddr(String detailaddr) {
+		this.detailaddr = detailaddr;
+	}
+	public String getExtraaddr() {
+		return extraaddr;
+	}
+	public void setExtraaddr(String extraaddr) {
+		this.extraaddr = extraaddr;
+	}
+	public int getPostcode() {
+		return postcode;
+	}
+	public void setPostcode(int postcode) {
+		this.postcode = postcode;
+	}
+	public String getGen() {
+		return gen;
+	}
+	public void setGen(String gen) {
+		this.gen = gen;
+	}
+	private addressDTO addressDTO;
+	public String deleteagree;
+	
+	public String getDeleteagree() {
+		return deleteagree;
+	}
+	public void setDeleteagree(String deleteagree) {
+		this.deleteagree = deleteagree;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
+	public addressDTO getAddressDTO() {
+		return addressDTO;
+	}
+	public void setAddressDTO(addressDTO addressDTO) {
+		this.addressDTO = addressDTO;
+	}
 	public int getMembernum() {
 		return membernum;
 	}
@@ -67,36 +129,7 @@ public class memberDTO {
 	public void setPointac(int pointac) {
 		this.pointac = pointac;
 	}
-	public String getRoadaddr() {
-		return roadaddr;
-	}
-	public void setRoadaddr(String roadaddr) {
-		this.roadaddr = roadaddr;
-	}
-	public String getJibunaddr() {
-		return jibunaddr;
-	}
-	public void setJibunaddr(String jibunaddr) {
-		this.jibunaddr = jibunaddr;
-	}
-	public String getDetailaddr() {
-		return detailaddr;
-	}
-	public void setDetailaddr(String detailaddr) {
-		this.detailaddr = detailaddr;
-	}
-	public String getExtraaddr() {
-		return extraaddr;
-	}
-	public void setExtraaddr(String extraaddr) {
-		this.extraaddr = extraaddr;
-	}
-	public int getPostcode() {
-		return postcode;
-	}
-	public void setPostcode(int postcode) {
-		this.postcode = postcode;
-	}
+	
 	public String getJoindate() {
 		return joindate;
 	}
@@ -129,12 +162,14 @@ public class memberDTO {
 	}
 	@Override
 	public String toString() {
-		return "memberDTO [membernum=" + membernum + ", id=" + id + ", pw=" + pw + ", email=" + email + ", tel=" + tel
-				+ ", birth=" + birth + ", point=" + point + ", pointac=" + pointac + ", roadaddr=" + roadaddr
-				+ ", jibunaddr=" + jibunaddr + ", detailaddr=" + detailaddr + ", extraaddr=" + extraaddr + ", postcode="
-				+ postcode + ", joindate=" + joindate + ", state=" + state + ", authority=" + authority + ", gender="
-				+ gender + ", agree=" + agree + "]";
+		return "memberDTO [membernum=" + membernum + ", id=" + id + ", pw=" + pw + ", name=" + name + ", email=" + email
+				+ ", tel=" + tel + ", birth=" + birth + ", point=" + point + ", pointac=" + pointac + ", joindate="
+				+ joindate + ", state=" + state + ", authority=" + authority + ", gender=" + gender + ", agree=" + agree
+				+ ", gen=" + gen + ", roadaddr=" + roadaddr + ", jibunaddr=" + jibunaddr + ", detailaddr=" + detailaddr
+				+ ", extraaddr=" + extraaddr + ", postcode=" + postcode + ", addressDTO=" + addressDTO
+				+ ", deleteagree=" + deleteagree + "]";
 	}
+	
 	
 	
 
