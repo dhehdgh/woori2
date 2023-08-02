@@ -95,11 +95,11 @@
 											<option value="1">상의</option>
 											<option value="2">바지</option>
 											<option value="3">스커트</option>
-											<option value="4">아우터</option>
-											<option value="5">신발</option>
-											<option value="6">모자</option>
-											<option value="7">악세서리</option>
-											<option value="8">원피스</option>
+											<option value="4">원피스</option>
+											<option value="5">아우터</option>
+											<option value="6">악세서리</option>
+											<option value="7">모자</option>
+											<option value="8">신발</option>
 										</select>
 										<select id="categoryType2" name="categoryType2">
 											<option value="0">=카테고리선택=</option>
@@ -396,73 +396,75 @@
 
         // 상위 카테고리에 따라 하위 카테고리 옵션 설정
         switch (selectedCategory) {
-        	case "0":
-        		categoryType2.append('<option value="0">=카테고리선택=</option>');
-        		break;
-            case "1": 
-                // 상위 카테고리 1에 해당하는 하위 카테고리 옵션 설정
-                categoryType2.append('<option value="0" selected>=카테고리선택=</option>');
-                categoryType2.append('<option value="1">반팔티</option>');
-                categoryType2.append('<option value="2">긴팔티</option>');
-                categoryType2.append('<option value="3">니트</option>');
-                categoryType2.append('<option value="4">셔츠</option>');
-                break;
-            case "2":
-                // 상위 카테고리 2에 해당하는 하위 카테고리 옵션 설정
-                categoryType2.append('<option value="0">=카테고리선택=</option>');
-                categoryType2.append('<option value="5">반바지</option>');
-                categoryType2.append('<option value="6">청바지</option>');
-                categoryType2.append('<option value="7">면바지</option>');
-                break;
-            case "3":
-                // 상위 카테고리 2에 해당하는 하위 카테고리 옵션 설정
-                categoryType2.append('<option value="0">=카테고리선택=</option>');
-                categoryType2.append('<option value="8">미니스커트</option>');
-                categoryType2.append('<option value="9">미디엄스커트</option>');
-                categoryType2.append('<option value="10">롱스커트</option>');
-                break;
-            case "4":
-                // 상위 카테고리 2에 해당하는 하위 카테고리 옵션 설정
-                categoryType2.append('<option value="0">=카테고리선택=</option>');
-                categoryType2.append('<option value="11">코트</option>');
-                categoryType2.append('<option value="12">패딩</option>');
-                categoryType2.append('<option value="13">자켓</option>');
-                break;
-            case "5":
-                // 상위 카테고리 2에 해당하는 하위 카테고리 옵션 설정
-                categoryType2.append('<option value="0">=카테고리선택=</option>');
-                categoryType2.append('<option value="14">운동화</option>');
-                categoryType2.append('<option value="15">슬리퍼</option>');
-                categoryType2.append('<option value="16">구두</option>');
-                categoryType2.append('<option value="17">샌들</option>');
-                break;
-            case "6":
-                // 상위 카테고리 2에 해당하는 하위 카테고리 옵션 설정
-                categoryType2.append('<option value="0">=카테고리선택=</option>');
-                categoryType2.append('<option value="18">캡모자</option>');
-                categoryType2.append('<option value="19">비니</option>');
-                categoryType2.append('<option value="20">기타</option>');
-                break;
-            case "7":
-                // 상위 카테고리 2에 해당하는 하위 카테고리 옵션 설정
-                categoryType2.append('<option value="0">=카테고리선택=</option>');
-                categoryType2.append('<option value="21">목걸이</option>');
-                categoryType2.append('<option value="22">벨트</option>');
-                categoryType2.append('<option value="23">시계</option>');
-                break;
-            case "8":
-                // 상위 카테고리 2에 해당하는 하위 카테고리 옵션 설정
-                categoryType2.append('<option value="0">=카테고리선택=</option>');
-                categoryType2.append('<option value="24">미니원피스</option>');
-                categoryType2.append('<option value="25">미디엄원피스</option>');
-                categoryType2.append('<option value="26">롱원피스</option>');
-                break;
-                
-            default:
-                // 상위 카테고리를 선택하지 않은 경우 기본 선택 옵션
-                categoryType2.append('<option value="0">=카테고리선택=</option>');
-                break;
-        }
+	        	case "0":
+	        		categoryType2.append('<option value="0">=카테고리선택=</option>');
+	        		break;
+	            case "1": 
+	                // 상위 카테고리 1에 해당하는 하위 카테고리 옵션 설정
+	                categoryType2.append('<option value="0" >=카테고리선택=</option>');
+	                categoryType2.append('<option value="1" ${item.items == 1 ? "selected" : ""}>니트/스웨터</option>');
+	                categoryType2.append('<option value="2" ${item.items == 2 ? "selected" : ""}>후드티</option>');
+	                categoryType2.append('<option value="3" ${item.items == 3 ? "selected" : ""}>맨투맨</option>');
+	                categoryType2.append('<option value="4" ${item.items == 4 ? "selected" : ""}>셔츠</option>');
+	                break;
+	            case "2":
+	                // 상위 카테고리 2에 해당하는 하위 카테고리 옵션 설정
+	                categoryType2.append('<option value="0">=카테고리선택=</option>');
+	                categoryType2.append('<option value="5" ${item.items == 5 ? "selected" : ""}>데님팬츠</option>');
+	                categoryType2.append('<option value="6" ${item.items == 6 ? "selected" : ""}>트레이닝팬츠</option>');
+	                categoryType2.append('<option value="7" ${item.items == 7 ? "selected" : ""}>코튼팬츠</option>');
+	                categoryType2.append('<option value="8" ${item.items == 8 ? "selected" : ""}>슬랙스</option>');
+	                break;
+	            case "3":
+	                // 상위 카테고리 2에 해당하는 하위 카테고리 옵션 설정
+	                categoryType2.append('<option value="0">=카테고리선택=</option>');
+	                categoryType2.append('<option value="9" ${item.items == 9 ? "selected" : ""}>미니스커트</option>');
+	                categoryType2.append('<option value="10" ${item.items == 10 ? "selected" : ""}>미디스커트</option>');
+	                categoryType2.append('<option value="11" ${item.items == 11 ? "selected" : ""}>롱스커트</option>');
+	                break;
+	            case "4":
+	                // 상위 카테고리 2에 해당하는 하위 카테고리 옵션 설정
+	                categoryType2.append('<option value="0">=카테고리선택=</option>');
+	                categoryType2.append('<option value="12" ${item.items == 12 ? "selected" : ""}>미니원피스</option>');
+	                categoryType2.append('<option value="13" ${item.items == 13 ? "selected" : ""}>미디원피스</option>');
+	                categoryType2.append('<option value="14" ${item.items == 14 ? "selected" : ""}>롱원피스</option>');
+	                break;
+	            case "5":
+	                // 상위 카테고리 2에 해당하는 하위 카테고리 옵션 설정
+	                categoryType2.append('<option value="0">=카테고리선택=</option>');
+	                categoryType2.append('<option value="15" ${item.items == 15 ? "selected" : ""}>후드집업</option>');
+	                categoryType2.append('<option value="16" ${item.items == 16 ? "selected" : ""}>코트</option>');
+	                categoryType2.append('<option value="17" ${item.items == 17 ? "selected" : ""}>가디건</option>');
+	                categoryType2.append('<option value="18" ${item.items == 18 ? "selected" : ""}>패딩</option>');
+	                categoryType2.append('<option value="19" ${item.items == 19 ? "selected" : ""}>재킷</option>');
+	                break;
+	            case "6":
+	                // 상위 카테고리 2에 해당하는 하위 카테고리 옵션 설정
+	                categoryType2.append('<option value="0">=카테고리선택=</option>');
+	                categoryType2.append('<option value="20" ${item.items == 20 ? "selected" : ""}>벨트</option>');
+	                categoryType2.append('<option value="21" ${item.items == 21 ? "selected" : ""}>머플러</option>');
+	                categoryType2.append('<option value="22" ${item.items == 22 ? "selected" : ""}>넥타이</option>');
+	                categoryType2.append('<option value="23" ${item.items == 23 ? "selected" : ""}>기타 액세서리</option>');
+	                break;
+	            case "7":
+	                // 상위 카테고리 2에 해당하는 하위 카테고리 옵션 설정
+	                categoryType2.append('<option value="0">=카테고리선택=</option>');
+	                categoryType2.append('<option value="24" ${item.items == 24 ? "selected" : ""}>캡</option>');
+	                categoryType2.append('<option value="25" ${item.items == 25 ? "selected" : ""}>비니</option>');
+	                break;
+	            case "8":
+	                // 상위 카테고리 2에 해당하는 하위 카테고리 옵션 설정
+	                categoryType2.append('<option value="0">=카테고리선택=</option>');
+	                categoryType2.append('<option value="26" ${item.items == 26 ? "selected" : ""}>운동화</option>');
+	                categoryType2.append('<option value="27" ${item.items == 27 ? "selected" : ""}>슬리퍼</option>');
+	                categoryType2.append('<option value="28" ${item.items == 28 ? "selected" : ""}>구두</option>');
+	                break;
+	                
+	            default:
+	                // 상위 카테고리를 선택하지 않은 경우 기본 선택 옵션
+	                categoryType2.append('<option value="0">=카테고리선택=</option>');
+	                break;
+	        }
     });
  
  

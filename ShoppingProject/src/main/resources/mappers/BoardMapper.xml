@@ -104,7 +104,7 @@
 		<result column="rstate" property="rstate"/>
 		<result column="salevalue" property="salevalue"/>
 		<result column="pointvalue" property="pointvalue"/>
-		<collection property="addressDTO" resultMap="addressMapper"/>
+		<association property="addressDTO" resultMap="addressMapper"/>
 	</resultMap>
 	<resultMap id="addressMapper" type="kr.co.dong.DTO.AddressDTO">
 		<result column="addrnum" property="addrnum"/>
@@ -121,7 +121,7 @@
 		<result column="dv_itemno" property="dv_itemno"/>
 		<result column="buynum" property="buynum"/>
 		<result column="cartno" property="cartno"/>
-		<collection property="cartDTO" resultMap="cartMapper"/>
+		<association property="cartDTO" resultMap="cartMapper"/>
 	</resultMap>
 	<resultMap id="cartMapper" type="kr.co.dong.DTO.CartDTO">
       	<result column="cartno" property="cartno"/>
@@ -130,9 +130,9 @@
       	<result column="itemnum" property="itemnum"/>
       	<result column="cartstate" property="cartstate"/>
       	<result column="itemcnt" property="itemcnt"/>
-      	<collection property="memberDTO" resultMap="memberMapper2"/>
-      	<collection property="iv_itemDTO" resultMap="iv_itemMapper2"/>
-      	<collection property="itemDTO" resultMap="itemMapper2"/>
+      	<association property="memberDTO" resultMap="memberMapper2"/>
+      	<association property="iv_itemDTO" resultMap="iv_itemMapper2"/>
+      	<association property="itemDTO" resultMap="itemMapper2"/>
    	</resultMap>
    	<resultMap id="memberMapper2" type="kr.co.dong.DTO.MemberDTO">
    	  	<result column="membernum" property="membernum"/>
@@ -155,6 +155,14 @@
    	  	<result column="gender" property="gender"/>
    	  	<result column="agree" property="agree"/>
    	  	<result column="deleteagree" property="deleteagree"/>
+   	  	<association property="rankDTO" resultMap="rankMapper2"/>
+   	</resultMap>
+   	<resultMap id="rankMapper2" type="kr.co.dong.DTO.RankDTO">
+   		<result column="rating" property="rating"/>
+   		<result column="lowpoint" property="lowpoint"/>
+   		<result column="highpoint" property="highpoint"/>
+   		<result column="discount" property="discount"/>
+   		<result column="accumulation" property="accumulation"/>
    	</resultMap>
  	<resultMap id="iv_itemMapper2" type="kr.co.dong.DTO.Iv_itemDTO">
 		<result column="iv_itemnum" property="iv_itemnum"/>
@@ -292,9 +300,9 @@
    	  	<result column="gender" property="gender"/>
    	  	<result column="agree" property="agree"/>
    	  	<result column="deleteagree" property="deleteagree"/>
-   	  	<association property="rankDTO"></association>
+   	  	<association property="rankDTO" resultMap="rankMapper"></association>
    	</resultMap>
-   	<resultMap type="rankMapper" id="kr.co.dong.DTO.RankDTO">
+   	<resultMap id="rankMapper" type="kr.co.dong.DTO.RankDTO">
    		<result column="rating" property="rating"/>
    		<result column="lowpoint" property="lowpoint"/>
    		<result column="highpoint" property="highpoint"/>
@@ -304,7 +312,8 @@
     
 	<select id="adminItem" resultMap="itemMapper">
 	   select
-	        I.itemnum,I.itemname,I.itempay, I.itemdate, 
+	        I.itemnum,I.itemname,I.itempay, I.itemdate,
+	        (select sum(iv_item.itembuycnt) from iv_item where iv_item.itemnum = I.itemnum) as itembuycnt,
 	        (select codestring from codetable where codename="대분류" and codenum = I.itemb) AS itemb,
 			(select codestring from codetable where codename="소분류" and codenum = I.items) AS items,
 	        I.itemcontent,I.sale,I.rstar,IMG.imgnum,IMG.url,IMG.imgname
@@ -315,7 +324,8 @@
 
 	
 	<select id="adminItemSearch" resultMap="itemMapper" parameterType="java.util.Map">
-		select I.itemnum,I.itemname,I.itempay,I.itembuycnt, I.itemdate, 
+		select I.itemnum,I.itemname,I.itempay,I.itemdate,
+			(select sum(iv_item.itembuycnt) from iv_item where iv_item.itemnum = I.itemnum) as itembuycnt,
 	        (select codestring from codetable where codename="대분류" and codenum = I.itemb) AS itemb,
 			(select codestring from codetable where codename="소분류" and codenum = I.items) AS items,
 	        I.itemcontent,I.sale,I.rstar,IMG.imgnum,IMG.url,IMG.imgname
@@ -358,13 +368,14 @@
 	</insert>
 	
 	<select id="adminItemDetail" resultMap="itemMapper" parameterType="java.lang.Integer">
-		select ITEM.*,IMG.* 
-		from item ITEM join img IMG on(ITEM.itemnum = IMG.itemnum)
+		select ITEM.*,IMG.*,(select sum(iv_item.itembuycnt) from iv_item where iv_item.itemnum = ITEM.itemnum) as itembuycnt
+		from item ITEM 
+		join img IMG on(ITEM.itemnum = IMG.itemnum)
 		where ITEM.itemnum = #{itemnum}
 	</select>
 	
 	<select id="adminItemDetail2" resultType="Iv_itemDTO" parameterType="java.lang.Integer">
-		select iv_itemnum,itemnum,itemcnt,iv_date, 
+		select iv_itemnum,itemnum,itemcnt,iv_date,itembuycnt,
 		(select codestring from codetable where codename="사이즈" and codenum = itemsize) as itemsize,
 		(select codestring from codetable where codename="색깔" and codenum = itemcolor) as itemcolor,
 		(select codestring from codetable where codename="재고상태" and codenum = itemstate) as itemstate
@@ -443,13 +454,21 @@
 	    and authority != 0
 	</select>
 	
-	<select id="adminMemberDetail" resultMap="MemberMapper5" parameterType="java.lang.Integer">
-		select membernum,id,name,email,tel,birth,point,pointac,roadaddr,jibunaddr,detailaddr,extraaddr,postcode,joindate,state,authority,gender,agree
-		from member
-		join ratinglist 
+	<select id="adminMemberDetail" resultMap="memberMapper5" parameterType="java.lang.Integer">
+		select M.*,R.rating
+		from member M
+		join ratinglist R on (M.pointac between R.lowpoint and R.highpoint)
 		where membernum = #{membernum}
 	</select>
-	
+	<select id="adminMemberDetailPoint" resultType="MemberDTO" parameterType="java.lang.Integer">
+		select * from member
+		where membernum = #{membernum}
+	</select>
+	<update id="adminMemberDetailPointUpdate" parameterType="java.util.Map">
+		update member
+		set point = point + #{pointAdd}, pointac = pointac + #{pointAdd}
+		where id = #{id}
+	</update>
 	<update id="adminMemberUpdate" parameterType="MemberDTO">
 		update member
 		set name = #{name},
@@ -597,6 +616,7 @@
 	        </foreach>
 	    </if>
 	    and O.state not in(5,6,7)
+	    order by O.buynum desc
 	</select>
 	
 	<select id="adminOrderDetail" resultMap="returnMapper" parameterType="java.lang.Integer">
@@ -606,6 +626,8 @@
 	           A.delroadaddr, A.deljibunaddr, A.deldetailaddr, A.delextraaddr, A.delpostcode,
 	           (SELECT codestring FROM codetable WHERE codename='결제방법' AND codenum=O.paymethod) AS paymethod,
 	           (SELECT codestring FROM codetable WHERE codename='주문상태' AND codenum=O.state) AS state_nm,
+	           (select discount from ratinglist where rating = R.rating) as discount,
+	           (select accumulation from ratinglist where rating = R.rating) as accumulation,
 	           IMG.url, IMG.imgname
 	    from dv_order O
 	    join dv_order_item D on (D.buynum = O.buynum)
@@ -615,13 +637,14 @@
 	    join iv_item IV on (C.itemnum = IV.itemnum)
 	    join address A on (A.addrnum = O.addrnum)
 	    join img IMG on (I.itemnum = IMG.itemnum)
+	    join ratinglist R on (M.pointac between R.lowpoint and R.highpoint)
 	    where O.buynum = #{buynum}
 	</select>
 	
 	<update id="adminOrderDetail2" parameterType="java.lang.Integer">
 		update dv_order
 		set state = 2
-		where buynum = #{buynum}
+		where buynum = #{buynum} and state = 3
 	</update>
 	
 	<update id="adminDeliveryCom">
@@ -688,7 +711,9 @@
 	           A.delroadaddr, A.deljibunaddr, A.deldetailaddr, A.delextraaddr, A.delpostcode,
 	           (SELECT codestring FROM codetable WHERE codename='결제방법' AND codenum=O.paymethod) AS paymethod,
 	           (SELECT codestring FROM codetable WHERE codename='주문상태' AND codenum=O.state) AS state_nm,
-	    	   (SELECT codestring FROM codetable WHERE codename='반품상태' AND codenum=R.state) AS state
+	    	   (SELECT codestring FROM codetable WHERE codename='반품상태' AND codenum=R.state) AS state,
+	    	   (select discount from ratinglist where rating = RL.rating) as discount,
+	           (select accumulation from ratinglist where rating = RL.rating) as accumulation
 		from itemreturn R
 		join dv_order O on (R.buynum = O.buynum)
 		join address A on (A.addrnum = O.addrnum)
@@ -698,6 +723,7 @@
 		join member M on (M.membernum = C.membernum)
 		join iv_item IV on (C.itemnum = IV.itemnum)
 		join img IMG on (I.itemnum = IMG.itemnum)
+		join ratinglist RL on (M.pointac between RL.lowpoint and RL.highpoint)
 		where returnnum = #{returnnum}
 	</select>
 	
@@ -764,7 +790,9 @@
 	           A.delroadaddr, A.deljibunaddr, A.deldetailaddr, A.delextraaddr, A.delpostcode,
 	           (SELECT codestring FROM codetable WHERE codename='결제방법' AND codenum=O.paymethod) AS paymethod,
 	           (SELECT codestring FROM codetable WHERE codename='주문상태' AND codenum=O.state) AS state_nm,
-	    	   (SELECT codestring FROM codetable WHERE codename='반품상태' AND codenum=R.state) AS state
+	    	   (SELECT codestring FROM codetable WHERE codename='반품상태' AND codenum=R.state) AS state,
+	    	   (select discount from ratinglist where rating = RL.rating) as discount,
+	           (select accumulation from ratinglist where rating = RL.rating) as accumulation
 		from itemreturn R
 		join dv_order O on (R.buynum = O.buynum)
 		join address A on (A.addrnum = O.addrnum)
@@ -774,6 +802,7 @@
 		join member M on (M.membernum = C.membernum)
 		join iv_item IV on (C.itemnum = IV.itemnum)
 		join img IMG on (I.itemnum = IMG.itemnum)
+		join ratinglist RL on (M.pointac between RL.lowpoint and RL.highpoint)
 		where R.type = 2 and returnnum = #{returnnum}
 	</select>
 	

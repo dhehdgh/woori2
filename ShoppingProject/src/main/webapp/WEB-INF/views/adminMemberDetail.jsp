@@ -124,6 +124,8 @@
 							        <input type="radio" name="gender" id="female" value="2" ${member.gender == "2" ? "checked" : ""} class="frm_input">
 							        <label for="female">여성</label>
 							    </td>
+							    <th scope="row">가입일</th>
+								<td><input type="text" name="joindate" value="${member.joindate}" class="frm_input" readonly></td>
 							</tr>
 							<tr>
 								<th scope="row">주소</th>
@@ -138,27 +140,28 @@
 								</td>
 							</tr>
 							<tr>
-								<th scope="row">등급</th>
-									<td>
-									    <select id="mb_grade" name="mb_grade">
-									        <option value='6' {member.grade == 6 ? "selected" : ""}>[6] 다이아</option>
-									        <option value='5' {member.grade == 5 ? "selected" : ""}>[5] 플래티넘</option>
-									        <option value='4' {member.grade == 4 ? "selected" : ""}>[4] 골드</option>
-									        <option value='3' {member.grade == 3 ? "selected" : ""}>[3] 실버</option>
-									        <option value='2' {member.grade == 2 ? "selected" : ""}>[2] 브론즈</option>
-									        <option value='1' {member.grade == 1 ? "selected" : ""}>[1] 신입</option>
-									    </select>
-									</td>
 								<th scope="row">포인트</th>
 								<td>
+									<b>${member.point}</b> Point
+								</td>
+								<th scope="row">누적포인트</th>
+								<td>
 									<b>${member.pointac}</b> Point
-									<a href="http://demofran.com/admin/member/member_point_req.php?mb_id=tubeweb3" onclick="win_open(this,'pop_point_req','600','500','yes');return false;" 
-											class="genric-btn primary-border small">강제적립</a>
+									<a href="#" onclick="openPopup('${contextPath}/board/adminMemberDetailPoint?membernum=${member.membernum}', '600', '500')"class="genric-btn primary-border small">강제적립</a>
 								</td>
 							</tr>
 							<tr>
-								<th scope="row">가입일</th>
-								<td><input type="text" name="joindate" value="${member.joindate}" class="frm_input" readonly></td>
+								<th scope="row">등급</th>
+								<td>
+								    <select id="mb_grade" name="mb_grade">
+									    <option value='6' ${member.rankDTO.rating == 6 ? "selected" : ""}>[6] 다이아</option>
+									    <option value='5' ${member.rankDTO.rating == 5 ? "selected" : ""}>[5] 플래티넘</option>
+									    <option value='4' ${member.rankDTO.rating == 4 ? "selected" : ""}>[4] 골드</option>
+									    <option value='3' ${member.rankDTO.rating == 3 ? "selected" : ""}>[3] 실버</option>
+									    <option value='2' ${member.rankDTO.rating == 2 ? "selected" : ""}>[2] 브론즈</option>
+									    <option value='1' ${member.rankDTO.rating == 1 ? "selected" : ""}>[1] 신입</option>
+									</select>
+								</td>
 								<th scope="row">권한</th>
 							    <td>
 							        <input type="radio" name="authority" id="general" value="1" ${member.authority == "1" ? "checked" : ""} class="frm_input">
@@ -388,6 +391,20 @@
             }
         }).open();
     }
+	
+	// 팝업창
+	function openPopup(url, width, height) {
+        var left = (screen.width - width) / 2;
+        var top = (screen.height - height) / 2;
+        var popup = window.open(url, 'popup', 'width=' + width + ', height=' + height + ', left=' + left + ', top=' + top + ', resizable=no');
+        
+     	// 팝업창이 닫힐 때 이벤트 리스너 등록
+        popup.onbeforeunload = function () {
+            // 부모창 새로고침
+            window.location.reload();
+        };
+    }
+	
 	</script>
 </body>
 

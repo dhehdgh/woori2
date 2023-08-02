@@ -47,6 +47,10 @@ public interface BoardDAO {
 	
 	public MemberDTO adminMemberDetail(int membernum);
 	
+	public MemberDTO adminMemberDetailPoint(int membernum);
+	
+	public int adminMemberDetailPointUpdate(String id, String pointAdd);
+	
 	public int adminMemberUpdate(MemberDTO memberDTO);
 	
 	public int adminMemberDelete(MemberDTO memberDTO);
@@ -86,6 +90,8 @@ public interface BoardDAO {
 	public List<ReturnDTO> adminReturnSearch(String searchType,String search, String dateType, String startDate, String endDate, String[] paymethod, String[] state);
 	
 	public List<ReturnDTO> adminReturnDetail(int returnnum);
+	
+	public ReturnDTO test2(int returnnum);
 	
 	public int adminReturnDetail2(int returnnum);
 	

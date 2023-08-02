@@ -138,6 +138,21 @@ public class BoardDAOImpl implements BoardDAO{
 		// TODO Auto-generated method stub
 		return sqlsession.selectOne(namespace+".adminMemberDetail",membernum);
 	}
+
+	@Override
+	public MemberDTO adminMemberDetailPoint(int membernum) {
+		// TODO Auto-generated method stub
+		return sqlsession.selectOne(namespace+".adminMemberDetailPoint",membernum);
+	}
+
+	@Override
+	public int adminMemberDetailPointUpdate(String id, String pointAdd) {
+		// TODO Auto-generated method stub
+		Map<String, Object> Map = new HashMap<>();
+        Map.put("id", id);
+        Map.put("pointAdd", pointAdd);
+		return sqlsession.update(namespace+".adminMemberDetailPointUpdate",Map);
+	}
 	
 	@Override
 	public int adminMemberUpdate(MemberDTO memberDTO) {
@@ -282,6 +297,12 @@ public class BoardDAOImpl implements BoardDAO{
 	public List<ReturnDTO> adminReturnDetail(int returnnum) {
 		// TODO Auto-generated method stub
 		return sqlsession.selectList(namespace+".adminReturnDetail",returnnum);
+	}
+	
+	@Override
+	public ReturnDTO test2(int returnnum) {
+		// TODO Auto-generated method stub
+		return sqlsession.selectOne(namespace+".test2",returnnum);
 	}
 	
 	@Override

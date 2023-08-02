@@ -286,6 +286,24 @@ public class BoardController {
 		return "adminMemberDetail";
 	}
 	
+	// 관리자 회원정보 포인트수정 이동
+	@GetMapping("board/adminMemberDetailPoint")
+	public String adminMemberDetailPoint(Model model,int membernum) throws Exception{
+		MemberDTO member = service.adminMemberDetailPoint(membernum);
+		model.addAttribute("point", member);
+		return "adminMemberDetailPoint";
+	}
+	
+	// 관리자 회원정보 포인트 수정 실행
+	@ResponseBody
+	@PostMapping("board/adminMemberDetailPointUpdate")
+	public String adminMemberDetailPointUpdate(@RequestBody Map<String, Object> formData) throws Exception{
+		String id = (String) formData.get("id");
+        String pointAdd = (String) formData.get("pointAdd");
+		service.adminMemberDetailPointUpdate(id, pointAdd);
+		return "";
+	}
+	
 	// 관리자 회원정보 수정 실행
 	@PostMapping("board/adminMemberDetail")			// 디테일에서 바로 처리함
 	public String adminMemberUpdate(MemberDTO memberDTO) throws Exception{
@@ -446,6 +464,7 @@ public class BoardController {
 	public String adminOrderDetail(int buynum,Model model) throws Exception{
 		List<ReturnDTO> adminOrder = service.adminOrderDetail(buynum);
 		model.addAttribute("order", adminOrder);
+		System.out.println(adminOrder);
 		return "adminOrderDetail";
 	}
 	
@@ -486,7 +505,6 @@ public class BoardController {
 	@GetMapping("board/adminReturnDetail")
 	public String adminReturnDetail(Model model,int returnnum) throws Exception{
 		List<ReturnDTO> re = service.adminReturnDetail(returnnum);
-		System.out.println(re);
 		model.addAttribute("re",re);
 		return "adminReturnDetail";
 	}
@@ -528,7 +546,6 @@ public class BoardController {
 	@GetMapping("board/adminExchangeDetail")
 	public String adminExchangeDetail(Model model, int returnnum) throws Exception{
 		List<ReturnDTO> ex = service.adminExchangeDetail(returnnum);
-		System.out.println(ex);
 		model.addAttribute("ex", ex);
 		return "adminExchangeDetail";
 	}
@@ -591,8 +608,14 @@ public class BoardController {
 		return "redirect:/board/adminReviewDetail?drnum="+dr_reviewDTO.getDrnum();
 	}
 	
-	@GetMapping("board/test2")
-	public String test2() {
-		return "test2";
-	}
+	// 관리자 반품상세 이동
+		@GetMapping("board/test2")
+		public String test2(Model model,int returnnum,int buynum) throws Exception{
+			List<ReturnDTO> re = service.adminReturnDetail(returnnum);
+			model.addAttribute("re",re);
+			List<ReturnDTO> adminOrder = service.adminOrderDetail(buynum);
+			model.addAttribute("order", adminOrder);
+			System.out.println(adminOrder);
+			return "adminReturnDetail";
+		}
 }

@@ -81,6 +81,8 @@
 								<c:set var="deljibunaddr" value="${order.orderDTO.addressDTO.deljibunaddr}" scope="request" />
 								<c:set var="delextraaddr" value="${order.orderDTO.addressDTO.delextraaddr}" scope="request" />
 								<c:set var="deldetailaddr" value="${order.orderDTO.addressDTO.deldetailaddr}" scope="request" />
+								<c:set var="discount" value="${order.dv_order_itemDTO.cartDTO.memberDTO.rankDTO.discount}" scope="request" />
+								<c:set var="accumulation" value="${order.dv_order_itemDTO.cartDTO.memberDTO.rankDTO.accumulation}" scope="request" />
 							</c:forEach>
 							<p>
 								주문일시 <strong>${buydate}</strong> <span class="fc_214">|</span>
@@ -154,16 +156,20 @@
 								<td class="td_thick">${payment}원</td>
 							</tr>
 							<tr>
+							  	<th scope="row">등급할인</th>
+							  	<td class="td_thick">(-) <span id="discountAmount">${(payment * discount / 100)}</span>원</td>
+							</tr>
+							<tr>
 								<th scope="row">포인트결제</th>
-								<td class="td_thick">(-) ${pointvalue}원</td>
+								<td class="td_thick">(-) <span id="pointValue">${pointvalue}</span>원</td>
 							</tr>
 							<tr>
 								<th scope="row">실 결제금액</th>
-								<td class="td_thick">${payment-pointvalue}원</td>
+								<td class="td_thick"><span id="finalAmount">${(payment-pointvalue - payment * discount / 100)}</span>원</td>
 							</tr>
 							<tr>
 								<th scope="row">포인트적립</th>
-								<td class="td_thick">0원</td>
+								<td class="td_thick"><span id="accumulationAmount">${(payment * accumulation / 100)}</span>원</td>
 							</tr>
 							</tbody>
 							</table>
@@ -230,6 +236,13 @@
     <!-- jquery plugins here-->
 	<%@ include file="include/javascript.jsp" %>
     <%@ include file="include/style.jsp" %>
-
+    <script>
+	    $(document).ready(function() {
+	        $("#discountAmount").text(Math.floor(${(payment * discount / 100)}));
+	        $("#pointValue").text(Math.floor(${pointvalue}));
+	        $("#finalAmount").text(Math.floor(${(payment-pointvalue - payment * discount / 100)}));
+	        $("#accumulationAmount").text(Math.floor(${(payment * accumulation / 100)}));
+	    });
+	</script>
 </body>
 </html>

@@ -164,7 +164,7 @@
 						</thead>
 						<tbody class="list">
 							<c:forEach items="${adminReturn}" var="adminReturn">
-						        <tr onclick="window.location.href = '${contextPath}/board/adminReturnDetail?returnnum=${adminReturn.returnnum}';" onmouseover="this.style.cursor='pointer';">
+						        <tr onclick="window.location.href = '${contextPath}/board/adminReturnDetail?returnnum=${adminReturn.returnnum}&buynum=${adminReturn.buynum}';" onmouseover="this.style.cursor='pointer';">
 						            <td>${adminReturn.returnnum}</td>
 						            <td>${adminReturn.buynum}</td>
 						            <td>${adminReturn.dv_order_itemDTO.cartDTO.membernum}</td>

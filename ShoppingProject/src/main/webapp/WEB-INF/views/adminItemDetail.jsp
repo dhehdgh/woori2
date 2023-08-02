@@ -109,11 +109,11 @@
 									            <option value="1" ${item.itemb == 1 ? 'selected' : ''}>상의</option>
 									            <option value="2" ${item.itemb == 2 ? 'selected' : ''}>바지</option>
 									            <option value="3" ${item.itemb == 3 ? 'selected' : ''}>스커트</option>
-									            <option value="4" ${item.itemb == 4 ? 'selected' : ''}>아우터</option>
-									            <option value="5" ${item.itemb == 5 ? 'selected' : ''}>신발</option>
-									            <option value="6" ${item.itemb == 6 ? 'selected' : ''}>모자</option>
-									            <option value="7" ${item.itemb == 7 ? 'selected' : ''}>악세서리</option>
-									            <option value="8" ${item.itemb == 8 ? 'selected' : ''}>원피스</option>
+									            <option value="4" ${item.itemb == 4 ? 'selected' : ''}>원피스</option>
+									            <option value="5" ${item.itemb == 5 ? 'selected' : ''}>아우터</option>
+									            <option value="6" ${item.itemb == 6 ? 'selected' : ''}>악세서리</option>
+									            <option value="7" ${item.itemb == 7 ? 'selected' : ''}>모자</option>
+									            <option value="8" ${item.itemb == 8 ? 'selected' : ''}>신발</option>
 											</select>
 										</td>
 									</tr>
@@ -157,12 +157,13 @@
 						<div class="tbl_head01 mt-3">
 							<table class="table table-bordered table-hover table-responsive" table-layout: auto;">
 								<colgroup>
+									<col style="width:10%">
+									<col style="width:10%">
 									<col style="width:15%">
 									<col style="width:15%">
 									<col style="width:15%">
-									<col style="width:15%">
-									<col style="width:30%">
-									<col style="width:15%">
+									<col style="width:25%">
+									<col style="width:10%">
 								</colgroup>
 								<thead>
 					                <tr>
@@ -170,6 +171,7 @@
 					                    <th scope="col">색깔</th>
 					                    <th scope="col">현재수량</th>
 					                    <th scope="col">추가할 수량</th>
+					                    <th scope="col">판매량</th>
 					                    <th scope="col">입고일</th>
 					                    <th scope="col">상태</th>
 					                </tr>
@@ -181,6 +183,7 @@
 	                                       <td><input type="text" name="itemcolor" id="itemcolor" value="${iv_item.itemcolor}" readonly/></td>
 	                                       <td><input type="text" name="itemcnt" id="itemcnt" value="${iv_item.itemcnt}" readonly/></td>
 	                                       <td><input type="text" name="itemcntadd" id="itemcntadd"/></td>
+	                                       <td><input type="text" name="itembuycnt" id="itembuycnt" value="${iv_item.itembuycnt}" readonly></td>
 	                                       <td><input type="text" name="iv_date" id="iv_date" value="${iv_item.iv_date}" readonly/></td>
 	                                       <td><input type="text" name="itemstate" id="itemstate" value="${iv_item.itemstate}" readonly /></td>
 	                                   </tr>
@@ -236,60 +239,62 @@
 	            case "1": 
 	                // 상위 카테고리 1에 해당하는 하위 카테고리 옵션 설정
 	                categoryType2.append('<option value="0" >=카테고리선택=</option>');
-	                categoryType2.append('<option value="1" ${item.items == 1 ? "selected" : ""}>반팔티</option>');
-	                categoryType2.append('<option value="2" ${item.items == 2 ? "selected" : ""}>긴팔티</option>');
-	                categoryType2.append('<option value="3" ${item.items == 3 ? "selected" : ""}>니트</option>');
+	                categoryType2.append('<option value="1" ${item.items == 1 ? "selected" : ""}>니트/스웨터</option>');
+	                categoryType2.append('<option value="2" ${item.items == 2 ? "selected" : ""}>후드티</option>');
+	                categoryType2.append('<option value="3" ${item.items == 3 ? "selected" : ""}>맨투맨</option>');
 	                categoryType2.append('<option value="4" ${item.items == 4 ? "selected" : ""}>셔츠</option>');
 	                break;
 	            case "2":
 	                // 상위 카테고리 2에 해당하는 하위 카테고리 옵션 설정
 	                categoryType2.append('<option value="0">=카테고리선택=</option>');
-	                categoryType2.append('<option value="5" ${item.items == 5 ? "selected" : ""}>반바지</option>');
-	                categoryType2.append('<option value="6" ${item.items == 6 ? "selected" : ""}>청바지</option>');
-	                categoryType2.append('<option value="7" ${item.items == 7 ? "selected" : ""}>면바지</option>');
+	                categoryType2.append('<option value="5" ${item.items == 5 ? "selected" : ""}>데님팬츠</option>');
+	                categoryType2.append('<option value="6" ${item.items == 6 ? "selected" : ""}>트레이닝팬츠</option>');
+	                categoryType2.append('<option value="7" ${item.items == 7 ? "selected" : ""}>코튼팬츠</option>');
+	                categoryType2.append('<option value="8" ${item.items == 8 ? "selected" : ""}>슬랙스</option>');
 	                break;
 	            case "3":
 	                // 상위 카테고리 2에 해당하는 하위 카테고리 옵션 설정
 	                categoryType2.append('<option value="0">=카테고리선택=</option>');
-	                categoryType2.append('<option value="8" ${item.items == 8 ? "selected" : ""}>미니스커트</option>');
-	                categoryType2.append('<option value="9" ${item.items == 9 ? "selected" : ""}>미디엄스커트</option>');
-	                categoryType2.append('<option value="10" ${item.items == 10 ? "selected" : ""}>롱스커트</option>');
+	                categoryType2.append('<option value="9" ${item.items == 9 ? "selected" : ""}>미니스커트</option>');
+	                categoryType2.append('<option value="10" ${item.items == 10 ? "selected" : ""}>미디스커트</option>');
+	                categoryType2.append('<option value="11" ${item.items == 11 ? "selected" : ""}>롱스커트</option>');
 	                break;
 	            case "4":
 	                // 상위 카테고리 2에 해당하는 하위 카테고리 옵션 설정
 	                categoryType2.append('<option value="0">=카테고리선택=</option>');
-	                categoryType2.append('<option value="11" ${item.items == 11 ? "selected" : ""}>코트</option>');
-	                categoryType2.append('<option value="12" ${item.items == 12 ? "selected" : ""}>패딩</option>');
-	                categoryType2.append('<option value="13" ${item.items == 13 ? "selected" : ""}>자켓</option>');
+	                categoryType2.append('<option value="12" ${item.items == 12 ? "selected" : ""}>미니원피스</option>');
+	                categoryType2.append('<option value="13" ${item.items == 13 ? "selected" : ""}>미디원피스</option>');
+	                categoryType2.append('<option value="14" ${item.items == 14 ? "selected" : ""}>롱원피스</option>');
 	                break;
 	            case "5":
 	                // 상위 카테고리 2에 해당하는 하위 카테고리 옵션 설정
 	                categoryType2.append('<option value="0">=카테고리선택=</option>');
-	                categoryType2.append('<option value="14" ${item.items == 14 ? "selected" : ""}>운동화</option>');
-	                categoryType2.append('<option value="15" ${item.items == 15 ? "selected" : ""}>슬리퍼</option>');
-	                categoryType2.append('<option value="16" ${item.items == 16 ? "selected" : ""}>구두</option>');
-	                categoryType2.append('<option value="17" ${item.items == 17 ? "selected" : ""}>샌들</option>');
+	                categoryType2.append('<option value="15" ${item.items == 15 ? "selected" : ""}>후드집업</option>');
+	                categoryType2.append('<option value="16" ${item.items == 16 ? "selected" : ""}>코트</option>');
+	                categoryType2.append('<option value="17" ${item.items == 17 ? "selected" : ""}>가디건</option>');
+	                categoryType2.append('<option value="18" ${item.items == 18 ? "selected" : ""}>패딩</option>');
+	                categoryType2.append('<option value="19" ${item.items == 19 ? "selected" : ""}>재킷</option>');
 	                break;
 	            case "6":
 	                // 상위 카테고리 2에 해당하는 하위 카테고리 옵션 설정
 	                categoryType2.append('<option value="0">=카테고리선택=</option>');
-	                categoryType2.append('<option value="18" ${item.items == 18 ? "selected" : ""}>캡모자</option>');
-	                categoryType2.append('<option value="19" ${item.items == 19 ? "selected" : ""}>비니</option>');
-	                categoryType2.append('<option value="20" ${item.items == 20 ? "selected" : ""}>기타</option>');
+	                categoryType2.append('<option value="20" ${item.items == 20 ? "selected" : ""}>벨트</option>');
+	                categoryType2.append('<option value="21" ${item.items == 21 ? "selected" : ""}>머플러</option>');
+	                categoryType2.append('<option value="22" ${item.items == 22 ? "selected" : ""}>넥타이</option>');
+	                categoryType2.append('<option value="23" ${item.items == 23 ? "selected" : ""}>기타 액세서리</option>');
 	                break;
 	            case "7":
 	                // 상위 카테고리 2에 해당하는 하위 카테고리 옵션 설정
 	                categoryType2.append('<option value="0">=카테고리선택=</option>');
-	                categoryType2.append('<option value="21" ${item.items == 21 ? "selected" : ""}>목걸이</option>');
-	                categoryType2.append('<option value="22" ${item.items == 22 ? "selected" : ""}>벨트</option>');
-	                categoryType2.append('<option value="23" ${item.items == 23 ? "selected" : ""}>시계</option>');
+	                categoryType2.append('<option value="24" ${item.items == 24 ? "selected" : ""}>캡</option>');
+	                categoryType2.append('<option value="25" ${item.items == 25 ? "selected" : ""}>비니</option>');
 	                break;
 	            case "8":
 	                // 상위 카테고리 2에 해당하는 하위 카테고리 옵션 설정
 	                categoryType2.append('<option value="0">=카테고리선택=</option>');
-	                categoryType2.append('<option value="24" ${item.items == 24 ? "selected" : ""}>미니원피스</option>');
-	                categoryType2.append('<option value="25" ${item.items == 25 ? "selected" : ""}>미디엄원피스</option>');
-	                categoryType2.append('<option value="26" ${item.items == 26 ? "selected" : ""}>롱원피스</option>');
+	                categoryType2.append('<option value="26" ${item.items == 26 ? "selected" : ""}>운동화</option>');
+	                categoryType2.append('<option value="27" ${item.items == 27 ? "selected" : ""}>슬리퍼</option>');
+	                categoryType2.append('<option value="28" ${item.items == 28 ? "selected" : ""}>구두</option>');
 	                break;
 	                
 	            default:

@@ -85,22 +85,23 @@
 					<tbody class="list">
 						<c:forEach items="${rank}" var="rank">
 						    <tr>
-						        <td><input type="text" value="${rank.rating}" name="rating" id="rating" readonly></td>
+						        <td>${rank.rating}</td>
 						        <td><input type="text" value="${rank.rating_nm}" name="rating_nm" id="rating_nm"></td>
 						        <td><input type="text" value="${rank.discount}" name="discount" id="discount"></td>
 						        <td><input type="text" value="${rank.accumulation}" name="accumulation" id="accumulation"></td>
 						        <td>
 						            <input type="text" value="${rank.lowpoint}" size="8" name="lowpoint" id="lowpoint">
 						            ~
-						            <input type="text" value="${rank.highpoint != null && rank.highpoint != 0 ? rank.highpoint : ''}" size="8" name="highpoint" id="highpoint">
+						            <input type="text" value="${rank.highpoint}" size="8" name="highpoint" id="highpoint">
             					</td>
 						    </tr>
+            					<input type="hidden" value="${rank.rating}" name="rating" id="rating">
 						</c:forEach>
 					</tbody>
 				</table>
             </div>
 			<div class="btn_confirm">
-				<input type="submit" value="저장" class="btn btn-primary">
+				<input type="submit" value="저장" class="genric-btn success large thick"">
 			</div>
 		</form>
 		</div>
