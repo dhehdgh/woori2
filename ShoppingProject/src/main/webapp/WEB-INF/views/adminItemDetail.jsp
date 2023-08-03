@@ -155,7 +155,7 @@
 					<form action="${contextPath}/board/adminItemDetail2" method="post">
 						<h2>재고현황</h2>
 						<div class="tbl_head01 mt-3">
-							<table class="table table-bordered table-hover table-responsive" table-layout: auto;">
+							<table class="table table-bordered table-hover table-responsive">
 								<colgroup>
 									<col style="width:10%">
 									<col style="width:10%">
@@ -179,13 +179,13 @@
 								<tbody class="list">
 									<c:forEach items="${iv_item}" var="iv_item">
 					                    <tr>
-						                   <td><input type="text" name="itemsize" id="itemsize" value="${iv_item.itemsize}" readonly/></td>
-	                                       <td><input type="text" name="itemcolor" id="itemcolor" value="${iv_item.itemcolor}" readonly/></td>
+						                   <td><input type="text" name="itemsize" id="itemsize" value="${iv_item.itemsize_nm}" readonly/></td>
+	                                       <td><input type="text" name="itemcolor" id="itemcolor" value="${iv_item.itemcolor_nm}" readonly/></td>
 	                                       <td><input type="text" name="itemcnt" id="itemcnt" value="${iv_item.itemcnt}" readonly/></td>
 	                                       <td><input type="text" name="itemcntadd" id="itemcntadd"/></td>
 	                                       <td><input type="text" name="itembuycnt" id="itembuycnt" value="${iv_item.itembuycnt}" readonly></td>
 	                                       <td><input type="text" name="iv_date" id="iv_date" value="${iv_item.iv_date}" readonly/></td>
-	                                       <td><input type="text" name="itemstate" id="itemstate" value="${iv_item.itemstate}" readonly /></td>
+	                                       <td><input type="text" name="itemstate" id="itemstate" value="${iv_item.itemstate_nm}" readonly /></td>
 	                                   </tr>
 	                                       <input type="hidden" name="iv_itemnum" id="iv_itemnum" value="${iv_item.iv_itemnum}" readonly/>
 	                                       <input type="hidden" name="itemnum" id="itemnum" value="${iv_item.itemnum}" readonly/>

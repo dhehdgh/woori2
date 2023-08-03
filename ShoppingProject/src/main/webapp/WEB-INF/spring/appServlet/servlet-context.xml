@@ -22,8 +22,7 @@
 	</beans:bean>
 	
 	
-	
-	<!-- 업로드 패스 설정 --> 
+		<!-- 업로드 패스 설정 --> 
 	<beans:bean class="java.lang.String" id="uploadPath">
 	 	<beans:constructor-arg value="C:\wr501\workspace\ShoppingProject\src\main\webapp\resources\bootstrap\img"/>
 	</beans:bean>

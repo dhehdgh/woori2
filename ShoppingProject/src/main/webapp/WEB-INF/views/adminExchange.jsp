@@ -137,7 +137,7 @@
 				</div>
 				
 				<div class="tbl_head01">
-					<table id="myTable" class="table table-bordered table-striped table-hover table-responsive" table-layout: auto;">
+					<table id="myTable" class="table table-bordered table-striped table-hover table-responsive">
 						<colgroup>
 							<col style="width:5%">
 							<col style="width:5%">
@@ -164,16 +164,16 @@
 						</thead>
 						<tbody class="list">
 							<c:forEach items="${adminExchange}" var="adminExchange">
-						        <tr onclick="window.location.href = '${contextPath}/board/adminExchangeDetail?returnnum=${adminExchange.returnnum}';" onmouseover="this.style.cursor='pointer';">
+						        <tr onclick="window.location.href = '${contextPath}/board/adminExchangeDetail?returnnum=${adminExchange.returnnum}&buynum=${adminExchange.buynum}';" onmouseover="this.style.cursor='pointer';">
 						            <td>${adminExchange.returnnum}</td>
 						            <td>${adminExchange.buynum}</td>
 						            <td>${adminExchange.dv_order_itemDTO.cartDTO.membernum}</td>
 						            <td>${adminExchange.dv_order_itemDTO.cartDTO.memberDTO.id}</td>
-						            <td>${adminExchange.orderDTO.paymethod}</td>
-						            <td>${adminExchange.orderDTO.payment}</td>
+						            <td>${adminExchange.dv_orderDTO.paymethod_nm}</td>
+						            <td>${adminExchange.dv_orderDTO.payment}</td>
 						            <td>${adminExchange.returndate}</td>
 						            <td>${adminExchange.recomdate}</td>
-						            <td>${adminExchange.state}</td>
+						            <td>${adminExchange.state_rt}</td>
 						        </tr>
 						    </c:forEach>
 						</tbody>
@@ -221,12 +221,12 @@
 		                    $("<td>").text(adminExchange.buynum).appendTo(row);
 		                    $("<td>").text(adminExchange.dv_order_itemDTO.cartDTO.membernum).appendTo(row);
 		                    $("<td>").text(adminExchange.dv_order_itemDTO.cartDTO.memberDTO.id).appendTo(row);
-		                    $("<td>").text(adminExchange.orderDTO.paymethod).appendTo(row);
-		                    $("<td>").text(adminExchange.orderDTO.payment).appendTo(row);
+		                    $("<td>").text(adminExchange.dv_orderDTO.paymethod_nm).appendTo(row);
+		                    $("<td>").text(adminExchange.dv_orderDTO.payment).appendTo(row);
 		                    $("<td>").text(adminExchange.returndate).appendTo(row);
 		                    var recomdate = adminExchange.recomdate ? adminExchange.recomdate : '';
 		                    $("<td>").text(recomdate).appendTo(row);
-		                    $("<td>").text(adminExchange.state).appendTo(row);
+		                    $("<td>").text(adminExchange.state_rt).appendTo(row);
 		                    // 클릭 시 회원 상세 페이지로 이동
 		                    row.on("click", function () {
 		                        var returnnum = adminExchange.returnnum;

@@ -151,7 +151,7 @@
 	            </div>
 	            
 	            <div class="tbl_head01 mt-3">
-	               	<table id="myTable" class="table table-bordered table-striped table-hover table-responsive" table-layout: auto;">
+	               	<table id="myTable" class="table table-bordered table-striped table-hover table-responsive">
 						<colgroup>
 							<col class="5%">
 							<col class="15%">
@@ -187,8 +187,8 @@
 			                       	<td>${adminItem.itempay}</td>
 			                       	<td>${adminItem.itembuycnt}</td>
 			                       	<td>${adminItem.itemdate}</td>
-			                       	<td>${adminItem.itemb}</td>
-			                       	<td>${adminItem.items}</td>
+			                       	<td>${adminItem.itemb_nm}</td>
+			                       	<td>${adminItem.items_nm}</td>
 			                       	<td>${adminItem.rstar}</td>
                                	</tr>
                        		</c:forEach>
@@ -354,8 +354,8 @@
 	                    $("<td>").text(item.itempay).appendTo(row);
 	                    $("<td>").text(item.itembuycnt).appendTo(row);
 	                    $("<td>").text(item.itemdate).appendTo(row);
-	                    $("<td>").text(item.itemb).appendTo(row);
-	                    $("<td>").text(item.items).appendTo(row);
+	                    $("<td>").text(item.itemb_nm).appendTo(row);
+	                    $("<td>").text(item.items_nm).appendTo(row);
 	                    $("<td>").text(item.rstar).appendTo(row);
 
 	                 	// 클릭 시 상품 상세 페이지로 이동

@@ -136,7 +136,7 @@
 									<span id="guide" style="color:#999;display:none"></span>
 									<p class="mart5"><input type="text" id="extraaddr" name="extraaddr" value="${member.extraaddr}" class="frm_input" size="60" readonly> 참고항목
 									<p class="mart5"><input type="text" id="detailaddr" name="detailaddr" value="${member.detailaddr}" class="frm_input" size="60"> 상세주소</p>
-									<input type="hidden" id="jibunaddr" name="jibunaddr" value="${member.jibunaddr}"></p>
+									<input type="hidden" id="jibunaddr" name="jibunaddr" value="${member.jibunaddr}">
 								</td>
 							</tr>
 							<tr>
@@ -153,14 +153,7 @@
 							<tr>
 								<th scope="row">등급</th>
 								<td>
-								    <select id="mb_grade" name="mb_grade">
-									    <option value='6' ${member.rankDTO.rating == 6 ? "selected" : ""}>[6] 다이아</option>
-									    <option value='5' ${member.rankDTO.rating == 5 ? "selected" : ""}>[5] 플래티넘</option>
-									    <option value='4' ${member.rankDTO.rating == 4 ? "selected" : ""}>[4] 골드</option>
-									    <option value='3' ${member.rankDTO.rating == 3 ? "selected" : ""}>[3] 실버</option>
-									    <option value='2' ${member.rankDTO.rating == 2 ? "selected" : ""}>[2] 브론즈</option>
-									    <option value='1' ${member.rankDTO.rating == 1 ? "selected" : ""}>[1] 신입</option>
-									</select>
+									<input type="text" value="${member.ratinglistDTO.rating_nm}" readonly>
 								</td>
 								<th scope="row">권한</th>
 							    <td>

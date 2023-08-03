@@ -156,13 +156,13 @@
 	                                   <td>${adminMember.name}</td>
 	                                   <td>${adminMember.email}</td>
 	                                   <td>${adminMember.tel}</td>
-	                                   <td>${adminMember.gender}</td>
+	                                   <td>${adminMember.gender_nm}</td>
 	                                   <td>${adminMember.birth}</td>
 	                                   <td>${adminMember.point}</td>
 	                                   <td>${adminMember.pointac}</td>
 	                                   <td>${adminMember.joindate}</td>
-	                                   <td>${adminMember.state}</td>
-	                                   <td>${adminMember.authority}</td>
+	                                   <td>${adminMember.state_nm}</td>
+	                                   <td>${adminMember.authority_nm}</td>
 	                               </tr>
 	                       </c:forEach>
 						</tbody>

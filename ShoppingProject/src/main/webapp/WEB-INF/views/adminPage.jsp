@@ -14,14 +14,14 @@
 		<div class="box">
 		    <a href="adminMember">
 		      	<img src="${contextPath}/resources/bootstrap/img/회원관리.png" alt="adminMember">
-		      	<p>회원관리</p>
+		      	회원관리
 		    </a>
 		</div>
 	
 	  	<div class="box">
-	    	<a href="adminItem"">
+	    	<a href="adminItem">
 	      		<img src="${contextPath}/resources/bootstrap/img/상품관리.png" alt="adminItem">
-	      		<p>상품관리</p>
+	      		상품관리
 	    	</a>
 		</div>
 	  
@@ -29,7 +29,7 @@
 		<div class="box">
 		    <a href="adminHelp">
 		      	<img src="${contextPath}/resources/bootstrap/img/고객지원.png" alt="adminHelp">
-		      	<p>고객지원</p>
+		      	고객지원
 		    </a>
 		</div>
 	  
@@ -37,13 +37,13 @@
 	  	<div class="box">
 	    	<a href="adminOrder">
 	      		<img src="${contextPath}/resources/bootstrap/img/주문관리.png" alt="adminOrder">
-	      		<p>주문관리</p>
+	      		주문관리
 	    	</a>
 		</div>
 	  	<div class="box">
 	    	<a href="adminReview">
 	      		<img src="${contextPath}/resources/bootstrap/img/리뷰관리.png" alt="adminReivew">
-	      		<p>리뷰관리</p>
+	      		리뷰관리
 	    	</a>
 		</div>
 	</div>

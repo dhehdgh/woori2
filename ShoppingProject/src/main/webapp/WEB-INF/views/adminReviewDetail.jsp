@@ -132,7 +132,7 @@
 									</tr>
 									<tr>
 										<th scope="row">리뷰상태</th>
-										<td>${detail.reviewDTO.del}</td>
+										<td>${detail.reviewDTO.del_nm}</td>
 									</tr>
 								</tbody>
 							</table>
@@ -148,7 +148,7 @@
 					<input type="hidden" id="rdate" name="rdate" value="${detail.reviewDTO.rdate}">
 					<input type="hidden" id="rcontent" name="rcontent" value="${detail.reviewDTO.rcontent}">
 					<input type="hidden" id="reviewreport" name="reviewreport" value="${detail.reviewDTO.reviewreport}">
-					<input type="hidden" id="del" name="del" value="${detail.reviewDTO.del}">
+					<input type="hidden" id="del_nm" name="del_nm" value="${detail.reviewDTO.del_nm}">
 					</form>
 					<div class="row">
 			            <div class="col-md-12 form-group text-center">

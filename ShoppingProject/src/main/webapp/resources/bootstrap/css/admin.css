@@ -71,17 +71,16 @@ box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.2);}
 #tnb ul #tnb_logout a {color:#fa2828;}
 
 /*gnb*/
-#gnb {text-align:center;z-index:12;background:#fff;}
+#gnb {z-index:12;position:relative;background:#494b50;}
 #gnb:after {display:block;visibility:hidden;clear:both;content:"";}
 #gnb h2 {margin:0;padding:0;font-size:0;line-height:0;overflow:hidden;}
 #gnb ul, #gnb li {overflow:visible !important;}
-#gnb_1dul {display: inline-block; /* 가로로 정렬 */margin: 0 10px; /* 좌우로 간격 추가 */}
+#gnb_1dul {position:relative;margin:0 16px;padding:0;zoom:1;}
 #gnb_1dul:after {display:block;visibility:hidden;clear:both;content:"";}
-.gnb_1dli {z-index:13;position:relative;float:left;margin:0 0 0 -1px;border:1px solid #2d3032;border-top:0;border-bottom:0;display: inline-block;}
+.gnb_1dli {z-index:13;position:relative;float:left;margin:0 0 0 -1px;border:1px solid #2d3032;border-top:0;border-bottom:0;}
 .gnb_1dli:first-child {margin-left:0 !important;}
-a.gnb_1da {display:block;height:34px;padding:0 20px;color:#fff;font-size:13px;font-weight:600;text-align:center;text-decoration:none;line-height:2.6em;transition: background-color 0.3s, color 0.3s;}
-a.gnb_1da:focus {outline: none;} 
-a.gnb_1da:hover {text-decoration:none;background-color: #f1f1f1; /* 마우스 호버시 배경색 변경 */ color: #555; /* 마우스 호버시 글자색 변경 */}
+a.gnb_1da {display:block;height:34px;padding:0 20px;color:#fff;font-size:13px;font-weight:600;text-align:center;text-decoration:none;line-height:2.6em;}
+a.gnb_1da:focus, a.gnb_1da:hover {text-decoration:none;}
 .gnb_1dli.active a.gnb_1da {background:#fff;color:#000;}
 .gnb_1dli_on a.gnb_1da {background:#282828;color:#fff;}
 .gnb_2dul {display:none;position:absolute;top:34px;width:181px;border:1px solid #999;border-top:0;background:#fff;}
@@ -445,8 +444,8 @@ a.gnb_2da:focus, a.gnb_2da:hover {background:#484848 !important;color:#fff !impo
 .compare_wrap .frm_input{background-color:#fff !important;}
 .compare_wrap .btn_confirm{padding:10px 0 0;}
 .cmpare_top{width:100%;margin-bottom:20px}
-.compare_left{float:left;width:50%;}
-.compare_right{float:right;width:50%;}
+.compare_left{float:left;width:49%;}
+.compare_right{float:right;width:49%;}
 
 /*관련 상품 입력/수정*/
 .srel section ul{margin:0;padding:10px;list-style:none;}
@@ -646,7 +645,7 @@ strong.sodr_nonpay{display:block;padding:5px 0;text-align:right;}
 /*컬럼에 밑줄과 커서변경*/
 th.active {text-decoration: underline;cursor: pointer;}
 .td_thick {!important;font-weight:600;}
-.thick {font-weight:600;font-size:15px;}
+.thick {font-weight:600;}
 
 
 .section-title {
@@ -699,104 +698,4 @@ th.active {text-decoration: underline;cursor: pointer;}
     background-color: #17a2b8;
     border: 2px solid #17a2b8;
     margin-left: 10px;
-}
-
-    html, body {
-        align-items: center;
-        justify-content: center;
-    }
-
-    /* 박스 컨테이너 스타일 */
-    .box-container {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-        flex-wrap: wrap;
-        max-width: 800px;
-        margin: 0 auto;
-    }
-
-    .box {
-        width: 180px;
-        text-align: center;
-        margin-bottom: 20px;
-        background-color: #f5f5f5;
-        border-radius: 10px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
-    }
-
-    .box:hover {
-        transform: translateY(-15px);
-    }
-
-    .box a {
-        display: block;
-        text-decoration: none;
-        color: #333;
-        margin-top: 10px;
-    }
-
-    .box img {
-        width: 100%;
-        height: auto;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-    }
-
-    .box p {
-        margin: 0;
-        padding: 10px;
-        background-color: #fff;
-        font-size: 14px;
-        font-weight: bold;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-    }
-
-.box-container {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.box {
-  width: 180px;
-  text-align: center;
-  margin-bottom: 20px;
-  background-color: #f5f5f5;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.box:hover {
-  transform: translateY(-15px);
-}
-
-.box a {
-  display: block;
-  text-decoration: none;
-  color: #333;
-  margin-top: 10px;
-}
-
-.box img {
-  width: 100%;
-  height: auto;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
-.box p {
-  margin: 0;
-  padding: 10px;
-  background-color: #fff;
-  font-size: 14px;
-  font-weight: bold;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
 }

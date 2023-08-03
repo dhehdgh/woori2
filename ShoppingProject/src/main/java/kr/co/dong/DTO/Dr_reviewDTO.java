@@ -1,12 +1,11 @@
 package kr.co.dong.DTO;
 
-public class Dr_reviewDTO {
+public class dr_reviewDTO {
 	private int drnum;
 	private int reviewno;
 	private String drcontent;
-	private String drdate;	
-	private ReviewDTO reviewDTO;
-	
+	private String drdate;
+	private reviewDTO reviewDTO;
 	
 	public int getDrnum() {
 		return drnum;
@@ -32,16 +31,15 @@ public class Dr_reviewDTO {
 	public void setDrdate(String drdate) {
 		this.drdate = drdate;
 	}
-	public ReviewDTO getReviewDTO() {
+	public reviewDTO getReviewDTO() {
 		return reviewDTO;
 	}
-	public void setReviewDTO(ReviewDTO reviewDTO) {
+	public void setReviewDTO(reviewDTO reviewDTO) {
 		this.reviewDTO = reviewDTO;
 	}
-	
 	@Override
 	public String toString() {
-		return "Dr_reviewDTO [drnum=" + drnum + ", reviewno=" + reviewno + ", drcontent=" + drcontent + ", drdate="
+		return "dr_reviewDTO [drnum=" + drnum + ", reviewno=" + reviewno + ", drcontent=" + drcontent + ", drdate="
 				+ drdate + ", reviewDTO=" + reviewDTO + "]";
 	}
 }

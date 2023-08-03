@@ -84,7 +84,7 @@
 							<td>
 								<select name="dateType">
 									<option value="hdate">문의날짜</option>
-									<option value="redate">답변날짜</option>
+									<option value="rehdate">답변날짜</option>
 								</select>
 								<label for="startDate" class="sound_only">시작일</label>
 								<input type="text" name="startDate" id="startDate" class="frm_input w80" maxlength="10">
@@ -115,7 +115,7 @@
 				</div>
 				
 				<div class="tbl_head01">
-					<table id="myTable" class="table table-bordered table-striped table-hover table-responsive" table-layout: auto;">
+					<table id="myTable" class="table table-bordered table-striped table-hover table-responsive">
 						<colgroup>
 							<col style="width:10%">
 							<col style="width:20%">
@@ -145,7 +145,7 @@
 						            <td>${adminHelp.memberDTO.id}</td>
 						            <td>${adminHelp.hdate}</td>
 						            <td>${adminHelp.rehdate}</td>
-						            <td>${adminHelp.state}</td>
+						            <td>${adminHelp.state_nm}</td>
 						        </tr>
 						    </c:forEach>
 						</tbody>
@@ -195,7 +195,7 @@
 		                    $("<td>").text(help.memberDTO.id).appendTo(row);
 		                    $("<td>").text(help.hdate).appendTo(row);
 		                    $("<td>").text(help.rehdate).appendTo(row);
-		                    $("<td>").text(help.state).appendTo(row);
+		                    $("<td>").text(help.state_nm).appendTo(row);
 		                    // 클릭 시 회원 상세 페이지로 이동
 		                    row.on("click", function () {
 		                        var hno = help.hno;

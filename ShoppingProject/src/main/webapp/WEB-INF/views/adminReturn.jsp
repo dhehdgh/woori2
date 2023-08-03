@@ -169,11 +169,11 @@
 						            <td>${adminReturn.buynum}</td>
 						            <td>${adminReturn.dv_order_itemDTO.cartDTO.membernum}</td>
 						            <td>${adminReturn.dv_order_itemDTO.cartDTO.memberDTO.id}</td>
-						            <td>${adminReturn.orderDTO.paymethod}</td>
-						            <td>${adminReturn.orderDTO.payment}</td>
+						            <td>${adminReturn.dv_orderDTO.paymethod_nm}</td>
+						            <td>${adminReturn.dv_orderDTO.payment}</td>
 						            <td>${adminReturn.returndate}</td>
 						            <td>${adminReturn.recomdate}</td>
-						            <td>${adminReturn.state}</td>
+						            <td>${adminReturn.state_rt}</td>
 						        </tr>
 						    </c:forEach>
 						</tbody>
@@ -221,12 +221,12 @@
 		                    $("<td>").text(adminReturn.buynum).appendTo(row);
 		                    $("<td>").text(adminReturn.dv_order_itemDTO.cartDTO.membernum).appendTo(row);
 		                    $("<td>").text(adminReturn.dv_order_itemDTO.cartDTO.memberDTO.id).appendTo(row);
-		                    $("<td>").text(adminReturn.orderDTO.paymethod).appendTo(row);
-		                    $("<td>").text(adminReturn.orderDTO.payment).appendTo(row);
+		                    $("<td>").text(adminReturn.dv_orderDTO.paymethod_nm).appendTo(row);
+		                    $("<td>").text(adminReturn.dv_orderDTO.payment).appendTo(row);
 		                    $("<td>").text(adminReturn.returndate).appendTo(row);
 		                    var recomdate = adminReturn.recomdate ? adminReturn.recomdate : '';
 		                    $("<td>").text(recomdate).appendTo(row);
-		                    $("<td>").text(adminReturn.state).appendTo(row);
+		                    $("<td>").text(adminReturn.state_rt).appendTo(row);
 		                    // 클릭 시 회원 상세 페이지로 이동
 		                    row.on("click", function () {
 		                        var returnnum = adminReturn.returnnum;

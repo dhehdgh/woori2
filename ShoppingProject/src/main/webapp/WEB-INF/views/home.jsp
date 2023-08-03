@@ -8,133 +8,337 @@
 <html lang="en">
 
 <%@ include file="include/header.jsp" %>
+<link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet">
 
+<!-- Video.js JavaScript -->
+<script src="https://vjs.zencdn.net/7.15.4/video.min.js"></script>
     <!-- Header part end-->
 
     <!-- banner part start-->
-    <section class="banner_part">
+<video class="vjs-tech" data-quality="high" loop="" muted="muted" poster="https://media.musinsa.com/video/1011/poster/poster.jpg" id="vjs_video_3_html5_api" tabindex="-1" role="application" preload="none" playsinline="playsinline" src="blob:https://www.musinsa.com/ad5d6b22-86f3-4c89-b587-d64e06b2fb66"><source src="https://media.musinsa.com/video/1011/converted/w1920_h720_r266.67.m3u8" type="application/x-mpegURL"></video>
+   <br>
+   
+    <!-- banner part start-->
+    <!-- product_list part start-->
+    <section class="product_list best_seller">
         <div class="container">
-            <div class="row align-items-center">
+            <div class="row justify-content-center">
                 <div class="col-lg-12">
-                    <div class="banner_slider owl-carousel">
-                        <div class="single_banner_slider">
-                            <div class="row">
-                                <div class="col-lg-5 col-md-8">
-                                    <div class="banner_text">
-                                        <div class="banner_text_iner">
-                                            <h1>나무 & 옷
-                                                Sofa</h1>
-                                            <p>Incididunt ut labore et dolore magna aliqua quis ipsum
-                                                suspendisse ultrices gravida. Risus commodo viverra</p>
-                                            <a href="#" class="btn_2">buy now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="banner_img d-none d-lg-block">
-                                    <img src="${contextPath}/resources/bootstrap/img/banner_img.png" alt="">
-                                </div>
-                            </div>
-                        </div><div class="single_banner_slider">
-                            <div class="row">
-                                <div class="col-lg-5 col-md-8">
-                                    <div class="banner_text">
-                                        <div class="banner_text_iner">
-                                            <h1>옷 & 나무
-                                                Sofa</h1>
-                                            <p>Incididunt ut labore et dolore magna aliqua quis ipsum
-                                                suspendisse ultrices gravida. Risus commodo viverra</p>
-                                            <a href="#" class="btn_2">buy now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="banner_img d-none d-lg-block">
-                                    <img src="${contextPath}/resources/bootstrap/img/banner_img.png" alt="">
-                                </div>
-                            </div>
-                        </div><div class="single_banner_slider">
-                            <div class="row">
-                                <div class="col-lg-5 col-md-8">
-                                    <div class="banner_text">
-                                        <div class="banner_text_iner">
-                                            <h1>나무 & Cloth
-                                                Sofa</h1>
-                                            <p>Incididunt ut labore et dolore magna aliqua quis ipsum
-                                                suspendisse ultrices gravida. Risus commodo viverra</p>
-                                            <a href="#" class="btn_2">buy now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="banner_img d-none d-lg-block">
-                                    <img src="${contextPath}/resources/bootstrap/img/banner_img.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- <div class="single_banner_slider">
-                            <div class="row">
-                                <div class="col-lg-5 col-md-8">
-                                    <div class="banner_text">
-                                        <div class="banner_text_iner">
-                                            <h1>Cloth $ Wood Sofa</h1>
-                                            <p>Incididunt ut labore et dolore magna aliqua quis ipsum
-                                                suspendisse ultrices gravida. Risus commodo viverra</p>
-                                            <a href="#" class="btn_2">buy now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="banner_img d-none d-lg-block">
-                                    <img src="img/banner_img.png" alt="">
-                                </div>
-                            </div>
-                        </div> -->
+                    <div class="section_tittle text-center" style="padding-top: 70px;">
+                        <h2>Best Top5 <span>shop</span></h2>
                     </div>
-                    <div class="slider-counter"></div>
+                </div>
+            </div>
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-12">
+                    <div class="best_product_slider owl-carousel">
+                    <c:forEach items="${best}" var="item">
+                    <c:set var="itempay" value="${item.itempay}" scope="request" />
+                    <c:set var="sale" value="${item.sale}" scope="request" />
+                    <c:set var="rcount" value="${item.rcount}" scope="request" />
+                    <c:set var="rstarsum" value="${item.rstarsum}" scope="request" />
+                    <c:set var="ravg" value="${item.ravg}" scope="request" />
+                    <c:set var="salepay" value="${Math.floor(itempay * sale)}" scope="request" />
+                    <c:set var="itemsalepay" value="${itempay - salepay}" scope="request" />
+                    <a href="${contextPath}/board/itemdetail?itemnum=${item.itemnum}">
+                    
+                        <div class="single_product_item">
+                        <div class="rank_container">
+                <span class="rank_number">
+                ${item.numbers}
+                </span>
+                </div>
+                
+                <c:choose>
+                <c:when test="${salepay != 0}">
+                <div class="badge"><script>document.write((${Math.floor(sale * 100)}).toLocaleString())</script>%</div>
+                
+                   </c:when>
+   				<c:otherwise>
+                 </c:otherwise>
+ 					</c:choose> 
+ 						 
+                            <img src="${item.url}${item.imgname}" alt="">   
+                                               
+						<div class="single_product_text">
+                                 <div class="heart-click">
+                                   <c:choose>
+                                    <c:when test="${ravg <= 0.5 && 0.01 <= ravg}">
+                                  <span class="img-score" style="width:2%">
+                                  <span class="bar"></span></span>
+                                  <span class="count">${rcount}${ravg}</span>
+                                  		</c:when>
+                                  		
+                                  		    <c:when test="${ravg <= 1 && 0.51 <= ravg}">
+								 <span class="img-score" style="width:4%">
+								 <span class="bar"></span></span>
+								 <span class="count">${rcount}</span>
+										    </c:when>
+										    
+										   <c:when test="${ravg <= 1.5 && 1.01 <= ravg}">
+								 <span class="img-score" style="width:6%">
+								 <span class="bar"></span></span>
+								 <span class="count">${rcount}</span>
+										    </c:when>
+										    
+										<c:when test="${ravg <= 2 && 1.51 <= ravg}">
+								 <span class="img-score" style="width:8%">
+								 <span class="bar"></span></span>
+								 <span class="count">${rcount}</span>
+										    </c:when>
+										    
+										<c:when test="${ravg <= 2.5 && 2.01 <= ravg}">
+								 <span class="img-score" style="width:10%">
+								 <span class="bar"></span></span>
+								 <span class="count">${rcount}</span>
+										    </c:when>
+										    
+								<c:when test="${ravg <= 3 && 2.51 <= ravg}">
+								 <span class="img-score" style="width:12%">
+								 <span class="bar"></span></span>						  
+								 <span class="count">${rcount}</span>
+										    </c:when>
+										    
+									<c:when test="${ravg <= 3.5 && 3.01 <= ravg}">
+								 <span class="img-score" style="width:14%">
+								 <span class="bar"></span></span>
+								 <span class="count">$rcount}</span>
+										    </c:when>
+										    
+									<c:when test="${ravg <= 4 && 3.51 <= ravg}">
+								 <span class="img-score" style="width:16%">
+								 <span class="bar"></span></span>
+								 <span class="count">${rcount}</span>
+										    </c:when>
+										    
+									<c:when test="${ravg <= 4.5 && 4.01 <= ravg}">
+								 <span class="img-score" style="width:18%">
+								 <span class="bar"></span></span>
+								 <span class="count">${rcount}</span>
+										    </c:when>
+										    
+									<c:when test="${ravg <= 5 && 4.51 <= ravg}">
+								 <span class="img-score" style="width:20%">
+								 <span class="count">${rcount}</span>
+								 <span class="bar"></span></span>
+										    </c:when>
+										    
+										    
+						   				<c:otherwise>
+						   		<span class="img-score" style="width:0%">
+								 <span class="count">${rcount}</span>
+								 <span class="bar"></span></span>
+						                 </c:otherwise>
+						 					</c:choose>
+						    
+						    
+						    
+						    <img src="https://image.msscdn.net/skin/musinsa/images/icon_like_small_on.png" style="width: 20px; height: 20px; display: inline-block;">
+						    <span id="heartCount"><script>document.write((${item.heart}).toLocaleString())</script></span>
+						  </div>
+                                <h4>${item.itemname}</h4>
+                             <c:choose>
+    						<c:when test="${salepay != 0}">
+    						<h3>가격</h3><h3 style="text-decoration: line-through;"><script>document.write((${itempay}).toLocaleString())</script>원</h3>
+                               <h3>할인가</h3><h3><script>document.write((${Math.floor(itemsalepay)}).toLocaleString())</script></h3>
+                           </c:when>
+   						 <c:otherwise>
+   						 <h3>가격</h3><h3><script>document.write((${itempay}).toLocaleString())</script>원</h3>
+   						  </c:otherwise>
+ 						 </c:choose>     
+                            </div>
+                            
+                        </div>
+                        </a>
+                         </c:forEach>
+                         
+                        
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- banner part start-->
 
+
+    <!-- product_list start-->
+
+       <section class="product_list section_padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="section_tittle text-center">
+                        <h2>New Item<span>shop</span></h2>
+                    </div>
+                </div>
+            </div>
+               <div class="row align-items-center justify-content-between">
+                <div class="col-lg-12">
+                    <div class="best_product_slider owl-carousel">
+                    <c:forEach items="${newItem}" var="item">
+                    <c:set var="itempay" value="${item.itempay}" scope="request" />
+                    <c:set var="sale" value="${item.sale}" scope="request" />
+                    <c:set var="rcount" value="${item.rcount}" scope="request" />
+                    <c:set var="rstarsum" value="${item.rstarsum}" scope="request" />
+                    <c:set var="ravg" value="${item.ravg}" scope="request" />
+                    <c:set var="salepay" value="${Math.floor(itempay * sale)}" scope="request" />
+                    <c:set var="itemsalepay" value="${itempay - salepay}" scope="request" />
+                    <a href="${contextPath}/board/itemdetail?itemnum=${item.itemnum}">
+                    
+                        <div class="single_product_item">
+                        <div class="rank_container">
+                <span class="rank_number">
+                ${item.numbers}
+                </span>
+                </div>
+                
+                <c:choose>
+                <c:when test="${salepay != 0}">
+                <div class="badge"><script>document.write((${Math.floor(sale * 100)}).toLocaleString())</script>%</div>
+                
+                   </c:when>
+   				<c:otherwise>
+                 </c:otherwise>
+ 					</c:choose> 
+ 						 
+                            <img src="${item.url}${item.imgname}" alt="">   
+                                               
+						<div class="single_product_text">
+                                 <div class="heart-click">
+                                   <c:choose>
+                                    <c:when test="${ravg <= 0.5 && 0.01 <= ravg}">
+                                  <span class="img-score" style="width:2%">
+                                  <span class="bar"></span></span>
+                                  <span class="count">${rcount}${ravg}</span>
+                                  		</c:when>
+                                  		
+                                  		    <c:when test="${ravg <= 1 && 0.51 <= ravg}">
+								 <span class="img-score" style="width:4%">
+								 <span class="bar"></span></span>
+								 <span class="count">${rcount}</span>
+										    </c:when>
+										    
+										   <c:when test="${ravg <= 1.5 && 1.01 <= ravg}">
+								 <span class="img-score" style="width:6%">
+								 <span class="bar"></span></span>
+								 <span class="count">${rcount}</span>
+										    </c:when>
+										    
+										<c:when test="${ravg <= 2 && 1.51 <= ravg}">
+								 <span class="img-score" style="width:8%">
+								 <span class="bar"></span></span>
+								 <span class="count">${rcount}</span>
+										    </c:when>
+										    
+										<c:when test="${ravg <= 2.5 && 2.01 <= ravg}">
+								 <span class="img-score" style="width:10%">
+								 <span class="bar"></span></span>
+								 <span class="count">${rcount}</span>
+										    </c:when>
+										    
+								<c:when test="${ravg <= 3 && 2.51 <= ravg}">
+								 <span class="img-score" style="width:12%">
+								 <span class="bar"></span></span>						  
+								 <span class="count">${rcount}</span>
+										    </c:when>
+										    
+									<c:when test="${ravg <= 3.5 && 3.01 <= ravg}">
+								 <span class="img-score" style="width:14%">
+								 <span class="bar"></span></span>
+								 <span class="count">$rcount}</span>
+										    </c:when>
+										    
+									<c:when test="${ravg <= 4 && 3.51 <= ravg}">
+								 <span class="img-score" style="width:16%">
+								 <span class="bar"></span></span>
+								 <span class="count">${rcount}</span>
+										    </c:when>
+										    
+									<c:when test="${ravg <= 4.5 && 4.01 <= ravg}">
+								 <span class="img-score" style="width:18%">
+								 <span class="bar"></span></span>
+								 <span class="count">${rcount}</span>
+										    </c:when>
+										    
+									<c:when test="${ravg <= 5 && 4.51 <= ravg}">
+								 <span class="img-score" style="width:20%">
+								 <span class="count">${rcount}</span>
+								 <span class="bar"></span></span>
+										    </c:when>
+										    
+										    
+						   				<c:otherwise>
+						   		<span class="img-score" style="width:0%">
+								 <span class="count">${rcount}</span>
+								 <span class="bar"></span></span>
+						                 </c:otherwise>
+						 					</c:choose>
+						    
+						    
+						    
+						    <img src="https://image.msscdn.net/skin/musinsa/images/icon_like_small_on.png" style="width: 20px; height: 20px; display: inline-block;">
+						    <span id="heartCount"><script>document.write((${item.heart}).toLocaleString())</script></span>
+						  </div>
+                                <h4>${item.itemname}</h4>
+                             <c:choose>
+    						<c:when test="${salepay != 0}">
+    						<h3>가격</h3><h3 style="text-decoration: line-through;"><script>document.write((${itempay}).toLocaleString())</script>원</h3>
+                               <h3>할인가</h3><h3><script>document.write((${Math.floor(itemsalepay)}).toLocaleString())</script></h3>
+                           </c:when>
+   						 <c:otherwise>
+   						 <h3>가격</h3><h3><script>document.write((${itempay}).toLocaleString())</script>원</h3>
+   						  </c:otherwise>
+ 						 </c:choose>     
+                            </div>
+                            
+                        </div>
+                        </a>
+                         </c:forEach>
+                         
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- product_list part start-->
+
+    <!-- product_list part end-->
+    
     <!-- feature_part start-->
     <section class="feature_part padding_top">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="section_tittle text-center">
-                        <h2>Featured Category</h2>
+                        <h2>Showcase</h2>
                     </div>
                 </div>
             </div>
             <div class="row align-items-center justify-content-between">
                 <div class="col-lg-7 col-sm-6">
                     <div class="single_feature_post_text">
-                        <p>Premium Quality</p>
-                        <h3>Latest foam Sofa</h3>
-                        <a href="#" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
-                        <img src="${contextPath}/resources/bootstrap/img/feature/feature_1.png" alt="">
+ 
+                        <a href="http://www.musinsa.com/cms/showcases/view/7961" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
+                        <img src="${contextPath}/resources/bootstrap/img/2023072617035600000029723.jpg" alt="" style="  width: 700px;  height: 380px;" >
                     </div>
                 </div>
                 <div class="col-lg-5 col-sm-6">
                     <div class="single_feature_post_text">
-                        <p>Premium Quality</p>
-                        <h3>Latest foam Sofa</h3>
-                        <a href="#" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
-                        <img src="${contextPath}/resources/bootstrap/img/feature/feature_2.png" alt="">
+                        <a href="http://www.musinsa.com/cms/showcases/view/7995" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
+                        <img src="${contextPath}/resources/bootstrap/img/2023072709062100000007975.jpg" alt=""style=" width: 700px; height: 380px;">
                     </div>
                 </div>
                 <div class="col-lg-5 col-sm-6">
                     <div class="single_feature_post_text">
-                        <p>Premium Quality</p>
-                        <h3>Latest foam Sofa</h3>
-                        <a href="#" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
-                        <img src="${contextPath}/resources/bootstrap/img/feature/feature_3.png" alt="">
+                        <a href="http://www.musinsa.com/cms/showcases/view/8014" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
+                        <img src="${contextPath}/resources/bootstrap/img/2023072714232900000023684.jpg" alt="" style="  width: 700px;  height: 380px;">
                     </div>
                 </div>
                 <div class="col-lg-7 col-sm-6">
                     <div class="single_feature_post_text">
-                        <p>Premium Quality</p>
-                        <h3>Latest foam Sofa</h3>
-                        <a href="#" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
-                        <img src="${contextPath}/resources/bootstrap/img/feature/feature_4.png" alt="">
+                        <a href="http://www.musinsa.com/cms/showcases/view/7990" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
+                        <img src="${contextPath}/resources/bootstrap/img/2023072715443400000036833.jpg" alt="" style="  width: 700px;  height: 380px;">
                     </div>
                 </div>
             </div>
@@ -142,348 +346,101 @@
     </section>
     <!-- upcoming_event part start-->
 
-    <!-- product_list start-->
-    <section class="product_list section_padding">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="section_tittle text-center">
-                        <h2>awesome <span>shop</span></h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="product_list_slider owl-carousel">
-                        <div class="single_product_list_slider">
-                            <div class="row align-items-center justify-content-between">
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="${contextPath}/resources/bootstrap/img/product/product_1.png" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="${contextPath}/resources/bootstrap/img/product/product_2.png" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="${contextPath}/resources/bootstrap/img/product/product_3.png" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="${contextPath}/resources/bootstrap/img/product/product_4.png" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="${contextPath}/resources/bootstrap/img/product/product_5.png" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="${contextPath}/resources/bootstrap/img/product/product_6.png" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="${contextPath}/resources/bootstrap/img/product/product_7.png" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="${contextPath}/resources/bootstrap/img/product/product_8.png" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single_product_list_slider">
-                            <div class="row align-items-center justify-content-between">
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="${contextPath}/resources/bootstrap/img/product/product_1.png" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="${contextPath}/resources/bootstrap/img/product/product_2.png" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="${contextPath}/resources/bootstrap/img/product/product_3.png" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="${contextPath}/resources/bootstrap/img/product/product_4.png" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="${contextPath}/resources/bootstrap/img/product/product_5.png" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="${contextPath}/resources/bootstrap/img/product/product_6.png" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="${contextPath}/resources/bootstrap/img/product/product_7.png" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="${contextPath}/resources/bootstrap/img/product/product_8.png" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- product_list part start-->
 
-    <!-- awesome_shop start-->
-    <section class="our_offer section_padding">
-        <div class="container">
-            <div class="row align-items-center justify-content-between">
-                <div class="col-lg-6 col-md-6">
-                    <div class="offer_img">
-                        <img src="${contextPath}/resources/bootstrap/img/offer_img.png" alt="">
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="offer_text">
-                        <h2>Weekly Sale on
-                            60% Off All Products</h2>
-                        <div class="date_countdown">
-                            <div id="timer">
-                                <div id="days" class="date"></div>
-                                <div id="hours" class="date"></div>
-                                <div id="minutes" class="date"></div>
-                                <div id="seconds" class="date"></div>
-                            </div>
-                        </div>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="enter email address"
-                                aria-label="Recipient's username" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <a href="#" class="input-group-text btn_2" id="basic-addon2">book now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- awesome_shop part start-->
-
-    <!-- product_list part start-->
-    <section class="product_list best_seller section_padding">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="section_tittle text-center">
-                        <h2>Best Sellers <span>shop</span></h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row align-items-center justify-content-between">
-                <div class="col-lg-12">
-                    <div class="best_product_slider owl-carousel">
-                        <div class="single_product_item">
-                            <img src="${contextPath}/resources/bootstrap/img/product/product_1.png" alt="">
-                            <div class="single_product_text">
-                                <h4>Quartz Belt Watch</h4>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                        <div class="single_product_item">
-                            <img src="${contextPath}/resources/bootstrap/img/product/product_2.png" alt="">
-                            <div class="single_product_text">
-                                <h4>Quartz Belt Watch</h4>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                        <div class="single_product_item">
-                            <img src="${contextPath}/resources/bootstrap/img/product/product_3.png" alt="">
-                            <div class="single_product_text">
-                                <h4>Quartz Belt Watch</h4>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                        <div class="single_product_item">
-                            <img src="img/product/product_4.png" alt="">
-                            <div class="single_product_text">
-                                <h4>Quartz Belt Watch</h4>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                        <div class="single_product_item">
-                            <img src="img/product/product_5.png" alt="">
-                            <div class="single_product_text">
-                                <h4>Quartz Belt Watch</h4>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- product_list part end-->
 
     <!-- subscribe_area part start-->
-    <section class="subscribe_area section_padding">
-        <div class="container">
+            <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-7">
-                    <div class="subscribe_area_text text-center">
-                        <h5>Join Our Newsletter</h5>
-                        <h2>Subscribe to get Updated
-                            with new offers</h2>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="enter email address"
-                                aria-label="Recipient's username" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <a href="#" class="input-group-text btn_2" id="basic-addon2">subscribe now</a>
-                            </div>
-                        </div>
+                <div class="col-lg-8">
+                    <div class="section_tittle text-center" style="padding-top: 70px;">
+                        <h2>Promotion</h2>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+    <div style="display: flex; justify-content: center; align-items: center; height: 80vh;">
+<iframe width="1280" height="720" src="https://www.youtube.com/embed/c_mO8NQRJEs" title="[무신사 영상 광고] Take and Search" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
     <!--::subscribe_area part end::-->
+<style>
+.rank_container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #000000; 
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-size: 20px; 
+    font-family: 'Arial', sans-serif; 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); 
+    background-color: transparent; 
+}
 
-    <!-- subscribe_area part start-->
-    <section class="client_logo padding_top">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-12">
-                    <div class="single_client_logo">
-                        <img src="${contextPath}/resources/bootstrap/img/client_logo/client_logo_1.png" alt="">
-                    </div>
-                    <div class="single_client_logo">
-                        <img src="img/client_logo/client_logo_2.png" alt="">
-                    </div>
-                    <div class="single_client_logo">
-                        <img src="img/client_logo/client_logo_3.png" alt="">
-                    </div>
-                    <div class="single_client_logo">
-                        <img src="img/client_logo/client_logo_4.png" alt="">
-                    </div>
-                    <div class="single_client_logo">
-                        <img src="img/client_logo/client_logo_5.png" alt="">
-                    </div>
-                    <div class="single_client_logo">
-                        <img src="img/client_logo/client_logo_3.png" alt="">
-                    </div>
-                    <div class="single_client_logo">
-                        <img src="img/client_logo/client_logo_1.png" alt="">
-                    </div>
-                    <div class="single_client_logo">
-                        <img src="img/client_logo/client_logo_2.png" alt="">
-                    </div>
-                    <div class="single_client_logo">
-                        <img src="img/client_logo/client_logo_3.png" alt="">
-                    </div>
-                    <div class="single_client_logo">
-                        <img src="img/client_logo/client_logo_4.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--::subscribe_area part end::-->
+.single_product_item {
+    position: relative;
+    left: 0;
+}
 
+.single_product_text {
+    margin-top: 10px; 
+    font-size: 14px; 
+    color: #333333; 
+}
+
+.badge {
+    background-color: red;
+    color: white;
+    border-radius: 50%; /* 원형 모양으로 만들기 위한 속성 */
+    width: 40px; /* 원의 지름을 조절할 수 있습니다. */
+    height: 40px; /* 원의 지름을 조절할 수 있습니다. */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px; /* 텍스트 크기 조절 */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+</style>
+
+<style>
+    .latest_product_inner {
+        min-height: 400px; 
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .latest_product_inner p {
+        font-size: 18px;
+        color: #333;
+        font-weight: bold;
+    }
+    
+    
+    #heartCount {
+    display: inline-block;
+    color: #f33;
+    font-weight: bold;
+    line-height: 16px;
+    }
+    
+.img-score {
+    display: inline-block;
+    height: 18px; /* 스타 이미지의 높이 */
+    background: url(https://image.msscdn.net/skin/musinsa/images/icon_star_score.png) no-repeat 0 -120px;
+    vertical-align: middle; /* 텍스트와 수직 정렬 */
+}
+
+
+/* 점수를 스타일링하는 CSS */
+.count {
+    margin-left: 3px; /* 스타 이미지와 점수 사이의 간격 조절 */
+       color: #FFA500; /* 노란색 */
+    font-weight: bold;
+}
+
+</style>
     <!--::footer_part start::-->
 	<%@ include file="include/footer.jsp" %>
     <!--::footer_part end::-->

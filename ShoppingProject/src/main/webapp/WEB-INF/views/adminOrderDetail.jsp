@@ -67,22 +67,22 @@
 						<h4 class="anc_tit">주문상품 목록</h4>
 						<div class="local_desc02 local_desc">
 							<c:forEach items="${order}" var="order">
-								<c:set var="buynum" value="${order.orderDTO.buynum}" scope="request" />
-								<c:set var="buydate" value="${order.orderDTO.buydate}" scope="request" />
-								<c:set var="payment" value="${order.orderDTO.payment}" scope="request" />
-								<c:set var="paymethod" value="${order.orderDTO.paymethod}" scope="request" />
-								<c:set var="pointvalue" value="${order.orderDTO.pointvalue}" scope="request" />
+								<c:set var="buynum" value="${order.dv_orderDTO.buynum}" scope="request" />
+								<c:set var="buydate" value="${order.dv_orderDTO.buydate}" scope="request" />
+								<c:set var="payment" value="${order.dv_orderDTO.payment}" scope="request" />
+								<c:set var="paymethod_nm" value="${order.dv_orderDTO.paymethod_nm}" scope="request" />
+								<c:set var="pointvalue" value="${order.dv_orderDTO.pointvalue}" scope="request" />
 								<c:set var="membernum" value="${order.dv_order_itemDTO.cartDTO.membernum}" scope="request" />
 								<c:set var="id" value="${order.dv_order_itemDTO.cartDTO.memberDTO.id}" scope="request" />
 								<c:set var="name" value="${order.dv_order_itemDTO.cartDTO.memberDTO.name}" scope="request" />
 								<c:set var="tel" value="${order.dv_order_itemDTO.cartDTO.memberDTO.tel}" scope="request" />
-								<c:set var="delpostcode" value="${order.orderDTO.addressDTO.delpostcode}" scope="request" />
-								<c:set var="delroadaddr" value="${order.orderDTO.addressDTO.delroadaddr}" scope="request" />
-								<c:set var="deljibunaddr" value="${order.orderDTO.addressDTO.deljibunaddr}" scope="request" />
-								<c:set var="delextraaddr" value="${order.orderDTO.addressDTO.delextraaddr}" scope="request" />
-								<c:set var="deldetailaddr" value="${order.orderDTO.addressDTO.deldetailaddr}" scope="request" />
-								<c:set var="discount" value="${order.dv_order_itemDTO.cartDTO.memberDTO.rankDTO.discount}" scope="request" />
-								<c:set var="accumulation" value="${order.dv_order_itemDTO.cartDTO.memberDTO.rankDTO.accumulation}" scope="request" />
+								<c:set var="delpostcode" value="${order.dv_orderDTO.addressDTO.delpostcode}" scope="request" />
+								<c:set var="delroadaddr" value="${order.dv_orderDTO.addressDTO.delroadaddr}" scope="request" />
+								<c:set var="deljibunaddr" value="${order.dv_orderDTO.addressDTO.deljibunaddr}" scope="request" />
+								<c:set var="delextraaddr" value="${order.dv_orderDTO.addressDTO.delextraaddr}" scope="request" />
+								<c:set var="deldetailaddr" value="${order.dv_orderDTO.addressDTO.deldetailaddr}" scope="request" />
+								<c:set var="discount" value="${order.dv_order_itemDTO.cartDTO.memberDTO.ratinglistDTO.discount}" scope="request" />
+								<c:set var="accumulation" value="${order.dv_order_itemDTO.cartDTO.memberDTO.ratinglistDTO.accumulation}" scope="request" />
 							</c:forEach>
 							<p>
 								주문일시 <strong>${buydate}</strong> <span class="fc_214">|</span>
@@ -121,7 +121,7 @@
 							            <td>
 							            	<a href="${contextPath}/board/adminItemDetail?itemnum=${order.dv_order_itemDTO.cartDTO.itemnum}">${order.dv_order_itemDTO.cartDTO.itemDTO.itemname}</a>
 							            </td>
-							            <td class="tar">${order.orderDTO.state_nm}</td>
+							            <td class="tar">${order.dv_orderDTO.state_nm}</td>
 							            <td>${order.dv_order_itemDTO.cartDTO.itemcnt}</td>
 							            <td class="td_price">${order.dv_order_itemDTO.cartDTO.itemDTO.itempay}</td>
 							        </tr>
@@ -149,7 +149,7 @@
 							</tr>
 							<tr>
 								<th scope="row">결제방법</th>
-								<td class="td_thick">${paymethod}</td>
+								<td class="td_thick">${paymethod_nm}</td>
 							</tr>
 							<tr>
 								<th scope="row">총 주문금액</th>
@@ -186,11 +186,11 @@
 							<tbody>
 							<tr>
 								<th scope="row">회원번호</th>
-								<td class="td_thick"><a href="${contextPath}/board/adminMemberDetail?membernum=${membernum}">${membernum}</td>
+								<td class="td_thick"><a href="${contextPath}/board/adminMemberDetail?membernum=${membernum}">${membernum}</a></td>
 							</tr>
 							<tr>
 								<th scope="row">아이디</th>
-								<td class="td_thick"><a href="${contextPath}/board/adminMemberDetail?membernum=${membernum}">${id}</td>
+								<td class="td_thick"><a href="${contextPath}/board/adminMemberDetail?membernum=${membernum}">${id}</a></td>
 							</tr>
 							<tr>
 								<th scope="row">이름</th>

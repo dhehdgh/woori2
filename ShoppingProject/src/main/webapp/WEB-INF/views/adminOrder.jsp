@@ -169,7 +169,7 @@
 						            <td>${adminOrder.buynum}</td>
 						            <td>${adminOrder.addressDTO.membernum}</td>
 						            <td>${adminOrder.addressDTO.memberDTO.id}</td>
-						            <td>${adminOrder.paymethod}</td>
+						            <td>${adminOrder.paymethod_nm}</td>
 						            <td>${adminOrder.payment}</td>
 						            <td>${adminOrder.buydate}</td>
 						            <td>${adminOrder.deliveryday}</td>
@@ -222,7 +222,7 @@
 		                    $("<td>").text(adminOrder.buynum).appendTo(row);
 		                    $("<td>").text(adminOrder.addressDTO.membernum).appendTo(row);
 		                    $("<td>").text(adminOrder.addressDTO.memberDTO.id).appendTo(row);
-		                    $("<td>").text(adminOrder.paymethod).appendTo(row);
+		                    $("<td>").text(adminOrder.paymethod_nm).appendTo(row);
 		                    $("<td>").text(adminOrder.payment).appendTo(row);
 		                    $("<td>").text(adminOrder.buydate).appendTo(row);
 		                    $("<td>").text(adminOrder.deliveryday ? adminOrder.deliveryday : '').appendTo(row);

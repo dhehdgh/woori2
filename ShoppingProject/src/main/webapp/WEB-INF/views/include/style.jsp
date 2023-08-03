@@ -49,7 +49,7 @@
 /* ê²Œì‹œíŒ
 /*-----------------------------------------------------------------*/
 #community {  position:relative; }
-#community h2  { font-size:12px; font-weight:400;  padding:0px 15px 10px;  cursor:pointer; text-transform:uppercase; letter-spacing:1px;  }
+#community h2  { font-size:12px; font-weight:400;  padding:0px 30px 10px;  cursor:pointer; text-transform:uppercase; letter-spacing:1px;  }
 #community h2:hover { color:#ddd;}
 #community h2 img {width:35px;}
 
@@ -57,11 +57,11 @@
 #community .topicon {margin-left:50px;}
 #community .topicon i {font-size:22px; padding:0 0 0 0;  }
 #community li {position:relative;} 
-.middle_category {display:none; position:absolute; }
+.middle_category {display:none; position:absolute;}
 
 /* etc */
-#community li:hover > .middle_category {position:absolute; top:25px; left:5px; display:block; width:auto; padding:10px 0 10px 10px;  z-index:90; text-align:left; background:#f9f9f9; }
-#community li:hover > .middle_category li { width:100%;  display:block!important; padding:0px 15px 0 10px ;  height:25px; line-height:25px;}
+#community li:hover > .middle_category {position:absolute; top:25px; left:5px; display:block; width:130px; padding:10px 0 10px 10px;  z-index:90; background:#f9f9f9;}
+#community li:hover > .middle_category li { width:100%;  display:block!important; padding:0px 15px 0 10px ;  height:25px; line-height:25px;  align-items: center; display: flex;}
 #community li:hover > .middle_category li a {  font-size:12px; padding:0 10px 5px 0;  font-weight:500; color:#444; }
 #community li:hover > .middle_category li a:hover { color:#999;}
 
@@ -104,7 +104,7 @@
 .xans-layout-category { padding:20px 0 10px; float:left; width:100%; }
 .xans-layout-category .position { width:100%;  margin:0 auto;  text-align:center;}
 .xans-layout-category .position > ul { font-size:0; line-height:0; }
-.xans-layout-category .position > ul > li { position:relative; display:inline-block; height:25px; line-height:25px;   letter-spacing:1.5px; }
+.xans-layout-category .position > ul > li { position:relative; display:inline-block; height:25px; line-height:25px;   letter-spacing:1.5px; } /* 여기 letter-spacing:1.5px;*/
 .xans-layout-category .position > ul > li > a { padding:0px 35px 20px; font-weight:500; font-size:12px; color:#444;}
 
 
@@ -130,6 +130,76 @@
   color: #000;
 }
 
+/* Styles for the modal container */
+.modal {
+  display: none; /* Hide the modal by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  z-index: 9999;
+}
+
+/* Styles for the modal content */
+.modal .content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 500px;
+}
+
+/* Styles for the modal header */
+.modal .header {
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+/* Styles for the modal header text */
+.modal .header h5 {
+  margin: 0;
+}
+
+/* Styles for the close button */
+.modal .btnClose {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: #888;
+}
+
+/* Styles for the product information */
+.modal .prdInfo {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 15px;
+}
+
+/* Styles for the product options */
+.modal .prdModify {
+  margin-bottom: 15px;
+}
+
+/* Styles for the option description */
+.modal .optionDesc {
+  font-weight: bold;
+}
+
+/* Styles for the select box */
+.modal select {
+  width: 100%;
+  padding: 5px;
+  margin-top: 5px;
+}
 
 
 </style>

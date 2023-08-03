@@ -1,17 +1,43 @@
 package kr.co.dong.DTO;
 
-public class AddressDTO {
+import org.springframework.stereotype.Component;
+
+import lombok.Data;
+
+@Data
+@Component
+public class addressDTO {
 	private int addrnum;
 	private int membernum;
 	private String delroadaddr;
 	private String deljibunaddr;
 	private String deldetailaddr;
 	private String delextraaddr;
-	private int addrstate;
 	private int delpostcode;
+	private int addrstate;
 	private int deladdrstate;
-	private MemberDTO memberDTO;
+	private int addressnum;
+	private memberDTO memberDTO;
 	
+	
+	public int getAddressnum() {
+		return addressnum;
+	}
+	public void setAddressnum(int addressnum) {
+		this.addressnum = addressnum;
+	}
+	public int getDeladdrstate() {
+		return deladdrstate;
+	}
+	public void setDeladdrstate(int deladdrstate) {
+		this.deladdrstate = deladdrstate;
+	}
+	public int getAddrstate() {
+		return addrstate;
+	}
+	public void setAddrstate(int addrstate) {
+		this.addrstate = addrstate;
+	}
 	public int getAddrnum() {
 		return addrnum;
 	}
@@ -48,35 +74,24 @@ public class AddressDTO {
 	public void setDelextraaddr(String delextraaddr) {
 		this.delextraaddr = delextraaddr;
 	}
-	public int getAddrstate() {
-		return addrstate;
-	}
-	public void setAddrstate(int addrstate) {
-		this.addrstate = addrstate;
-	}
 	public int getDelpostcode() {
 		return delpostcode;
 	}
 	public void setDelpostcode(int delpostcode) {
 		this.delpostcode = delpostcode;
 	}
-	public int getDeladdrstate() {
-		return deladdrstate;
-	}
-	public void setDeladdrstate(int deladdrstate) {
-		this.deladdrstate = deladdrstate;
-	}
-	public MemberDTO getMemberDTO() {
+	
+	public memberDTO getMemberDTO() {
 		return memberDTO;
 	}
-	public void setMemberDTO(MemberDTO memberDTO) {
+	public void setMemberDTO(memberDTO memberDTO) {
 		this.memberDTO = memberDTO;
 	}
 	@Override
 	public String toString() {
-		return "AddressDTO [addrnum=" + addrnum + ", membernum=" + membernum + ", delroadaddr=" + delroadaddr
+		return "addressDTO [addrnum=" + addrnum + ", membernum=" + membernum + ", delroadaddr=" + delroadaddr
 				+ ", deljibunaddr=" + deljibunaddr + ", deldetailaddr=" + deldetailaddr + ", delextraaddr="
-				+ delextraaddr + ", addrstate=" + addrstate + ", delpostcode=" + delpostcode + ", deladdrstate="
-				+ deladdrstate + ", memberDTO=" + memberDTO + "]";
+				+ delextraaddr + ", delpostcode=" + delpostcode + ", addrstate=" + addrstate + ", deladdrstate="
+				+ deladdrstate + ", addressnum=" + addressnum + ", memberDTO=" + memberDTO + "]";
 	}
 }

@@ -158,7 +158,7 @@
 						            <td>${adminReview.reviewDTO.memberDTO.id}</td>
 						            <td>${adminReview.drdate}</td>
 						            <td>${adminReview.reviewDTO.rdate}</td>
-						            <td>${adminReview.reviewDTO.del}</td>
+						            <td>${adminReview.reviewDTO.del_nm}</td>
 						        </tr>
 						    </c:forEach>
 						</tbody>
@@ -209,7 +209,7 @@
 		                    $("<td>").text(review.reviewDTO.memberDTO.id).appendTo(row);
 		                    $("<td>").text(review.drdate).appendTo(row);
 		                    $("<td>").text(review.reviewDTO.rdate).appendTo(row);
-		                    $("<td>").text(review.reviewDTO.del).appendTo(row);
+		                    $("<td>").text(review.reviewDTO.del_nm).appendTo(row);
 		                    // 클릭 시 회원 상세 페이지로 이동
 		                    row.on("click", function () {
 		                        var drnum = review.drnum;

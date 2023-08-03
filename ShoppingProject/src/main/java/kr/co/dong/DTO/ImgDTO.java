@@ -1,11 +1,13 @@
 package kr.co.dong.DTO;
 
-public class ImgDTO {
+import lombok.Data;
+
+@Data
+public class imgDTO {
 	private int imgnum;
 	private int itemnum;
 	private String url;
 	private String imgname;
-	
 	public int getImgnum() {
 		return imgnum;
 	}
@@ -32,6 +34,8 @@ public class ImgDTO {
 	}
 	@Override
 	public String toString() {
-		return "ImgDTO [imgnum=" + imgnum + ", itemnum=" + itemnum + ", url=" + url + ", imgname=" + imgname + "]";
+		return "imgDTO [imgnum=" + imgnum + ", itemnum=" + itemnum + ", url=" + url + ", imgname=" + imgname + "]";
 	}
+	
+	
 }
