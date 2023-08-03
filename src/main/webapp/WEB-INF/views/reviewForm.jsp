@@ -485,7 +485,8 @@ $(document).ready(function(){
 									</div>
 								</div>
 
-
+<input type="hidden" name="itemnum" value="${reviewinsertdetail[0].itemDTO.itemnum}">
+<input type="hidden" name="buynum" value="${reviewinsertdetail[0].dv_orderDTO.buynum}">
 
 
 

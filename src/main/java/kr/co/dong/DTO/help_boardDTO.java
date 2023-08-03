@@ -16,6 +16,16 @@ public class help_boardDTO {
 	private String rehdate;
 	private memberDTO memberDTO;
 	
+
+	private String recomment;
+	public String getRecomment() {
+		return recomment;
+	}
+	public void setRecomment(String recomment) {
+		this.recomment = recomment;
+	}
+
+	public int gethno;
 	
 	
 	

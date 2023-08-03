@@ -262,9 +262,9 @@ public class BoardServiceImpl implements BoardService{
 
 
 	@Override
-	public dv_orderDTO orderdetail(dv_orderDTO dv_orderDTO) {
+	public dv_orderDTO orderdetail(int membernum,dv_orderDTO dv_orderDTO) {
 		// TODO Auto-generated method stub
-		return dao.orderdetail(dv_orderDTO);
+		return dao.orderdetail(membernum,dv_orderDTO);
 	}
 
 
@@ -860,33 +860,29 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<help_boardDTO> helplist(int displayPost, int postNum) throws Exception {
-		return dao.helplist(displayPost,postNum);
+	public List<help_boardDTO> myhelplist(int membernum,int displayPost, int postNum) throws Exception {
+		return dao.myhelplist(membernum,displayPost,postNum);
 	}
 
 	@Override
-	public help_boardDTO helpdetail(int hno) throws Exception{
-		return dao.helpdetail(hno);
+	public help_boardDTO myhelpdetail(int hno) throws Exception{
+		return dao.myhelpdetail(hno);
 	}
 
 	@Override
-	public int helpupdate(help_boardDTO helpupdate) throws Exception {
-		return dao.helpupdate(helpupdate);
+	public int myhelpupdate(help_boardDTO helpupdate) throws Exception {
+		return dao.myhelpupdate(helpupdate);
 	}
 
 	@Override
-	public int helpcancel (int hno) throws Exception {
-		return dao.helpcancel(hno);
+	public int myhelpcancel (int hno) throws Exception {
+		return dao.myhelpcancel(hno);
 	}
 
-	@Override
-	public int helpinsert(help_boardDTO helpinsert) throws Exception {
-		return dao.helpinsert(helpinsert);
-	}
 
 	@Override
-	public List<reviewDTO> reviewlist(int displayPost, int postNum) throws Exception {
-		return dao.reviewlist(displayPost,postNum);
+	public List<reviewDTO> reviewlist(int membernum,int displayPost, int postNum) throws Exception {
+		return dao.reviewlist(membernum,displayPost,postNum);
 	}
 
 	@Override
@@ -895,18 +891,18 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<reviewDTO> noreviewlist(int displayPost, int postNum) throws Exception {
-		return dao.noreviewlist(displayPost,postNum);
+	public List<reviewDTO> noreviewlist(int membernum,int displayPost, int postNum) throws Exception {
+		return dao.noreviewlist(membernum,displayPost,postNum);
 	}
 
 	@Override
-	public int reviewinsert(reviewDTO reviewinsert) throws Exception {
-		return dao.reviewinsert(reviewinsert);
+	public int reviewinsert(int membernum,reviewDTO reviewDTO) throws Exception {
+		return dao.reviewinsert(membernum,reviewDTO);
 	}
 
 	@Override
-	public int reviewset(dv_orderDTO reviewset) throws Exception {
-		return dao.reviewset(reviewset);
+	public int reviewset(int membernum,dv_orderDTO dv_orderDTO) throws Exception {
+		return dao.reviewset(membernum,dv_orderDTO);
 	}
 
 	@Override
@@ -923,17 +919,6 @@ public class BoardServiceImpl implements BoardService{
 	public int reviewdelete(int reviewno) throws Exception {
 		return dao.reviewdelete(reviewno);
 	}
-	   @Override
-	   public int getTotalCount(String keyword, String searchtype, String kind) throws Exception {
-	      return dao.getTotalCount(keyword, searchtype, kind);
-	   }
-
-
-	   @Override
-	   public List<itemreturnDTO> getListByRange(int startIdx, int endIdx, String keyword, String searchtype, String kind)
-	         throws Exception {
-	      return dao.getListByRange(startIdx, endIdx, keyword, searchtype, kind);
-	   }
 
 
 	@Override
@@ -941,17 +926,6 @@ public class BoardServiceImpl implements BoardService{
 		return dao.orderlistcartinsert(orderlistcartinsert);
 	}
 
-	@Override
-	public int getTotalCount2(String keyword, String kind) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.getTotalCount2(keyword, kind);
-	}
-
-	@Override
-	public List<dv_orderDTO> getListByRange2(int startIdx, int endIdx, String keyword, String kind) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.getListByRange2(startIdx, endIdx, keyword, kind);
-	}
 
 
 
@@ -967,33 +941,35 @@ public class BoardServiceImpl implements BoardService{
 		return dao.mypoint(memberDTO);
 	}
 
+
 	@Override
-	public List<itemreturnDTO> returndetail() throws Exception {
+	public int myhelpcount(int membernum) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.returndetail();
+		return dao.myhelpcount(membernum);
 	}
 
 	@Override
-	public int myhelpcount() throws Exception {
+	public int mynoreviewcount(int membernum) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.myhelpcount();
+		return dao.mynoreviewcount(membernum);
 	}
 
 	@Override
-	public int mynoreviewcount() throws Exception {
+	public int myreviewcount(int membernum) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.mynoreviewcount();
-	}
-
-	@Override
-	public int myreviewcount() throws Exception {
-		// TODO Auto-generated method stub
-		return dao.myreviewcount();
+		return dao.myreviewcount(membernum);
 	}
 
 	@Override
 	public int buyok(dv_orderDTO dv_orderDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.buyok(dv_orderDTO);
+	}
+
+
+	@Override
+	public List<reviewDTO> reviewupdatedetail(int membernum, int reviewno) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.reviewupdatedetail(membernum, reviewno);
 	}
 }

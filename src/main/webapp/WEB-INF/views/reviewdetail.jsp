@@ -509,7 +509,9 @@ button {
 				</div>
 				<div class="review-intake-register">
 					<button class="cancel-button _review-cancel" type="button" onclick="location.href='${contextPath}/board/myreviewlist?num=1'">뒤로가기</button>
+					<c:if test="${user.membernum ne reviewdetail[0].reviewDTO.membernum}">
 					<button class="submit-button _review-submit" type="button" onclick="location.href='${contextPath}/board/reviewupdate?reviewno=${reviewdetail[0].reviewDTO.reviewno}'">수정하기</button>
+					</c:if>
 				</div>
 			</div>
 		</div>

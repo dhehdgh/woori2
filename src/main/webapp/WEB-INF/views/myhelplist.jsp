@@ -145,7 +145,7 @@ caption {
 
 	<%@ include file="include/mypage_left_column.jsp"%>
 	<div class="help_content_bx">
-	<div class="content_bx_st"><div style="float: right;"><a href="${contextPath}/board/helpboard" type="button" class="help" style="color: white;">1:1문의하기</a></div>
+	<div class="content_bx_st"><div style="float: right;"><a href="${contextPath}/board/helpRegister?membernum=${user.membernum}" type="button" class="help" style="color: white;">1:1문의하기</a></div>
 		<strong class="tit" style="padding-bottom: 20px;">내 문의내역</strong> 
 		<div class="help_tbl_common help_tbl_style02">
 			<table>
@@ -169,7 +169,7 @@ caption {
 					<tr class="">
 						<td>${status.count}</td>
 						<td class="t_left" id="tdTitle"><a
-							href="${contextPath}/board/myhelpdetail?hno=${helplist.help_boardDTO.hno}" title="내 문의내역 상세보기" >${helplist.help_boardDTO.title}</a></td>
+							href="${contextPath}/board/helpDetail?hno=${helplist.help_boardDTO.hno}" title="내 문의내역 상세보기" >${helplist.help_boardDTO.title}</a></td>
 						<td>${helplist.help_boardDTO.hdate}</td>
 						<td><span class="t_color01">${helplist.codetableDTO.codestring}</span></td>
 					</tr>

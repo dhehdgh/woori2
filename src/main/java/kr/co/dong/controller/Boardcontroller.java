@@ -589,7 +589,14 @@ public class Boardcontroller  {
 			//상세페이지
 			@RequestMapping(value="board/orderdetail", method = RequestMethod.GET)
 			public String orderdetail(dv_orderDTO dv_orderDTO, Model model) throws Exception {
-				dv_orderDTO orderdetail = service.orderdetail(dv_orderDTO);
+				
+				Map user    = (Map)session.getAttribute("user");
+			    int membernum = (int) user.get("membernum");
+			    System.out.println("세션에 저장되어 있는 변수: " + membernum);
+				
+				
+				
+				dv_orderDTO orderdetail = service.orderdetail(membernum,dv_orderDTO);
 				model.addAttribute("orderdetail", orderdetail);
 				return "orderdetail";
 			}
@@ -1798,14 +1805,19 @@ public class Boardcontroller  {
 			@RequestMapping( value="board/myreview", method = RequestMethod.GET)
 				public String myreview(Model model,@RequestParam("num")int num) throws Exception{
 					
+				
+				Map user    = (Map)session.getAttribute("user");
+			    int membernum = (int) user.get("membernum");
+			    System.out.println("세션에 저장되어 있는 변수: " + membernum);
+				
 					Page page = new Page();
 					
 					page.setNum(num);
-					page.setCount(service.mynoreviewcount());
+					page.setCount(service.mynoreviewcount(membernum));
 					
 				
 					List<reviewDTO> noreviewlist = null; 
-							noreviewlist = service.noreviewlist(page.getDisplayPost(), page.getPostNum());
+							noreviewlist = service.noreviewlist(membernum,page.getDisplayPost(), page.getPostNum());
 					
 					model.addAttribute("noreviewlist", noreviewlist);
 					model.addAttribute("page", page);
@@ -1819,14 +1831,19 @@ public class Boardcontroller  {
 			@RequestMapping( value="board/myreviewlist", method = RequestMethod.GET)
 				public String myreviewlist(Model model,@RequestParam("num")int num) throws Exception{
 				
+				
+				Map user    = (Map)session.getAttribute("user");
+			    int membernum = (int) user.get("membernum");
+			    System.out.println("세션에 저장되어 있는 변수: " + membernum);
+			    
 					Page page = new Page();
 					
 					page.setNum(num);
-					page.setCount(service.myreviewcount());
+					page.setCount(service.myreviewcount(membernum));
 				
 					List<reviewDTO> reviewlist = null;
 					
-					reviewlist = service.reviewlist(page.getDisplayPost(), page.getPostNum());
+					reviewlist = service.reviewlist(membernum,page.getDisplayPost(), page.getPostNum());
 					
 					model.addAttribute("reviewlist", reviewlist);
 					model.addAttribute("page", page);
@@ -1849,18 +1866,26 @@ public class Boardcontroller  {
 			@RequestMapping(value="board/reviewForm", method = RequestMethod.POST)
 				public String reviewForm(reviewDTO reviewDTO, dv_orderDTO dv_orderDTO) throws Exception{
 				
-				service.reviewinsert(reviewDTO);
+				Map user    = (Map)session.getAttribute("user");
+			    int membernum = (int) user.get("membernum");
+			    System.out.println("세션에 저장되어 있는 변수: " + membernum);
 				
-				service.reviewset(dv_orderDTO);
+				service.reviewinsert(membernum,reviewDTO);
+				
+				service.reviewset(membernum,dv_orderDTO);
 				
 				return "redirect:myreviewlist?num=1";
 			}
 			//리뷰수정
 			@RequestMapping( value="board/reviewupdate", method = RequestMethod.GET)
 				public String reviewupdate(@RequestParam("reviewno") int reviewno,Model model) throws Exception{
-					List<reviewDTO> reviewdetail = service.reviewdetail(reviewno);
+				Map user    = (Map)session.getAttribute("user");
+			    int membernum = (int) user.get("membernum");
+			    System.out.println("세션에 저장되어 있는 변수: " + membernum);
+				
+					List<reviewDTO> reviewupdatedetail = service.reviewupdatedetail(membernum,reviewno);
 					
-					model.addAttribute("reviewdetail", reviewdetail);
+					model.addAttribute("reviewdetail", reviewupdatedetail);
 				
 				return "reviewupdate";
 				}
@@ -1869,11 +1894,15 @@ public class Boardcontroller  {
 				
 				service.reviewupdate(reviewupdate);
 				
-				return "redirect:myreviewlist";
+				return "redirect:myreviewlist?num=1";
 			}
 			//리뷰상세
 			@RequestMapping( value="board/reviewdetail", method = RequestMethod.GET)
 				public String reviewdetail(@RequestParam("reviewno") int reviewno,Model model) throws Exception{
+				
+				Map user    = (Map)session.getAttribute("user");
+			    int membernum = (int) user.get("membernum");
+			    System.out.println("세션에 저장되어 있는 변수: " + membernum);
 				
 				List<reviewDTO> reviewdetail = service.reviewdetail(reviewno);
 				
@@ -1884,15 +1913,18 @@ public class Boardcontroller  {
 			//내문의내역
 			@RequestMapping( value="board/myhelplist", method = RequestMethod.GET)
 				public String myhelplist(Model model,@RequestParam("num")int num) throws Exception{
-					
+					Map user    = (Map)session.getAttribute("user");
+				    int membernum = (int) user.get("membernum");
+				    System.out.println("세션에 저장되어 있는 변수: " + membernum);
+				
 					Page page = new Page();
 					
 					page.setNum(num);
-					page.setCount(service.myhelpcount());
+					page.setCount(service.myhelpcount(membernum));
 				
 					
 					List<help_boardDTO> helplist = null; 
-					helplist= service.helplist(page.getDisplayPost(), page.getPostNum());
+					helplist= service.myhelplist(membernum,page.getDisplayPost(), page.getPostNum());
 							
 					model.addAttribute("helplist", helplist);
 					model.addAttribute("page", page);
@@ -1914,19 +1946,12 @@ public class Boardcontroller  {
 				
 				return "helpboard";
 				}
-			//1:1문의
-			@RequestMapping( value="board/helpboard", method = RequestMethod.POST)
-				public String helpinsert(help_boardDTO help_boardDTO) throws Exception{
-			
-					service.helpinsert(help_boardDTO);
-				return "redirect:myhelplist";
-				}
 
 			//문의내역상세
 			@RequestMapping( value="board/myhelpdetail", method = RequestMethod.GET)
 				public String myhelpdetail(@RequestParam("hno") int hno ,Model model) throws Exception{
 				
-					help_boardDTO helpdetail = service.helpdetail(hno);
+					help_boardDTO helpdetail = service.myhelpdetail(hno);
 					
 					model.addAttribute("helpdetail", helpdetail);
 				
@@ -1937,7 +1962,7 @@ public class Boardcontroller  {
 			@RequestMapping( value="board/myhelpupdate", method = RequestMethod.GET)
 				public String myhelpupdate(@RequestParam("hno") int hno ,Model model) throws Exception{
 					
-					help_boardDTO helpdetail = service.helpdetail(hno);
+					help_boardDTO helpdetail = service.myhelpdetail(hno);
 				
 					model.addAttribute("helpupdate", helpdetail);
 				
@@ -1947,7 +1972,7 @@ public class Boardcontroller  {
 			@RequestMapping(value="board/myhelpupdate", method = RequestMethod.POST)
 				public String myhelpupdate(help_boardDTO helpboard) throws Exception{
 				
-				service.helpupdate(helpboard);
+				service.myhelpupdate(helpboard);
 					
 				return "redirect:myhelplist";
 			}
@@ -1956,7 +1981,7 @@ public class Boardcontroller  {
 			@RequestMapping(value="board/myhelpcancel", method = RequestMethod.POST)
 			public int myhelpcancel(@RequestParam("hno") int hno) throws Exception{
 			
-				return service.helpcancel(hno);
+				return service.myhelpcancel(hno);
 			}
 			//장바구니담기버튼
 			@RequestMapping(value="board/orderlistcartinsert",method=RequestMethod.GET)

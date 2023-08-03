@@ -35,16 +35,15 @@ function openPop() {
 
 <%@ include file="include/header.jsp"%>
 <body>
- <section class="cat_product_area section_padding">
  
     <div class="container">
        <div class="row"> 
 <%@ include file="include/mypage_left_column.jsp"%>
  
-     <div class="card-body">  
+     <div class="card-body" style="width: 900px;">  
           	<h4 style="display:inline" class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
             배송지 관리</h4>
-            <div style="float:right;width:calc(100% - 822px)">
+            <div style="float:right;width:calc(100% - 822px);padding-right: 120px;">
             <button id="insert" name="insert" class="btn-insert" 
                           style="    width: 116px;
 						    padding: 5px 3px 3px;

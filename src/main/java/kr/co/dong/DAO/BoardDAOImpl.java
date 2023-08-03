@@ -257,8 +257,9 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 
 	@Override
-	public dv_orderDTO orderdetail(dv_orderDTO dv_orderDTO) {
+	public dv_orderDTO orderdetail(int membernum,dv_orderDTO dv_orderDTO) {
 		// TODO Auto-generated method stub
+		dv_orderDTO.setMembernum(membernum);
 		return sqlsession.selectOne(namespace+".orderdetail", dv_orderDTO);
 	}
 
@@ -890,43 +891,41 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 
 	@Override
-	public List<help_boardDTO> helplist(int displayPost, int postNum) throws Exception {
+	public List<help_boardDTO> myhelplist(int membernum,int displayPost, int postNum) throws Exception {
 		
 		HashMap<String, Integer> data = new HashMap<String, Integer>();
 		
 		data.put("displayPost", displayPost);
 		data.put("postNum", postNum);
+		data.put("membernum",membernum);
 		
 		return sqlsession.selectList(namespace+".helplist",data);
 	}
 
 	@Override
-	public help_boardDTO helpdetail(int hno) throws Exception {
+	public help_boardDTO myhelpdetail(int hno) throws Exception {
 		return sqlsession.selectOne(namespace+".helpdetail",hno);
 	}
 
 	@Override
-	public int helpupdate(help_boardDTO helpupdate) throws Exception {
+	public int myhelpupdate(help_boardDTO helpupdate) throws Exception {
 		return sqlsession.update(namespace+".helpupdate",helpupdate);
 	}
 
 	@Override
-	public int helpcancel (int hno) throws Exception {
+	public int myhelpcancel (int hno) throws Exception {
 		return sqlsession.update(namespace+".helpcancel",hno);
 	}
 
-	@Override
-	public int helpinsert(help_boardDTO helpinsert) throws Exception {
-		return sqlsession.insert(namespace+".helpinsert",helpinsert);
-	}
 
 	@Override
-	public List<reviewDTO> reviewlist(int displayPost, int postNum) throws Exception {
+	public List<reviewDTO> reviewlist(int membernum,int displayPost, int postNum) throws Exception {
 		
 		HashMap<String, Integer> data = new HashMap<String, Integer>();
 		
 		data.put("displayPost", displayPost);
 		data.put("postNum", postNum);
+		data.put("membernum", membernum);
 		
 		return sqlsession.selectList(namespace+".reviewlist",data);
 	}
@@ -937,24 +936,36 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 
 	@Override
-	public List<reviewDTO> noreviewlist(int displayPost, int postNum) throws Exception {
+	public List<reviewDTO> noreviewlist(int membernum,int displayPost, int postNum) throws Exception {
 		
 		HashMap<String, Integer> data = new HashMap<String, Integer>();
 		
 		data.put("displayPost", displayPost);
 		data.put("postNum", postNum);
+		data.put("membernum", membernum);
 		
 		return sqlsession.selectList(namespace+".noreviewlist",data);
 	}
 
 	@Override
-	public int reviewinsert(reviewDTO reviewinsert) throws Exception {
-		return sqlsession.insert(namespace+".reviewinsert",reviewinsert);
+	public int reviewinsert(int membernum,reviewDTO reviewDTO) throws Exception {
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		
+		data.put("membernum", membernum);
+		data.put("reviewDTO", reviewDTO);
+		
+		return sqlsession.insert(namespace+".reviewinsert",data);
 	}
 
 	@Override
-	public int reviewset(dv_orderDTO reviewset) throws Exception {
-		return sqlsession.update(namespace+".reviewset",reviewset);
+	public int reviewset(int membernum,dv_orderDTO dv_orderDTO) throws Exception {
+		
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		
+		data.put("membernum", membernum);
+		data.put("dv_orderDTO", dv_orderDTO);
+		
+		return sqlsession.update(namespace+".reviewset",data);
 	}
 
 	@Override
@@ -971,53 +982,12 @@ public class BoardDAOImpl implements BoardDAO{
 	public int reviewdelete(int reviewno) throws Exception {
 		return sqlsession.update(namespace+".reviewdelete",reviewno);
 	}
-	@Override
-	   public int getTotalCount(String keyword, String searchtype, String kind) throws Exception {
-	      // TODO Auto-generated method stub
-	      HashMap<String, Object> data = new HashMap<String, Object>(); // Map 선언   
-	         data.put("searchtype", searchtype);
-	         data.put("keyword", keyword);
-	         data.put("kind", kind);
-	         return sqlsession.selectOne(namespace+".getTotalCount", data);  
-	   }
-
-	   @Override
-	   public List<itemreturnDTO> getListByRange(int startIdx, int endIdx, String keyword, String searchtype, String kind)
-	         throws Exception {
-	      // TODO Auto-generated method stub
-	      HashMap<String, Object> parameterMap = new HashMap<String, Object>();
-	       parameterMap.put("startIdx", startIdx);
-	       parameterMap.put("endIdx", endIdx);
-	       parameterMap.put("keyword", keyword);
-	       parameterMap.put("searchtype", searchtype);
-	       parameterMap.put("kind", kind);
-	       return sqlsession.selectList(namespace + ".getListByRange", parameterMap);
-	   }
 
 	@Override
 	public int orderlistcartinsert(cartDTO orderlistcartinsert) throws Exception {
 		return sqlsession.insert(namespace+".orderlistcartinsert",orderlistcartinsert);
 	}
 
-	   @Override
-	   public int getTotalCount2(String keyword, String kind) throws Exception {
-	      // TODO Auto-generated method stub
-	      HashMap<String, Object> data = new HashMap<String, Object>(); // Map 선언   
-	      data.put("keyword", keyword);
-	      data.put("kind", kind);
-	      return sqlsession.selectOne(namespace+".getTotalCount2", data);  
-	   }
-
-	   @Override
-	   public List<dv_orderDTO> getListByRange2(int startIdx, int endIdx, String keyword, String kind) throws Exception {
-	      // TODO Auto-generated method stub
-	      HashMap<String, Object> parameterMap = new HashMap<String, Object>();
-	       parameterMap.put("startIdx", startIdx);
-	       parameterMap.put("endIdx", endIdx);
-	       parameterMap.put("keyword", keyword);
-	       parameterMap.put("kind", kind);
-	       return sqlsession.selectList(namespace + ".getListByRange2", parameterMap);
-	   }
 
 
 
@@ -1033,32 +1003,37 @@ public class BoardDAOImpl implements BoardDAO{
 		return sqlsession.selectOne(namespace+".mypoint",memberDTO);
 	}
 
-	@Override
-	public List<itemreturnDTO> returndetail() throws Exception{
-		// TODO Auto-generated method stub
-		return sqlsession.selectList(namespace+".returndetail");
-	}
 
-	public int myhelpcount() throws Exception {
+	public int myhelpcount(int membernum) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlsession.selectOne(namespace+".myhelpcount");
+		return sqlsession.selectOne(namespace+".myhelpcount",membernum);
 	}
 
 	@Override
-	public int mynoreviewcount() throws Exception {
+	public int mynoreviewcount(int membernum) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlsession.selectOne(namespace+".mynoreviewcount");
+		return sqlsession.selectOne(namespace+".mynoreviewcount",membernum);
 	}
 
 	@Override
-	public int myreviewcount() throws Exception {
+	public int myreviewcount(int membernum) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlsession.selectOne(namespace+".myreviewcount");
+		return sqlsession.selectOne(namespace+".myreviewcount",membernum);
 	}
 
 	@Override
 	public int buyok(dv_orderDTO dv_orderDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlsession.update(namespace+".buyok",dv_orderDTO);
+	}
+
+	@Override
+	public List<reviewDTO> reviewupdatedetail(int membernum, int reviewno) throws Exception {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> data = new HashMap<String, Object>(); // Map 선언	
+		data.put("reviewno", reviewno);
+		data.put("membernum", membernum);
+		
+		return sqlsession.selectList(namespace+".reviewupdatedetail",data);
 	}
 }

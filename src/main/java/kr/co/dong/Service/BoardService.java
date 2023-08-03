@@ -93,7 +93,7 @@ public interface BoardService {
      
 	  List<dv_orderDTO> getListByRange2(int membernum, int startIdx, int endIdx, String keyword, String kind) throws Exception;
 	//상세 이동
-	public dv_orderDTO orderdetail(dv_orderDTO dv_orderDTO);
+	public dv_orderDTO orderdetail(int membernum,dv_orderDTO dv_orderDTO);
 	//반품교환취소폼 이동
 	public dv_orderDTO orderform(dv_orderDTO dv_orderDTO);
 	//반품교환취소신청
@@ -305,55 +305,44 @@ public interface BoardService {
 	//내주문리스트
 	public List<dv_orderDTO> dv_orderlist() throws Exception;
 	//문의리스트
-	public List<help_boardDTO> helplist(int displayPost, int postNum) throws Exception;
+	public List<help_boardDTO> myhelplist(int membernum,int displayPost, int postNum) throws Exception;
 	//문의상세
-	public help_boardDTO helpdetail(int hno) throws Exception;
+	public help_boardDTO myhelpdetail(int hno) throws Exception;
 	//문의수정
-	public int helpupdate (help_boardDTO helpupdate) throws Exception;
+	public int myhelpupdate (help_boardDTO helpupdate) throws Exception;
 	//문의취소
-	public int helpcancel (int hno) throws Exception;
-	//문의작성
-	public int helpinsert (help_boardDTO helpinsert) throws Exception;
+	public int myhelpcancel (int hno) throws Exception;
 	//내미작성리뷰리스트
-	public List<reviewDTO> noreviewlist(int displayPost, int postNum)throws Exception;
+	public List<reviewDTO> noreviewlist(int membernum,int displayPost, int postNum)throws Exception;
 	//내작성리뷰리스트
-	public List<reviewDTO> reviewlist(int displayPost, int postNum)throws Exception;
+	public List<reviewDTO> reviewlist(int membernum,int displayPost, int postNum)throws Exception;
 	//리뷰수정
-	public int reviewupdate (reviewDTO reviewupdate) throws Exception;
+	public int reviewupdate (reviewDTO reviewDTO) throws Exception;
 	//리뷰작성
-	public int reviewinsert (reviewDTO reviewinsert) throws Exception;
+	public int reviewinsert (int membernum,reviewDTO reviewDTO) throws Exception;
 	//리뷰작성
-	public int reviewset (dv_orderDTO reviewset) throws Exception;
+	public int reviewset (int membernum,dv_orderDTO reviewset) throws Exception;
 	//리뷰작성상세
 	public List<dv_orderDTO> reviewinsertdetail(int buynum) throws Exception;
 	//리뷰내용(수정폼용)
 	public reviewDTO reviewde (int reviewno) throws Exception;
 	//리뷰삭제
 	public int reviewdelete (int reviewno) throws Exception;
-	// 반품전체 조회, 검색, 페이징
-	public int getTotalCount(String keyword, String searchtype, String kind) throws Exception;
-	         
-	List<itemreturnDTO> getListByRange(int startIdx, int endIdx, String keyword, String searchtype, String kind) throws Exception;
 	//주문목록장바구니담기
 	public int orderlistcartinsert (cartDTO orderlistcartinsert) throws Exception;
 	
-	//주문목록
-	   //전체 조회, 검색, 페이징
-	    public int getTotalCount2(String keyword, String kind) throws Exception;
-	     
-	     List<dv_orderDTO> getListByRange2(int startIdx, int endIdx, String keyword, String kind) throws Exception;
 	   //리뷰상세
 	   public List<reviewDTO> reviewdetail(int reviewno) throws Exception;
+	   //리뷰수정상세
+	   public List<reviewDTO> reviewupdatedetail(int membernum,int reviewno) throws Exception;
 	   //내등급포인트
 	   public memberDTO mypoint (memberDTO memberDTO) throws Exception;
-	   //반품/교환/취소 상세
-	   public List<itemreturnDTO> returndetail() throws Exception;
 	   //문의사항카운트
-	   public int myhelpcount() throws Exception;
+	   public int myhelpcount(int membernum) throws Exception;
 	   //미작성리뷰카운트
-	   public int mynoreviewcount() throws Exception;
+	   public int mynoreviewcount(int membernum) throws Exception;
 	   //작성리뷰카운트
-	   public int myreviewcount() throws Exception;
+	   public int myreviewcount(int membernum) throws Exception;
 	   //구매확정
 	   public int buyok(dv_orderDTO dv_orderDTO) throws Exception;
 }

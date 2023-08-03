@@ -892,7 +892,7 @@
 	<select id="getListByRange2" parameterType="HashMap" resultMap="orderMapper" >
    select DISTINCT O.buynum, O.buydate,  O.paymethod, O.deliverycom, O.state, O.deliveryday, O.addrnum, O.review,
    C.membernum, C.itemnum, C.itemcnt, C.iv_itemnum,
-    IT.itemname, IT.itempay, IT.itembuycnt,  IT.itemdate, IT.itemb, IT.items, IT.itemcontent, IT.rstar,
+    IT.itemname, IT.itempay,    IT.itemdate, IT.itemb, IT.items, IT.itemcontent, IT.rstar,
     M.name, M.tel, M.point, M.pointac,
     AD.membernum, AD.delroadaddr, AD.deldetailaddr, AD.delextraaddr, AD.delpostcode, AD.addrstate,
     IM.imgnum, IM.imgname, IM.url,
@@ -963,7 +963,7 @@
 	<select id="orderdetail" resultMap= "orderMapper" parameterType="dv_orderDTO" >
    select DISTINCT O.buynum, O.buydate,  O.paymethod, O.deliverycom, O.state, O.deliveryday, O.addrnum, O.review,
    C.membernum, C.itemnum, C.itemcnt, C.iv_itemnum,
-    IT.itemname, IT.itempay, IT.itembuycnt,  IT.itemdate, IT.itemb, IT.items, IT.itemcontent, IT.rstar,
+    IT.itemname, IT.itempay,    IT.itemdate, IT.itemb, IT.items, IT.itemcontent, IT.rstar,
     M.name, M.tel, M.point, M.pointac,
     AD.membernum, AD.delroadaddr, AD.deldetailaddr, AD.delextraaddr, AD.delpostcode, AD.addrstate,
     IM.imgnum, IM.imgname, IM.url,
@@ -1988,8 +1988,10 @@ WHERE id = #{id}
 		left join item i on c.itemnum = i.itemnum
         left join iv_item iv on c.iv_itemnum = iv.iv_itemnum
 		left join img im on im.itemnum = i.itemnum
+		join member m
 	where
-		c.membernum = #{membernum} and
+		c.membernum = m.membernum and
+		m.membernum = #{membernum} and
 		dv.state = 1 and
 		dv.review = 1
 	 
@@ -2015,8 +2017,9 @@ WHERE id = #{id}
 		join img e on e.itemnum = i.itemnum
 		join dv_order dv on dv.buynum = r.buynum
        join iv_item iv
-       join cart c join dv_order_item doi
+       join cart c join dv_order_item doi join member m
 	where
+	r.membernum = m.membernum and
     iv.itemnum = r.itemnum and
     c.iv_itemnum = iv.iv_itemnum and
 		c.cartno = doi.cartno and
@@ -2030,8 +2033,8 @@ WHERE id = #{id}
 <select id="helplist" resultMap="join" parameterType="hashMap">
 select
 h.hno, h.membernum, h.title, h.content, h.hdate, c.codestring
-from help_board h,codetable c
-where c.codename = '문의상태' and c.codenum = h.state and h.membernum = #{membernum} and del = 1
+from help_board h,codetable c join member m
+where c.codename = '문의상태' and c.codenum = h.state and h.membernum = m.membernum and m.membernum = #{membernum} and del = 1
 order by h.hno desc
 LIMIT #{displayPost} , #{postNum};
 
@@ -2050,7 +2053,7 @@ where hno=#{hno};
 	set del=2
 	where hno=#{hno};
 </update>
-<insert id="helpinsert" parameterType="help_boardDTO">
+<insert id="myhelpinsert" parameterType="help_boardDTO">
 	insert into help_board (membernum,title,content,hdate,state,del) values (#{membernum},#{title},#{content},now(),1,1);
 </insert>
 <insert id="reviewinsert" parameterType="reviewDTO">
@@ -2086,6 +2089,27 @@ im.imgname,im.url,iv.itemcolor,iv.itemsize
 	select * from review where reviewno=#{reviewno};
 </select>
 <select id="reviewdetail" parameterType="java.lang.Integer" resultMap="join">
+	   select r.reviewno,r.rstar,r.rcontent,r.membernum,
+		i.itemname,im.url,im.imgname,
+        
+        (select codestring from codetable 
+    where codename = "상품색상"
+    and codenum = iv.itemcolor ) as 'color',
+    
+    (select codestring from codetable 
+    where codename = "사이즈"
+    and codenum = iv.itemsize ) as 'size'
+		from review r join iv_item iv join dv_order_item doi join cart c
+		join item i on r.itemnum = i.itemnum
+		join img im on i.itemnum = im.itemnum
+		where 
+        r.buynum = doi.buynum and
+        doi.cartno = c.cartno and
+        r.itemnum = c.itemnum and
+        c.iv_itemnum = iv.iv_itemnum
+		and reviewno = #{reviewno};
+</select>
+<select id="reviewupdatedetail" parameterType="java.lang.Integer" resultMap="join">
 	   select r.reviewno,r.rstar,r.rcontent,r.membernum,
 		i.itemname,im.url,im.imgname,
         

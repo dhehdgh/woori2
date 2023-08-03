@@ -524,7 +524,6 @@ $(function(){
 
 <%@ include file="include/header.jsp"%>
 <body>
- <section class="cat_product_area section_padding">
  
   <div class="container">
     <div class="row"> 
