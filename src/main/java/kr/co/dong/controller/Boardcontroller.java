@@ -1938,7 +1938,7 @@ public class Boardcontroller  {
 			@RequestMapping(value="board/reviewdelete", method=RequestMethod.GET)
 				public String reviewdelete(@RequestParam("reviewno")int reviewno) throws Exception{
 					service.reviewdelete(reviewno);
-				return "redirect:myreviewlist";
+				return "redirect:myreviewlist?num=1";
 				}
 			//1:1문의하기폼
 			@RequestMapping( value="board/helpboard", method = RequestMethod.GET)
